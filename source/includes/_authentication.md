@@ -22,6 +22,12 @@ curl "api_endpoint_here"
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
+FABRIQ uses OAUTH2 to authenticate and authorize all API requests.
+
+Some non-user requests (e.g. acquiring a user access_token) require a client_id to identify the app making the request. The client_id should be included in the HTTP request header using the X-CLIENT-ID key.
+
+To facilitate testing, each account has a test-mode client_id and a live-mode client_id.
+
 Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
 
 Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
@@ -31,4 +37,3 @@ Kittn expects for the API key to be included in all API requests to the server i
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
-
