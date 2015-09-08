@@ -191,7 +191,7 @@ html, body {
     }
 
     // for embossed look:
-    @include embossed-bg;
+    //@include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
@@ -457,7 +457,7 @@ html, body {
 
   code {
     background-color: rgba(0,0,0,0.05);
-    padding: 3px;
+    padding: 7px;
     border-radius: 3px;
     @extend %break-words;
     @extend %code-font;
@@ -468,12 +468,27 @@ html, body {
     padding: 0;
   }
 
+  /* SJA */
+  pre > code {
+      display: block;
+      background-color: $code-annotation-bg;
+      border-radius: 5px;
+      padding: 15px 20px;
+      color: #ccc;
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #404040;
+      margin-bottom: 40px;
+  }
+
+
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
     @include text-shadow(0 1px 0 lighten($aside-notice-bg, 15%));
     margin-top: 1.5em;
     margin-bottom: 1.5em;
+    margin-left: $aside-margin-left;
+    margin-right: $aside-margin-right;
     background: $aside-notice-bg;
     line-height: 1.6;
 
@@ -526,7 +541,7 @@ html, body {
     background-color: $code-bg;
     color: #fff;
 
-    padding: 2em $main-padding;
+    padding: 0 $main-padding;
     margin: 0;
     width: $examples-width;
 
@@ -551,6 +566,7 @@ html, body {
     @extend %code-font;
   }
 
+/*
   blockquote {
     &>p {
       background-color: $code-annotation-bg;
@@ -559,6 +575,19 @@ html, body {
       color: #ccc;
       border-top: 1px solid #000;
       border-bottom: 1px solid #404040;
+    }
+  }
+  */
+
+  /* SJA */
+  blockquote {
+    &>p {
+      //background-color: $code-annotation-bg;
+      //border-radius: 5px;
+      padding: $code-annotation-padding;
+      color: #ccc;
+      //border-top: 1px solid #000;
+      //border-bottom: 1px solid #404040;
     }
   }
 }

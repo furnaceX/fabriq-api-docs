@@ -11,8 +11,11 @@ toc_footers:
 includes:
   - introduction
   - authentication
-  - kittens
+  - oauth
   - errors
+  - versioning
+  - kittens
+  - methods/users
 
 search: true
 ---

@@ -24,22 +24,19 @@ curl "http://example.com/api/kittens"
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+    "grants":[
+        "panic",
+        "geoblast"
+    ],
+    "uid":"5b4ad9e4-c1c9-4968-84e4-360c61148ec5",
+    "first_name":null,
+    "last_name":null,
+    "photo_url":null,
+    "has_contacts":false,
+    "is_verified":false,
+    "access_token":"test__d9c1f22e-1e41-4696-9643-67f1cc10005d"
+}
 ```
 
 This endpoint retrieves all kittens.
@@ -105,4 +102,3 @@ This endpoint retrieves a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to retrieve
-
