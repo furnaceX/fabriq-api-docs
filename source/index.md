@@ -16,6 +16,8 @@ includes:
   - versioning
   - kittens
   - methods/users
+  - methods/alerts
+  - methods/contacts
 
 search: true
 ---
