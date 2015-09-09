@@ -1,0 +1,717 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>FABRIQ API Reference</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["shell"]);
+        });
+      </script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://developer.fabriq.io'>Sign Up for a Developer Key</a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        
+          <h1 id="introduction">Introduction</h1>
+
+<blockquote>
+<p><strong>API Endpoint</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>https://api.fabriq.io
+</code></pre>
+
+<p>The FABRIQ API makes it easy to embed powerful and intelligent safety features into apps and wearables.  Use it
+to trigger an alert, monitor an activity or periodically check on the welfare of a loved one.  The possibilities
+to enhance our personal safety are endless!</p>
+
+<p>The API is organized around <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> and uses
+resource-oriented URLs. It makes use of HTTP verbs and response codes to perform actions and communicate state.</p>
+
+<p>All responses are returned in JSON, including application and system errors.</p>
+
+          <h1 id="authentication">Authentication</h1>
+
+          <h1 id="oauth">OAuth</h1>
+
+<p>FABRIQ implements the OAuth 2.0 standard to facilitate user authorization. Similar to Facebook and Twitter’s
+authentication flow, the user is first presented with a permission dialog for your application, at which point
+the user can either approve the permissions requested, or reject them. Once the user approves, an
+authorization_code is sent to your application, which will then be exchanged for an access_token.</p>
+
+<p>The access_token can then be used to make API calls.  </p>
+
+<p>Access tokens currently are long lived and essentially do not expire.  This is will change in a future update of the API.  </p>
+
+<h2 id="request-authorization">Request Authorization</h2>
+
+<blockquote>
+<p><strong>Example Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.fabriq.io/oauth/authorize"</span> <span class="se">\</span>
+  -d <span class="nv">response_type</span><span class="o">=</span>code                      <span class="se">\</span>
+  -d <span class="nv">client_id</span><span class="o">=</span><span class="k">${</span><span class="nv">CLIENT_ID</span><span class="k">}</span>                  <span class="se">\</span>
+  -d <span class="nv">redirect_uri</span><span class="o">=</span><span class="k">${</span><span class="nv">REDIRECT_URI</span><span class="k">}</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Example Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"grants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"geoblast"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b4ad9e4-c1c9-4968-84e4-360c61148ec5"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"has_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"is_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test__d9c1f22e-1e41-4696-9643-67f1cc10005d"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>To start the OAuth process, construct the initiation URL which the user will visit in order to grant permission to
+your application. The request includes your client application (client_id), and where the user should be redirected to
+after they grant or deny permissions to your application (redirect_uri).</p>
+
+          <h1 id="errors">Errors</h1>
+
+<p>FABRIQ uses standard HTTP response codes to indicate the status of an API request. In general, codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the provided information (e.g. a required parameter was missing), and codes in the 5xx range indicate an internal
+system or server error.</p>
+
+<table><thead>
+<tr>
+<th>Error Codes</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200<br><em>OK</em></td>
+<td>Everything worked as expected</td>
+</tr>
+<tr>
+<td>400<br><em>Bad Request</em></td>
+<td>Request received with a missing or invalid parameter</td>
+</tr>
+<tr>
+<td>401<br><em>Unauthorized</em></td>
+<td>An access_token or client_id was invalid or not provided</td>
+</tr>
+<tr>
+<td>402<br><em>Request Failed</em></td>
+<td>Parameters were valid but request failed</td>
+</tr>
+<tr>
+<td>404<br><em>Not Found</em></td>
+<td>The requested item doesn&rsquo;t exist</td>
+</tr>
+<tr>
+<td>429<br><em>Too Many Requests</em></td>
+<td>Too many requests hit the API too quickly</td>
+</tr>
+<tr>
+<td>500<br><em>Server Error</em></td>
+<td>FABRIQ server error</td>
+</tr>
+</tbody></table>
+
+          <h1 id="versioning">Versioning</h1>
+
+          <h1 id="inapp-browser">Inapp Browser</h1>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>https://portal.fabriq.io/#/access_token={ACCESS_TOKEN}
+</code></pre>
+
+<p>To simplify the experience of a user configuring his or her FABRIQ account, you can launch
+an in-app browser that&rsquo;s directed to a custom FABRIQ portal.  There, the user can add/remove
+contacts, change account settings, etc.</p>
+
+<p>When the in-app browser is closed, your app should refresh the user and settings objects to get the latest
+changes made to their account.</p>
+
+<p>The in-app browser should be directed to the following URL:</p>
+
+<p><code style="margin:auto;">
+https://portal.fabriq.io/#/access_token={ACCESS_TOKEN}
+</code></p>
+
+<p><br/></p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">access_token <br><strong>required</strong></td>
+<td>The user&rsquo;s access_token</td>
+</tr>
+</tbody></table>
+
+          <h1 id="users">Users</h1>
+
+<p>Most API calls are made on behalf of a user and act on the user&rsquo;s account. </p>
+
+          <h2 id="the-user-object">The user object</h2>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001440886991323-a2d5c77b67d7-0001"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551111"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551111"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"has_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"is_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"grants"</span><span class="p">:[</span><span class="w">
+        </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"geoblast"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_tracking"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ping_me"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"connect_911"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ATTRIBUTES</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">uid <br><em>string</em></td>
+<td>Unique identifier of the user</td>
+</tr>
+<tr>
+<td style="text-align: right">username <br><em>string</em></td>
+<td>User&rsquo;s username</td>
+</tr>
+<tr>
+<td style="text-align: right">email <br><em>string</em></td>
+<td>User&rsquo;s email address</td>
+</tr>
+<tr>
+<td style="text-align: right">mobile_number <br><em>string</em></td>
+<td>User&rsquo;s mobile number</td>
+</tr>
+<tr>
+<td style="text-align: right">has_contacts <br><em>boolean</em></td>
+<td>True if user has at least one verified contact</td>
+</tr>
+<tr>
+<td style="text-align: right">is_verified <br><em>boolean</em></td>
+<td>True if FABRIQ has validated user&rsquo;s email and mobile_number</td>
+</tr>
+<tr>
+<td style="text-align: right">grants <br><em>array</em></td>
+<td>Array of features enabled for this user</td>
+</tr>
+</tbody></table>
+
+          <h2 id="create-a-user">Create a user</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/users
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/users'</span>   <span class="se">\</span>
+  -H <span class="s2">"X-CLIENT-ID: {CLIENT_ID}"</span>              <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>        <span class="se">\</span>
+  -d <span class="s1">'{                                        
+        "mobile_number": "2155551111",                    
+        "country_code": "US"                 
+       }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001440886991323-a2d5c77b67d7-0001"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551111"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551111"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"has_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"is_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"grants"</span><span class="p">:[</span><span class="w">
+        </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"geoblast"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_tracking"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ping_me"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"connect_911"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">mobile_number <br><strong>required</strong></td>
+<td>User&rsquo;s mobile number</td>
+</tr>
+<tr>
+<td style="text-align: right">country_code <br><em>optional</em></td>
+<td>Country were mobile number is registered. Defaults to &lsquo;US&rsquo;</td>
+</tr>
+<tr>
+<td style="text-align: right">email <br><em>optional</em></td>
+<td>User&rsquo;s email address (must be valid and unique)</td>
+</tr>
+<tr>
+<td style="text-align: right">username <br><em>optional</em></td>
+<td>User&rsquo;s email address (must be valid and available)</td>
+</tr>
+<tr>
+<td style="text-align: right">first_name <br><em>optional</em></td>
+<td>User&rsquo;s first name</td>
+</tr>
+<tr>
+<td style="text-align: right">last_name <br><em>optional</em></td>
+<td>User&rsquo;s last name</td>
+</tr>
+<tr>
+<td style="text-align: right">login <br><em>optional</em></td>
+<td>If true, the user will be logged in and the return object will include an access_token</td>
+</tr>
+</tbody></table>
+
+<p><br/>
+<aside class="notice">
+Please note that the argument <code>login</code> should be passed in as query parameter in the REST API.</p>
+
+<p><code style="display:block;text-align:center;margin-top:20px;color:#000;">
+POST https://api.fabriq.io/users?login=true
+</code></p>
+
+<p></aside></p>
+
+<h3 id="returns">Returns</h3>
+
+<p>A user object.  If the query parameter login is set to true, then the return object will include an
+access_token.</p>
+
+          <h2 id="retrieve-current-user">Retrieve current user</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/me
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/me'</span>               <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer </span><span class="k">${</span><span class="nv">ACCESS_TOKEN</span><span class="k">}</span><span class="s2">"</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001440886991323-a2d5c77b67d7-0001"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551111"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551111"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"has_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"is_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"grants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"geoblast"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_tracking"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ping_me"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"connect_911"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="returns">Returns</h3>
+
+<p>Return the current user associated with the access_token.</p>
+
+          <h2 id="update-current-user">Update current user</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.fabriq.io/me
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://api.fabriq.io/me'</span>        <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer </span><span class="k">${</span><span class="nv">ACCESS_TOKEN</span><span class="k">}</span><span class="s2">"</span>  <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>           <span class="se">\</span>
+  -d <span class="s1">'{                                        
+        "uid": "0001440886991323-a2d5c77b67d7-0001",
+        "mobile_number": "2155551112"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0001440886991323-a2d5c77b67d7-0001"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test01"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551112"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"has_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"is_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"grants"</span><span class="p">:[</span><span class="w">
+        </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"geoblast"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_tracking"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ping_me"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"connect_911"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">uid <br><strong>required</strong></td>
+<td>User identifier</td>
+</tr>
+<tr>
+<td style="text-align: right">mobile_number <br><em>optional</em></td>
+<td>New mobile number</td>
+</tr>
+<tr>
+<td style="text-align: right">country_code <br><em>optional</em></td>
+<td>New mobile number country code</td>
+</tr>
+<tr>
+<td style="text-align: right">email <br><em>optional</em></td>
+<td>New email address</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Return the updated user object. Please note that an update will require
+the user to verify his or her email and/or mobile number.</p>
+
+          <h1 id="alerts">Alerts</h1>
+
+<p>An alert can be triggered either manually by the user or automatically by the system.  A manual trigger requires
+the user to activate a software or hardware button.  An automatic alert is triggered by the system when a certain
+threshold is met.  For example, a <code class="prettyprint">timeout</code> alert is triggered if an activity is not ended within a certain period
+of time.</p>
+
+          <h2 id="the-alert-object">The alert object</h2>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8d3dd9ed-146e-4526-a69b-d06c7d12cbf9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"activity_uid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ATTRIBUTES</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">uid <br><em>string</em></td>
+<td>Unique identifier of the alert</td>
+</tr>
+<tr>
+<td style="text-align: right">type <br><em>string</em></td>
+<td>Type of the alert. Possible values <code class="prettyprint">panic</code></td>
+</tr>
+<tr>
+<td style="text-align: right">latitude <br><em>double</em></td>
+<td>Latitude where alert was triggered</td>
+</tr>
+<tr>
+<td style="text-align: right">longitude <br><em>double</em></td>
+<td>Longitude where alert was triggered</td>
+</tr>
+<tr>
+<td style="text-align: right">activity_uid <br><em>string</em></td>
+<td>Activity associated with this alert</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_date <br><em>timestamp</em></td>
+<td>Timestamp (UTC) when alert was triggered</td>
+</tr>
+<tr>
+<td style="text-align: right">acknowledged <br><em>boolean</em></td>
+<td>Aert has been acknowledged by at least one contact</td>
+</tr>
+<tr>
+<td style="text-align: right">canceled <br><em>boolean</em></td>
+<td>Flag to indicate if this alert has been canceled</td>
+</tr>
+<tr>
+<td style="text-align: right">canceled_date <br><em>timestamp</em></td>
+<td>Timestamp (UTC) when alert was canceled</td>
+</tr>
+</tbody></table>
+
+          <h2 id="trigger-a-panic-alert">Trigger a PANIC alert</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/alerts/panic
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/alerts/panic'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>       <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>             <span class="se">\</span>
+  -d <span class="s1">'{                                        
+        "latitude": 40.01592844038895,                    
+        "longitude": -105.2487217142231                  
+       }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8d3dd9ed-146e-4526-a69b-d06c7d12cbf9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"activity_uid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">latitude <br><em>optional</em></td>
+<td>Latitude where alert was triggered</td>
+</tr>
+<tr>
+<td style="text-align: right">longitude <br><em>optional</em></td>
+<td>Longitude where alert was triggered</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>An alert object if messages were successfully sent to the user&rsquo;s contact(s).</p>
+
+          <h2 id="retrieve-an-alert">Retrieve an alert</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/alerts/{ALERT_UID}
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9'</span>  <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8d3dd9ed-146e-4526-a69b-d06c7d12cbf9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"activity_uid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">alert_uid <br><strong>required</strong></td>
+<td>The UID of the alert to be retrieved</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>An alert object if a valid UID was provided.</p>
+
+          <h2 id="cancel-an-alert">Cancel an alert</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/alerts/{ALERT_UID}
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9'</span>  <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
+  -d <span class="nv">pin</span><span class="o">=</span>1234
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8d3dd9ed-146e-4526-a69b-d06c7d12cbf9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"activity_uid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">pin <br><strong>required</strong></td>
+<td>User&rsquo;s 4-digit PIN</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>An alert object with canceled status and date set.</p>
+
+          <h2 id="list-active-alerts">List active alerts</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/alerts
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/alerts/panic'</span>    <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8d3dd9ed-146e-4526-a69b-d06c7d12cbf9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"activity_uid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<h3 id="returns">Returns</h3>
+
+<p>An array of alert objects or an empty array if no active alerts were found for this user.</p>
+
+          <h1 id="contacts">Contacts</h1>
+
+          <h1 id="circles">Circles</h1>
+
+          <h1 id="settings">Settings</h1>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
