@@ -15,6 +15,8 @@ includes:
   - errors
   - versioning
 
+  - inapp-browser
+
   - methods/users/info
   - methods/users/object
   - methods/users/create
@@ -28,7 +30,11 @@ includes:
   - methods/alerts/cancel
   - methods/alerts/list
 
-  - methods/contacts/contacts
+  - methods/contacts/info
+
+  - methods/circles/info
+
+  - methods/settings/info
 
 search: true
 ---

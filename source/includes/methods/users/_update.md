@@ -22,12 +22,12 @@ curl -X PUT 'https://api.fabriq.io/me'        \
 
 ```json
 {
-    "uid":"0001440886991323-a2d5c77b67d7-0001",
-    "username":"test01",
-    "email":null,
-    "mobile_number":"+12155551112"
-    "has_contacts":false,
-    "is_verified":false,
+    "uid": "0001440886991323-a2d5c77b67d7-0001",
+    "username": "test01",
+    "email": null,
+    "mobile_number": "+12155551112",
+    "has_contacts": false,
+    "is_verified": false,
     "grants":[
         "panic",
         "geoblast",

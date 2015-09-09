@@ -17,13 +17,13 @@ curl 'https://api.fabriq.io/me'               \
 
 ```json
 {
-    "uid":"0001440886991323-a2d5c77b67d7-0001",
-    "username":"+12155551111",
-    "email":null,
-    "mobile_number":"+12155551111"
-    "has_contacts":false,
-    "is_verified":false,
-    "grants":[
+    "uid": "0001440886991323-a2d5c77b67d7-0001",
+    "username": "+12155551111",
+    "email": null,
+    "mobile_number": "+12155551111",
+    "has_contacts": false,
+    "is_verified": false,
+    "grants": [
         "panic",
         "geoblast",
         "activity_tracking",

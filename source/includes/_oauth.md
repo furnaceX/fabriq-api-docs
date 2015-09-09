@@ -3,8 +3,7 @@
 FABRIQ implements the OAuth 2.0 standard to facilitate user authorization. Similar to Facebook and Twitter’s
 authentication flow, the user is first presented with a permission dialog for your application, at which point
 the user can either approve the permissions requested, or reject them. Once the user approves, an
-authorization_code is sent to your application, which will then be exchanged for an access_token and
-a refresh_token pair.
+authorization_code is sent to your application, which will then be exchanged for an access_token.
 
 The access_token can then be used to make API calls.  
 
@@ -16,10 +15,10 @@ Access tokens currently are long lived and essentially do not expire.  This is w
 > **Example Request**
 
 ```shell
-curl https://api.fabriq.io/oauth/authorize? \
-    response_type=code&\
-    client_id=${client_id}&\
-    redirect_uri=${redirect_uri}
+curl "https://api.fabriq.io/oauth/authorize" \
+  -d response_type=code                      \
+  -d client_id=${CLIENT_ID}                  \
+  -d redirect_uri=${REDIRECT_URI}
 ```
 
 
@@ -41,8 +40,6 @@ curl https://api.fabriq.io/oauth/authorize? \
 }
 ```
 
-To start the OAuth process, construct the initiation URL which the user will visit in order to grant permission to your application. It describes the permissions your application requires (scope), who the client application is (client_id), and where the user should be redirected to after they grant or deny permissions to your application (redirect_uri).
-
-###URL Format:
-
-`https://api.fabriq.io/oauth/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}`
+To start the OAuth process, construct the initiation URL which the user will visit in order to grant permission to
+your application. The request includes your client application (client_id), and where the user should be redirected to
+after they grant or deny permissions to your application (redirect_uri).
