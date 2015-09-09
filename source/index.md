@@ -15,9 +15,16 @@ includes:
   - errors
   - versioning
   - kittens
-  - methods/users
-  - methods/alerts
-  - methods/contacts
+
+  - methods/users/users
+
+  - methods/alerts/info
+  - methods/alerts/object
+  - methods/alerts/panic
+  - methods/alerts/cancel
+  - methods/alerts/list
+
+  - methods/contacts/contacts
 
 search: true
 ---
