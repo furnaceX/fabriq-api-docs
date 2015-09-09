@@ -17,7 +17,7 @@
 
 ATTRIBUTES||
 ---------:        | -----------
-uid <br>*string*   | Unique identifier for the alert
+uid <br>*string*   | Unique identifier of the alert
 type <br>*string*  | Type of the alert. Possible values `panic`
 latitude <br>*double*  | Latitude where alert was triggered
 longitude <br>*double*  | Longitude where alert was triggered

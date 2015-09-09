@@ -14,13 +14,17 @@ includes:
   - oauth
   - errors
   - versioning
-  - kittens
 
-  - methods/users/users
+  - methods/users/info
+  - methods/users/object
+  - methods/users/create
+  - methods/users/fetch
+  - methods/users/update
 
   - methods/alerts/info
   - methods/alerts/object
   - methods/alerts/panic
+  - methods/alerts/fetch
   - methods/alerts/cancel
   - methods/alerts/list
 
