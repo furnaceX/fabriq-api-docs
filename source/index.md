@@ -37,6 +37,9 @@ includes:
   - methods/circles/info
 
   - methods/settings/info
+  - methods/settings/object
+  - methods/settings/fetch
+  - methods/settings/update
 
 search: true
 ---

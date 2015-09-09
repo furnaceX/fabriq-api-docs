@@ -17,8 +17,8 @@ Access tokens currently are long lived and essentially do not expire.  This is w
 ```shell
 curl "https://api.fabriq.io/oauth/authorize" \
   -d response_type=code                      \
-  -d client_id=${CLIENT_ID}                  \
-  -d redirect_uri=${REDIRECT_URI}
+  -d client_id={CLIENT_ID}                  \
+  -d redirect_uri={REDIRECT_URI}
 ```
 
 

@@ -10,12 +10,12 @@ POST https://api.fabriq.io/users
 
 ```shell
 curl -X POST 'https://api.fabriq.io/users'   \
-  -H "X-CLIENT-ID: {CLIENT_ID}"              \
+  -H 'X-CLIENT-ID: {CLIENT_ID}'              \
   -H 'Content-Type: application/json'        \
   -d '{                                        
         "mobile_number": "2155551111",                    
         "country_code": "US"                 
-       }'
+      }'
 ```
 
 > Sample Response

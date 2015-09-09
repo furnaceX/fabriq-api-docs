@@ -10,7 +10,7 @@ POST https://api.fabriq.io/me
 
 ```shell
 curl 'https://api.fabriq.io/me'               \
-  -H "Authorization: Bearer ${ACCESS_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 > Sample Response
