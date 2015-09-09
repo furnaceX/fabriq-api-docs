@@ -17,6 +17,8 @@ includes:
 
   - inapp-browser
 
+  - divider-methods
+
   - methods/users/info
   - methods/users/object
   - methods/users/create

@@ -57,6 +57,26 @@ html, body {
     $nav-subitem-bg;
 }
 
+.hidden {
+    display: none !important;
+}
+
+.toc-divider {
+    padding: 15px 15px 10px 15px !important;
+    cursor: default !important;
+    background-color: transparent !important;
+    display: block;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color:#999 !important;
+    text-transform: uppercase;
+
+    &.tocify-focus {
+        color:#999 !important;
+    }
+}
+
 .tocify-wrapper {
   transition: left 0.3s ease-in-out;
 

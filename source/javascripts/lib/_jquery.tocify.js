@@ -60,6 +60,8 @@
             // The element's used to generate the table of contents.  The order is very important since it will determine the table of content's nesting structure
             selectors: "h1, h2, h3",
 
+            dividerSelector: '.toc-divider',
+
             // **showAndHide**: Accepts a boolean: true or false
             // Used to determine if elements should be shown and hidden
             showAndHide: true,
@@ -221,7 +223,10 @@
 
                 // Instantiated variable that will store the top level newly created unordered list DOM element
                 ul,
-                ignoreSelector = self.options.ignoreSelector;
+
+                ignoreSelector = self.options.ignoreSelector,
+
+                dividerSelector = self.options.dividerSelector;
 
              // If the selectors option has a comma within the string
              if(this.options.selectors.indexOf(",") !== -1) {
@@ -261,10 +266,16 @@
                 ul = $("<ul/>", {
                     "id": headerClassName + index,
                     "class": headerClassName
-                }).
+                })
 
-                // Appends a top level list item HTML element to the previously created HTML header
-                append(self._nestElements($(this), index));
+                if($(this).is(dividerSelector)) {
+                    ul = ul.append("<li class='toc-divider'>" + $(this).text() + "</li>");
+                    console.log("Found dividerSelector: " + this);
+                } else {
+                    // Appends a top level list item HTML element to the previously created HTML header
+                    ul = ul.append(self._nestElements($(this), index));
+                    console.log("Found top level item: " + this);
+                }
 
                 // Add the created unordered list element to the HTML element calling the plugin
                 self.element.append(ul);
