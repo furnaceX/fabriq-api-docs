@@ -48,6 +48,9 @@ includes:
   - methods/contacts/list
 
   - methods/circles/info
+  - methods/circles/object
+  - methods/circles/add
+  - methods/circles/list
 
   - methods/settings/info
   - methods/settings/object

@@ -16,9 +16,9 @@
 
 ATTRIBUTES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||
 ---------:| -----------
-latitude <br>**required**, *double*  | Position latitude
-longitude <br>**required**, *double*  | Position longitude
-timestamp <br>**required**, *timestamp*  | Timestamp in milliseconds when location was captured
+latitude <br>*double*  | Position latitude
+longitude <br>*double*  | Position longitude
+timestamp <br>*timestamp*  | Timestamp in milliseconds when location was captured
 altitude <br>*double*  | Position altitude (meters)
 accuracy <br>*double*  | Position accuracy (if available)
 altitude_accuracy <br>*double*  | Position altitude accuracy (if available)

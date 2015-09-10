@@ -13,11 +13,11 @@ curl -X POST 'https://api.fabriq.io/contacts'  \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
   -H 'Content-Type: application/json'  \
   -d '{                                        
-         "first_name":"Jane",                    
-         "last_name":"Doe",                    
-         "email":"jane@example.com",                    
-         "mobile_number":"+12125551313",
-         "circles":["d4826772-542f-11e5-9364-20c9d07e7899"]
+         "first_name": "Jane",                    
+         "last_name": "Doe",                    
+         "email": "jane@example.com",                    
+         "mobile_number": "+12125551313",
+         "circles": ["d4826772-542f-11e5-9364-20c9d07e7899"]
 
       }'
 ```
@@ -59,4 +59,4 @@ photo_size <br>*optional*  |  -
 
 
 ### Returns
-An alert object if messages were successfully sent to the user's contact(s).
+A contact object.
