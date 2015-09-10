@@ -30,9 +30,14 @@ includes:
   - methods/profile/fetch
   - methods/profile/update
 
+  - methods/position/info
+  - methods/position/object
+
   - methods/alerts/info
   - methods/alerts/object
   - methods/alerts/panic
+  - methods/alerts/media
+  - methods/alerts/position
   - methods/alerts/fetch
   - methods/alerts/cancel
   - methods/alerts/list
