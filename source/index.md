@@ -25,6 +25,11 @@ includes:
   - methods/users/fetch
   - methods/users/update
 
+  - methods/profile/info
+  - methods/profile/object
+  - methods/profile/fetch
+  - methods/profile/update
+
   - methods/alerts/info
   - methods/alerts/object
   - methods/alerts/panic

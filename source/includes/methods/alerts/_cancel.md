@@ -34,6 +34,12 @@ ARGUMENTS ||
 ---------:        | -----------
 pin <br>**required**  | User's 4-digit PIN
 
+<br/>
+<aside class="notice">
+The supplied PIN can be either the user's OK PIN or distress PIN.  The OK PIN will actually
+cancel the alert while the distress PIN should cause the UI to seem like it has been disabled.
+</aside>
 
 ### Returns
-An alert object with canceled status and date set.
+An alert object with canceled status and date set.  If the distress PIN was entered, the `canceled`
+attribute will return `false`.
