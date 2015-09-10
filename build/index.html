@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
     <title>FABRIQ API Reference</title>
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
@@ -82,8 +83,8 @@ authorization_code is sent to your application, which will then be exchanged for
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.fabriq.io/oauth/authorize"</span> <span class="se">\</span>
   -d <span class="nv">response_type</span><span class="o">=</span>code                      <span class="se">\</span>
-  -d <span class="nv">client_id</span><span class="o">=</span><span class="k">${</span><span class="nv">CLIENT_ID</span><span class="k">}</span>                  <span class="se">\</span>
-  -d <span class="nv">redirect_uri</span><span class="o">=</span><span class="k">${</span><span class="nv">REDIRECT_URI</span><span class="k">}</span>
+  -d <span class="nv">client_id</span><span class="o">={</span>CLIENT_ID<span class="o">}</span>                  <span class="se">\</span>
+  -d <span class="nv">redirect_uri</span><span class="o">={</span>REDIRECT_URI<span class="o">}</span>
 </code></pre>
 
 <blockquote>
@@ -186,6 +187,8 @@ https://portal.fabriq.io/#/access_token={ACCESS_TOKEN}
 </tr>
 </tbody></table>
 
+          <h1 class="toc-divider hidden">Methods</h1>
+
           <h1 id="users">Users</h1>
 
 <p>Most API calls are made on behalf of a user and act on the user&rsquo;s account. </p>
@@ -260,12 +263,12 @@ https://portal.fabriq.io/#/access_token={ACCESS_TOKEN}
 <p>Sample Request</p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/users'</span>   <span class="se">\</span>
-  -H <span class="s2">"X-CLIENT-ID: {CLIENT_ID}"</span>              <span class="se">\</span>
+  -H <span class="s1">'X-CLIENT-ID: {CLIENT_ID}'</span>              <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>        <span class="se">\</span>
   -d <span class="s1">'{                                        
         "mobile_number": "2155551111",                    
         "country_code": "US"                 
-       }'</span>
+      }'</span>
 </code></pre>
 
 <blockquote>
@@ -351,7 +354,7 @@ access_token.</p>
 <p>Sample Request</p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/me'</span>               <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer </span><span class="k">${</span><span class="nv">ACCESS_TOKEN</span><span class="k">}</span><span class="s2">"</span>
+  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
 </code></pre>
 
 <blockquote>
@@ -390,8 +393,8 @@ access_token.</p>
 <p>Sample Request</p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://api.fabriq.io/me'</span>        <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer </span><span class="k">${</span><span class="nv">ACCESS_TOKEN</span><span class="k">}</span><span class="s2">"</span>  <span class="se">\</span>
-  -H <span class="s1">'Content-Type: application/json'</span>           <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>         <span class="se">\</span>
   -d <span class="s1">'{                                        
         "uid": "0001440886991323-a2d5c77b67d7-0001",
         "mobile_number": "2155551112"
@@ -446,6 +449,221 @@ access_token.</p>
 
 <p>Return the updated user object. Please note that an update will require
 the user to verify his or her email and/or mobile number.</p>
+
+          <h1 id="profile">Profile</h1>
+
+<p>The user&rsquo;s profile contains all the public and private details that will be communicated to the user&rsquo;s contacts,
+community and emergency responders when an alert is triggered.</p>
+
+          <h2 id="the-profile-object">The profile object</h2>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"birth_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-04"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"female"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">167.64</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mf">54.4311</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"race"</span><span class="p">:</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"eye_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hazel"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hair_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brown"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ATTRIBUTES</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">first_name <br><em>string</em></td>
+<td>User&rsquo;s first name</td>
+</tr>
+<tr>
+<td style="text-align: right">last_name <br><em>string</em></td>
+<td>User&rsquo;s last name</td>
+</tr>
+<tr>
+<td style="text-align: right">display_name <br><em>string</em></td>
+<td>User&rsquo;s full name</td>
+</tr>
+<tr>
+<td style="text-align: right">photo_url <br><em>url</em></td>
+<td>Link to user&rsquo;s photo</td>
+</tr>
+<tr>
+<td style="text-align: right">birth_date <br><em>date string</em></td>
+<td>User&rsquo;s birthday formatted as YYYY-MM-DD (e.g. 1980-01-04)</td>
+</tr>
+<tr>
+<td style="text-align: right">gender <br><em>string</em></td>
+<td>User&rsquo;s gender. Values: <code class="prettyprint">male</code>, <code class="prettyprint">female</code></td>
+</tr>
+<tr>
+<td style="text-align: right">height <br><em>double</em></td>
+<td>User&rsquo;s height in centimeters</td>
+</tr>
+<tr>
+<td style="text-align: right">weight <br><em>double</em></td>
+<td>User&rsquo;s weight in kilograms</td>
+</tr>
+<tr>
+<td style="text-align: right">race <br><em>string</em></td>
+<td>User&rsquo;s ethnicity. Values: <code class="prettyprint">white</code>, <code class="prettyprint">black</code>, <code class="prettyprint">hispanic</code>, <code class="prettyprint">asian</code>, <code class="prettyprint">native_american</code>, <code class="prettyprint">pacific_islander</code>, <code class="prettyprint">other</code>, <code class="prettyprint">unknown</code></td>
+</tr>
+<tr>
+<td style="text-align: right">eye_color <br><em>string</em></td>
+<td>User&rsquo;s eye color. Values: <code class="prettyprint">brown</code>, <code class="prettyprint">green</code>, <code class="prettyprint">blue</code>, <code class="prettyprint">hazel</code></td>
+</tr>
+<tr>
+<td style="text-align: right">hair_color <br><em>string</em></td>
+<td>User&rsquo;s hair color. Values: <code class="prettyprint">black</code>, <code class="prettyprint">brown</code>, <code class="prettyprint">blonde</code>, <code class="prettyprint">red</code>, <code class="prettyprint">gray</code>, <code class="prettyprint">white</code>, <code class="prettyprint">bald</code></td>
+</tr>
+</tbody></table>
+
+          <h2 id="retrieve-profile">Retrieve profile</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/profile
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/profile'</span>  <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"birth_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-04"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"female"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">167.64</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mf">54.4311</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"race"</span><span class="p">:</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"eye_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hazel"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hair_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brown"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="returns">Returns</h3>
+
+<p>The user&rsquo;s profile object.</p>
+
+          <h2 id="update-profile">Update profile</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.fabriq.io/profile
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://api.fabriq.io/profile'</span>        <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>         <span class="se">\</span>
+  -d <span class="s1">'{                                        
+        "height": 174.2
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"birth_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-04"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"female"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">174.2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mf">54.4311</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"race"</span><span class="p">:</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"eye_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hazel"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hair_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brown"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">first_name <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">last_name <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">display_name <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">birth_date <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">gender <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">height <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">weight <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">race <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">eye_color <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">hair_color <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">photo_data <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">photo_content_type <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">photo_size <br><em>optional</em></td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Return the updated profile object.</p>
 
           <h1 id="alerts">Alerts</h1>
 
@@ -662,9 +880,16 @@ of time.</p>
 </tr>
 </tbody></table>
 
+<p><br/>
+<aside class="notice">
+The supplied PIN can be either the user&rsquo;s OK PIN or distress PIN.  The OK PIN will actually
+cancel the alert while the distress PIN should cause the UI to seem like it has been disabled.
+</aside></p>
+
 <h3 id="returns">Returns</h3>
 
-<p>An alert object with canceled status and date set.</p>
+<p>An alert object with canceled status and date set.  If the distress PIN was entered, the <code class="prettyprint">canceled</code>
+attribute will return <code class="prettyprint">false</code>.</p>
 
           <h2 id="list-active-alerts">List active alerts</h2>
 
@@ -705,6 +930,221 @@ of time.</p>
           <h1 id="circles">Circles</h1>
 
           <h1 id="settings">Settings</h1>
+
+<p>The user&rsquo;s settings allow for customization of global and app specific variables.</p>
+
+          <h2 id="the-settings-object">The settings object</h2>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"panic_delay"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"panic_silent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metric_units"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_panic_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PANIC! HELP, I'm in danger!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_panic_cancel_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This panic alert has been canceled."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_activity_start_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, letting you know I'm heading out for my workout."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_activity_end_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, letting you know I'm back from my workout."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_activity_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I went for a workout and should've been back by now!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_me_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I haven't responded to my security checks!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_me_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">30000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_me_retry_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_me_timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">60000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ATTRIBUTES</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">panic_delay <br><em>integer</em></td>
+<td>[UI] Time in milliseconds to wait before the PANIC alert is triggered.  The user should be able to cancel the alert during this window.</td>
+</tr>
+<tr>
+<td style="text-align: right">panic_silent <br><em>boolean</em></td>
+<td>[UI] Flag to indicate a PANIC alert should be triggered silently.</td>
+</tr>
+<tr>
+<td style="text-align: right">metric_units <br><em>boolean</em></td>
+<td>[UI] User preference to view/update his or her profile data</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_panic_message <br><em>string</em></td>
+<td>Message sent when panic is triggered</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_panic_cancel_message <br><em>string</em></td>
+<td>Message sent when active alert is canceled</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_activity_start_message <br><em>string</em></td>
+<td>Message sent when activity is started</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_activity_end_message <br><em>string</em></td>
+<td>Message sent when activity is ended</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_activity_timeout_message <br><em>string</em></td>
+<td>Message sent when activity times out</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_ping_me_timeout_message <br><em>string</em></td>
+<td>Message sent when user fails to respond to &lsquo;ping_me&rsquo; after the specified number of retries</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_ping_me_interval <br><em>integer</em></td>
+<td>Time in milliseconds to send a &#39;ping_me&rsquo; message to the user</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_ping_me_timeout <br><em>integer</em></td>
+<td>Time in milliseconds to wait for a user to respond to a &#39;ping_me&rsquo;</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_ping_me_retry_count <br><em>integer</em></td>
+<td>Number of times to try a &#39;ping_me&rsquo; after a timeout before triggering an alert</td>
+</tr>
+</tbody></table>
+
+          <h2 id="retrieve-settings">Retrieve settings</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/settings
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/settings'</span>  <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"panic_delay"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"panic_silent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metric_units"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_panic_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PANIC! HELP, I'm in danger!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_panic_cancel_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This panic alert has been canceled."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_activity_start_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, letting you know I'm heading out for my workout."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_activity_end_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, letting you know I'm back from my workout."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_activity_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I went for a workout and should've been back by now!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_me_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I haven't responded to my security checks!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_me_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">30000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_me_retry_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_me_timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">60000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="returns">Returns</h3>
+
+<p>The user&rsquo;s settings object.</p>
+
+          <h2 id="update-setting">Update setting</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.fabriq.io/settings
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://api.fabriq.io/settings'</span>        <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>         <span class="se">\</span>
+  -d <span class="s1">'{                                        
+        "panic_delay": 7000
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"panic_delay"</span><span class="p">:</span><span class="mi">7000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"panic_silent"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metric_units"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_panic_message"</span><span class="p">:</span><span class="s2">"PANIC! HELP, I'm in danger!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_panic_cancel_message"</span><span class="p">:</span><span class="s2">"This panic alert has been canceled."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_activity_start_message"</span><span class="p">:</span><span class="s2">"Hi, letting you know I'm heading out for my workout."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_activity_end_message"</span><span class="p">:</span><span class="s2">"Hi, letting you know I'm back from my workout."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_activity_timeout_message"</span><span class="p">:</span><span class="s2">"HELP! I went for a workout and should've been back by now!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_me_timeout_message"</span><span class="p">:</span><span class="s2">"HELP! I haven't responded to my security checks!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_me_interval"</span><span class="p">:</span><span class="mi">30000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_me_retry_count"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_me_timeout"</span><span class="p">:</span><span class="mi">60000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">panic_delay <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">panic_silent <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">metric_units <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_panic_message <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_panic_cancel_message <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_activity_start_message <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_activity_end_message <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_activity_timeout_message <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_ping_me_timeout_message <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_ping_me_interval <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_ping_me_retry_count <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_ping_me_timeout <br><em>optional</em></td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Return the updated settings object.</p>
 
       </div>
       <div class="dark-box">
