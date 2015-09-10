@@ -13,7 +13,7 @@ curl -X POST 'https://api.fabriq.io/circles'  \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
   -H 'Content-Type: application/json'  \
   -d '{                                        
-         "name": "Friends"                    
+         "name": "Family"                    
       }'
 ```
 
@@ -21,23 +21,10 @@ curl -X POST 'https://api.fabriq.io/circles'  \
 
 ```json
 {
-    "uid": "761d4f1a-a121-40f8-a8d3-2993ba5861d9",
-    "first_name": "Jane",
-    "last_name": "Doe",
-    "display_name": "Jane doe",
-    "photo_url": null,
-    "email": " jane@example.com",
-    "mobile_number": "+12125551313",
-    "email_alert": false,
-    "sms_alert": false,
-    "push_alert": false,
-    "email_verified": false,
-    "mobile_verified": false,
-    "circles":[{
-        "uid": "d4826772-542f-11e5-9364-20c9d07e7899",
-        "photo_url": null,
-        "display_name": "Default"
-    }]
+    "uid": "60adf957-4d16-44ef-a271-217f6404b146",
+    "name": "Family",
+    "default": false,
+    "photo_url": null
 }
 ```
 
