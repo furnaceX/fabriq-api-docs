@@ -24,7 +24,7 @@ ATTRIBUTES||
 uid <br>*string*   | Unique identifier of the user
 username <br>*string*  | User's username
 email <br>*string*  | User's email address
-mobile_number <br>*string*  | User's mobile number
+mobile_number <br>*string*  | User's mobile number ([E.164 format](https://en.wikipedia.org/wiki/E.164))
 has_contacts <br>*boolean*  | True if user has at least one verified contact
 is_verified <br>*boolean*  | True if FABRIQ has validated user's email and mobile_number
 grants <br>*array*  | Array of features enabled for this user

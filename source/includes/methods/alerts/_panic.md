@@ -9,9 +9,9 @@ POST https://api.fabriq.io/alerts/panic
 > Sample Request
 
 ```shell
-curl -X POST 'https://api.fabriq.io/alerts/panic' \
-  -H 'Authorization: Bearer {ACCESS_TOKEN}'       \
-  -H 'Content-Type: application/json'             \
+curl -X POST 'https://api.fabriq.io/alerts/panic'  \
+  -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
+  -H 'Content-Type: application/json'  \
   -d '{                                        
         "latitude": 40.01592844038895,                    
         "longitude": -105.2487217142231                  

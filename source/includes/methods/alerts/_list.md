@@ -9,7 +9,7 @@ GET https://api.fabriq.io/alerts
 > Sample Request
 
 ```shell
-curl 'https://api.fabriq.io/alerts/panic'    \
+curl 'https://api.fabriq.io/alerts'  \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'
 ```
 

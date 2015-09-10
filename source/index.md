@@ -38,6 +38,9 @@ includes:
   - methods/alerts/list
 
   - methods/contacts/info
+  - methods/contacts/object
+  - methods/contacts/add
+  - methods/contacts/list
 
   - methods/circles/info
 
