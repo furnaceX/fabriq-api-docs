@@ -13,8 +13,7 @@ curl -X POST 'https://api.fabriq.io/users'   \
   -H 'X-CLIENT-ID: {CLIENT_ID}'              \
   -H 'Content-Type: application/json'        \
   -d '{                                        
-        "mobile_number": "2155551111",                    
-        "country_code": "US"                 
+        "mobile_number": "+12155551111"
       }'
 ```
 
@@ -40,8 +39,7 @@ curl -X POST 'https://api.fabriq.io/users'   \
 
 ARGUMENTS ||
 ---------:        | -----------
-mobile_number <br>**required**  | User's mobile number
-country_code <br>*optional*  | Country were mobile number is registered. Defaults to 'US'
+mobile_number <br>**required**  | User's mobile number ([E.164 format](https://en.wikipedia.org/wiki/E.164))
 email <br>*optional*  | User's email address (must be valid and unique)
 username <br>*optional*  | User's email address (must be valid and available)
 first_name <br>*optional*  | User's first name

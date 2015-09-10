@@ -14,7 +14,7 @@ curl -X PUT 'https://api.fabriq.io/me'        \
   -H 'Content-Type: application/json'         \
   -d '{                                        
         "uid": "0001440886991323-a2d5c77b67d7-0001",
-        "mobile_number": "2155551112"
+        "mobile_number": "+12155551112"
       }'
 ```
 
@@ -42,8 +42,7 @@ curl -X PUT 'https://api.fabriq.io/me'        \
 ARGUMENTS ||
 ---------:        | -----------
 uid <br>**required**  | User identifier
-mobile_number <br>*optional*  | New mobile number
-country_code <br>*optional*  | New mobile number country code
+mobile_number <br>*optional*  | New mobile number ([E.164 format](https://en.wikipedia.org/wiki/E.164))
 email <br>*optional*  | New email address
 
 
