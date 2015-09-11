@@ -29,10 +29,10 @@ curl -X PUT 'https://api.fabriq.io/settings'        \
     "alert_activity_start_message":"Hi, letting you know I'm heading out for my workout.",
     "alert_activity_end_message":"Hi, letting you know I'm back from my workout.",
     "alert_activity_timeout_message":"HELP! I went for a workout and should've been back by now!",
-    "alert_ping_me_timeout_message":"HELP! I haven't responded to my security checks!",
-    "alert_ping_me_interval":30000,
-    "alert_ping_me_retry_count":2,
-    "alert_ping_me_timeout":60000
+    "alert_ping_timeout_message":"HELP! I haven't responded to my security checks!",
+    "alert_ping_interval":30000,
+    "alert_ping_retry_count":2,
+    "alert_ping_timeout":60000
 }
 ```
 
@@ -47,10 +47,10 @@ alert_panic_cancel_message <br>*optional*  |  -
 alert_activity_start_message <br>*optional*  |  -
 alert_activity_end_message <br>*optional*  |  -
 alert_activity_timeout_message <br>*optional*  |  -
-alert_ping_me_timeout_message <br>*optional*  |  -
-alert_ping_me_interval <br>*optional*  |  -
-alert_ping_me_retry_count <br>*optional*  |  -
-alert_ping_me_timeout <br>*optional*  |  -
+alert_ping_timeout_message <br>*optional*  |  -
+alert_ping_interval <br>*optional*  |  -
+alert_ping_retry_count <br>*optional*  |  -
+alert_ping_timeout <br>*optional*  |  -
 
 
 ### Returns

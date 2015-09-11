@@ -33,15 +33,6 @@ includes:
   - methods/position/info
   - methods/position/object
 
-  - methods/alerts/info
-  - methods/alerts/object
-  - methods/alerts/panic
-  - methods/alerts/media
-  - methods/alerts/position
-  - methods/alerts/fetch
-  - methods/alerts/cancel
-  - methods/alerts/list
-
   - methods/contacts/info
   - methods/contacts/object
   - methods/contacts/add
@@ -56,6 +47,19 @@ includes:
   - methods/settings/object
   - methods/settings/fetch
   - methods/settings/update
+
+  - methods/alerts/info
+  - methods/alerts/object
+  - methods/alerts/panic
+  - methods/alerts/media
+  - methods/alerts/position
+  - methods/alerts/fetch
+  - methods/alerts/cancel
+  - methods/alerts/list
+
+  - methods/activities/info
+
+  - methods/dangers/info
 
 search: true
 ---
