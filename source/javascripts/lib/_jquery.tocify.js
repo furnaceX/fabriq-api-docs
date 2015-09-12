@@ -270,11 +270,11 @@
 
                 if($(this).is(dividerSelector)) {
                     ul = ul.append("<li class='toc-divider'>" + $(this).text() + "</li>");
-                    console.log("Found dividerSelector: " + this);
+                    //console.log("Found dividerSelector: " + this);
                 } else {
                     // Appends a top level list item HTML element to the previously created HTML header
                     ul = ul.append(self._nestElements($(this), index));
-                    console.log("Found top level item: " + this);
+                    //console.log("Found top level item: " + this);
                 }
 
                 // Add the created unordered list element to the HTML element calling the plugin

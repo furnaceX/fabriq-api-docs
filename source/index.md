@@ -43,11 +43,6 @@ includes:
   - methods/circles/add
   - methods/circles/list
 
-  - methods/settings/info
-  - methods/settings/object
-  - methods/settings/fetch
-  - methods/settings/update
-
   - methods/alerts/info
   - methods/alerts/object
   - methods/alerts/panic
@@ -60,6 +55,11 @@ includes:
   - methods/activities/info
 
   - methods/dangers/info
+
+  - methods/settings/info
+  - methods/settings/object
+  - methods/settings/fetch
+  - methods/settings/update
 
 search: true
 ---
