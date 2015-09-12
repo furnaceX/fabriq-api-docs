@@ -3,7 +3,7 @@
 > Definition
 
 ```text
-POST https://api.fabriq.io/me
+GET https://api.fabriq.io/me
 ```
 
 > Sample Request
