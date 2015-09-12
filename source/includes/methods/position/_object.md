@@ -14,7 +14,7 @@
 }
 ```
 
-ATTRIBUTES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||
+ATTRIBUTES ||
 ---------:| -----------
 latitude <br>*double*  | Position latitude
 longitude <br>*double*  | Position longitude

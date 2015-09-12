@@ -59,7 +59,8 @@ to trigger an alert, monitor an activity or periodically check on the welfare of
 to enhance our personal safety are endless!</p>
 
 <p>The API is organized around <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> and uses
-resource-oriented URLs. It makes use of HTTP verbs and response codes to perform actions and communicate state.</p>
+resource-oriented URLs. It makes use of HTTP verbs (e.g. GET, POST, etc.) to perform actions and
+HTTP response codes (e.g. 200 OK) to communicate state.</p>
 
 <p>All responses are returned in JSON, including application and system errors.</p>
 
@@ -111,8 +112,9 @@ after they grant or deny permissions to your application (redirect_uri).</p>
 
           <h1 id="errors">Errors</h1>
 
-<p>FABRIQ uses standard HTTP response codes to indicate the status of an API request. In general, codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the provided information (e.g. a required parameter was missing), and codes in the 5xx range indicate an internal
-system or server error.</p>
+<p>FABRIQ uses standard HTTP response codes to indicate the status of an API request. In general, codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the provided information (e.g. a required parameter was missing), and codes in the 5xx range indicate an internal system or server error.</p>
+
+          <h2 id="error-codes">Error Codes</h2>
 
 <table><thead>
 <tr>
@@ -133,12 +135,16 @@ system or server error.</p>
 <td>An access_token or client_id was invalid or not provided</td>
 </tr>
 <tr>
-<td>402<br><em>Request Failed</em></td>
-<td>Parameters were valid but request failed</td>
+<td>403<br><em>Not Allowed</em></td>
+<td>The request was valid but user not allowed to access the item</td>
 </tr>
 <tr>
 <td>404<br><em>Not Found</em></td>
 <td>The requested item doesn&rsquo;t exist</td>
+</tr>
+<tr>
+<td>412<br><em>Validation Error</em></td>
+<td>The request was valid but could not be completed because a condition was not met.</td>
 </tr>
 <tr>
 <td>429<br><em>Too Many Requests</em></td>
@@ -147,6 +153,42 @@ system or server error.</p>
 <tr>
 <td>500<br><em>Server Error</em></td>
 <td>FABRIQ server error</td>
+</tr>
+</tbody></table>
+
+          <h2 id="error-response">Error Response</h2>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">403</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"developer_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid access request"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"more_info_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://docs.fabriq.io/#errors"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th>ATTRIBUTES</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status<br><strong>required</strong></td>
+<td>HTTP status code</td>
+</tr>
+<tr>
+<td>developer_message<br><strong>required</strong></td>
+<td>Error details for the developer</td>
+</tr>
+<tr>
+<td>client_message<br><em>optional</em></td>
+<td>Message that may be displayed to the end user</td>
+</tr>
+<tr>
+<td>more_info_url<br><em>optional</em></td>
+<td>Documentation URL for more information that may help resolve the error</td>
 </tr>
 </tbody></table>
 
@@ -263,7 +305,7 @@ https://portal.fabriq.io/#/access_token={ACCESS_TOKEN}
 <p>Sample Request</p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/users'</span>   <span class="se">\</span>
-  -H <span class="s1">'X-CLIENT-ID: {CLIENT_ID}'</span>              <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>              <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>        <span class="se">\</span>
   -d <span class="s1">'{                                        
         "mobile_number": "+12155551111"
@@ -342,7 +384,7 @@ access_token.</p>
 <blockquote>
 <p>Definition</p>
 </blockquote>
-<pre class="highlight plaintext"><code>POST https://api.fabriq.io/me
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/me
 </code></pre>
 
 <blockquote>
@@ -679,7 +721,7 @@ community and emergency responders when an alert is triggered.</p>
 
 <table><thead>
 <tr>
-<th style="text-align: right">ATTRIBUTES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: right">ATTRIBUTES</th>
 <th></th>
 </tr>
 </thead><tbody>
@@ -717,12 +759,403 @@ community and emergency responders when an alert is triggered.</p>
 </tr>
 </tbody></table>
 
+          <h1 id="circles">Circles</h1>
+
+<p>A user can add a contact to one or more circles.  In certain situations an alert or notification can then be made
+available only to the contacts contained by the selected circles.</p>
+
+          <h2 id="the-circle-object">The circle object</h2>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df2ecdaa-5597-11e5-a0dd-38c98601185b"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ATTRIBUTES</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">uid <br><em>string</em></td>
+<td>Unique identifier of the circle</td>
+</tr>
+<tr>
+<td style="text-align: right">name <br><em>string</em></td>
+<td>Name assigned to the circle</td>
+</tr>
+<tr>
+<td style="text-align: right">default <br><em>boolean</em></td>
+<td>Is this the user&rsquo;s default circle</td>
+</tr>
+<tr>
+<td style="text-align: right">photo_url <br><em>url</em></td>
+<td>Link to circle&rsquo;s icon or photo</td>
+</tr>
+</tbody></table>
+
+          <h2 id="add-a-circle">Add a circle</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/circles
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/circles'</span>  <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
+  -d <span class="s1">'{                                        
+         "name": "Family"                    
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60adf957-4d16-44ef-a271-217f6404b146"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Family"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">name <br><strong>required</strong></td>
+<td>Name of the circle</td>
+</tr>
+<tr>
+<td style="text-align: right">photo_data <br><em>optional</em></td>
+<td>Circle photo base64 encoded</td>
+</tr>
+<tr>
+<td style="text-align: right">photo_content_type <br><em>optional</em></td>
+<td>Photo content type. (Required if photo_data is specified)</td>
+</tr>
+<tr>
+<td style="text-align: right">photo_size <br><em>optional</em></td>
+<td>Size of the photo.</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>A circle object.</p>
+
+          <h2 id="list-all-circles">List all circles</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/circles
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/circles'</span>  <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df2ecdaa-5597-11e5-a0dd-38c98601185b"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60adf957-4d16-44ef-a271-217f6404b146"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Family"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="returns">Returns</h3>
+
+<p>An array of circles. The array will include at least one circle which is the user&rsquo;s default circle.</p>
+
+          <h1 id="contacts">Contacts</h1>
+
+<p>A user&rsquo;s contact receives alerts and notifications that are manually triggered or generated by FABRIQ.  When a
+contact receives an alert and verifies it&rsquo;s a true emergency, he or she can escalate the alert by geo-blasting it
+to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emergency call center.</p>
+
+<p>A user can have multiple contacts and each contact can be added to one or more <a href="#circles">circles</a>.</p>
+
+          <h2 id="the-contact-object">The contact object</h2>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d621e0d0-542f-11e5-9364-20c9d07e7899"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551212"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sms_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"push_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"circles"</span><span class="p">:[{</span><span class="w">
+        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d4826772-542f-11e5-9364-20c9d07e7899"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ATTRIBUTES</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">uid <br><em>string</em></td>
+<td>Unique identifier of the contact</td>
+</tr>
+<tr>
+<td style="text-align: right">first_name <br><em>string</em></td>
+<td>Contact&rsquo;s first name</td>
+</tr>
+<tr>
+<td style="text-align: right">last_name <br><em>string</em></td>
+<td>Contact&rsquo;s last name</td>
+</tr>
+<tr>
+<td style="text-align: right">display_name <br><em>string</em></td>
+<td>Contact&rsquo;s full name</td>
+</tr>
+<tr>
+<td style="text-align: right">photo_url <br><em>url</em></td>
+<td>Link to contact&rsquo;s photo</td>
+</tr>
+<tr>
+<td style="text-align: right">email <br><em>string</em></td>
+<td>Contact&rsquo;s email address</td>
+</tr>
+<tr>
+<td style="text-align: right">mobile_number <br><em>string</em></td>
+<td>Contact&rsquo;s mobile number  (<a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>)</td>
+</tr>
+<tr>
+<td style="text-align: right">email_alert <br><em>boolean</em></td>
+<td>True if contact has opted to receive email alerts</td>
+</tr>
+<tr>
+<td style="text-align: right">sms_alert <br><em>boolean</em></td>
+<td>True if contact has opted to receive text alerts</td>
+</tr>
+<tr>
+<td style="text-align: right">push_alert <br><em>boolean</em></td>
+<td>True if contact has opted to receive push alerts</td>
+</tr>
+<tr>
+<td style="text-align: right">email_verified <br><em>boolean</em></td>
+<td>True if FABRIQ has verified contact&rsquo;s email address</td>
+</tr>
+<tr>
+<td style="text-align: right">mobile_verified <br><em>boolean</em></td>
+<td>True if FABRIQ has verified contact&rsquo;s mobile number</td>
+</tr>
+<tr>
+<td style="text-align: right">circles <br><em>array</em></td>
+<td>List of circles to which this contact has been added</td>
+</tr>
+</tbody></table>
+
+          <h2 id="add-a-contact">Add a contact</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/contacts
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/contacts'</span>  <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
+  -d <span class="s1">'{                                        
+         "first_name": "Jane",                    
+         "last_name": "Doe",                    
+         "email": "jane@example.com",                    
+         "mobile_number": "+12125551313",
+         "circles": ["d4826772-542f-11e5-9364-20c9d07e7899"]
+
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"761d4f1a-a121-40f8-a8d3-2993ba5861d9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">" jane@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551313"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sms_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"push_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"circles"</span><span class="p">:[{</span><span class="w">
+        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d4826772-542f-11e5-9364-20c9d07e7899"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">first_name <br><strong>required</strong></td>
+<td>Contact&rsquo;s first name</td>
+</tr>
+<tr>
+<td style="text-align: right">last_name <br><strong>required</strong></td>
+<td>Contact&rsquo;s last name</td>
+</tr>
+<tr>
+<td style="text-align: right">mobile_number <br><strong>required</strong></td>
+<td>Contact&rsquo;s mobile number  (<a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>)</td>
+</tr>
+<tr>
+<td style="text-align: right">email <br><em>optional</em></td>
+<td>Contact&rsquo;s email address</td>
+</tr>
+<tr>
+<td style="text-align: right">circles <br><em>optional</em></td>
+<td>Array of <code class="prettyprint">circle_uid</code>&rsquo;s to which this contact should belong. If not specified, contact will be added to the user&rsquo;s default circle.</td>
+</tr>
+<tr>
+<td style="text-align: right">photo_data <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">photo_content_type <br><em>optional</em></td>
+<td>-</td>
+</tr>
+<tr>
+<td style="text-align: right">photo_size <br><em>optional</em></td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>A contact object.</p>
+
+          <h2 id="list-all-contacts">List all contacts</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/contacts
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/contacts'</span>  <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d621e0d0-542f-11e5-9364-20c9d07e7899"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551212"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sms_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"push_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"circles"</span><span class="p">:[{</span><span class="w">
+        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d4826772-542f-11e5-9364-20c9d07e7899"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<h3 id="returns">Returns</h3>
+
+<p>An array of contacts or an empty array if the user has not added any contacts yet.</p>
+
           <h1 id="alerts">Alerts</h1>
 
 <p>An alert can be triggered either manually by the user or automatically by the system.  A manual trigger requires
 the user to activate a software or hardware button.  An automatic alert is triggered by the system when a certain
 threshold is met.  For example, a <code class="prettyprint">timeout</code> alert is triggered if an activity is not ended within a certain period
 of time.</p>
+
+          <h2 id="alert-types">Alert Types</h2>
+
+<p>FABRIQ manages several types of alerts and notifications</p>
+
+<h3 id="panic-alert">Panic Alert</h3>
+
+<p>An alert triggered by the user to indicate he or she is in immediate danger.</p>
+
+<h3 id="timeout-alert">Timeout Alert</h3>
+
+<p>This alert is triggered when the user does not end an activity within a specified period of time.</p>
+
+<h3 id="ping-alert">Ping Alert</h3>
+
+<p>The user can request to have FABRIQ send him or her a periodic message (called a ping).  If the user does not
+respond to this ping within a specified period of time, an automatic alert will be triggered.</p>
+
+<h3 id="watch-notification">Watch Notification</h3>
+
+<p>The user can request to have his or her contacts notified that have started and/or ended an activity.  The user will
+receive a message with a link to watch the user in real-time.</p>
 
           <h2 id="the-alert-object">The alert object</h2>
 
@@ -754,7 +1187,7 @@ of time.</p>
 </tr>
 <tr>
 <td style="text-align: right">type <br><em>string</em></td>
-<td>Type of the alert. Possible values <code class="prettyprint">panic</code></td>
+<td>Type of the alert. Possible values <code class="prettyprint">panic</code>, <code class="prettyprint">timeout</code>, <code class="prettyprint">ping</code>, <code class="prettyprint">start_activity</code>, <code class="prettyprint">end_activity</code></td>
 </tr>
 <tr>
 <td style="text-align: right">latitude <br><em>double</em></td>
@@ -774,7 +1207,7 @@ of time.</p>
 </tr>
 <tr>
 <td style="text-align: right">acknowledged <br><em>boolean</em></td>
-<td>Aert has been acknowledged by at least one contact</td>
+<td>Alert has been acknowledged by at least one contact</td>
 </tr>
 <tr>
 <td style="text-align: right">canceled <br><em>boolean</em></td>
@@ -1074,37 +1507,52 @@ attribute will return <code class="prettyprint">false</code>.</p>
 
 <p>An array of alert objects or an empty array if no active alerts were found for this user.</p>
 
-          <h1 id="contacts">Contacts</h1>
+          <h1 id="activities">Activities</h1>
 
-<p>A user&rsquo;s contact receives alerts and notifications that are manually triggered or generated by FABRIQ.  When a
-contact receives an alert and verifies it&rsquo;s a true emergency, he or she can escalate the alert by geo-blasting it
-to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emergency call center.</p>
+<p>A user can choose to be watched for the duration of an activity.</p>
 
-<p>A user can have multiple contacts and each contact can be added to one or more <a href="#circles">circles</a>.</p>
-
-          <h2 id="the-contact-object">The contact object</h2>
+          <h2 id="the-activity-object">The activity object</h2>
 
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d621e0d0-542f-11e5-9364-20c9d07e7899"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@example.com"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551212"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"email_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sms_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"push_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"email_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"mobile_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"circles"</span><span class="p">:[{</span><span class="w">
-        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d4826772-542f-11e5-9364-20c9d07e7899"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"191e9aee-58e1-11e5-a0dd-38c98601185b"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"run"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/01/2015 06:42 AM"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1279 Harrison Ct, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"end_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01554089136423</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2499387414243</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1654 33rd St, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"dest_lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1435754562000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1435755238000</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"elapsed_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">676000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total_distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">1897.0087033661473</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"average_speed"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.900624928694415</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"alert_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timeout"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400000</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1939767a-58e1-11e5-a0dd-38c98601185b"</span><span class="w">
+    </span><span class="p">},{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"start_activity"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1939767a-58e1-11e5-a0dd-38c98601185b"</span><span class="w">
+    </span><span class="p">},{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"end_activity"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1939767a-58e1-11e5-a0dd-38c98601185b"</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+
+    </span><span class="nt">"alerts_triggered"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"451bc6c0-8231-44dd-8168-d722b86f04f5"</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1116,213 +1564,79 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 </thead><tbody>
 <tr>
 <td style="text-align: right">uid <br><em>string</em></td>
-<td>Unique identifier of the contact</td>
+<td>Unique identifier of the activity</td>
 </tr>
 <tr>
-<td style="text-align: right">first_name <br><em>string</em></td>
-<td>Contact&rsquo;s first name</td>
+<td style="text-align: right">type <br><em>string</em></td>
+<td>Activity type. Values: <code class="prettyprint">run</code>, <code class="prettyprint">walk</code>, <code class="prettyprint">bike</code>, <code class="prettyprint">social</code>, <code class="prettyprint">travel</code>, <code class="prettyprint">other</code><br><em>Additional activities will be added in future updates.</em></td>
 </tr>
 <tr>
-<td style="text-align: right">last_name <br><em>string</em></td>
-<td>Contact&rsquo;s last name</td>
+<td style="text-align: right">start_lat <br><em>double</em></td>
+<td>Latitude where activity started</td>
 </tr>
 <tr>
-<td style="text-align: right">display_name <br><em>string</em></td>
-<td>Contact&rsquo;s full name</td>
+<td style="text-align: right">start_lng <br><em>double</em></td>
+<td>Longitude where activity started</td>
 </tr>
 <tr>
-<td style="text-align: right">photo_url <br><em>url</em></td>
-<td>Link to contact&rsquo;s photo</td>
+<td style="text-align: right">start_address <br><em>string</em></td>
+<td>Geocoded start address</td>
 </tr>
 <tr>
-<td style="text-align: right">email <br><em>string</em></td>
-<td>Contact&rsquo;s email address</td>
+<td style="text-align: right">dest_lat <br><em>double</em></td>
+<td>Destination latitude</td>
 </tr>
 <tr>
-<td style="text-align: right">mobile_number <br><em>string</em></td>
-<td>Contact&rsquo;s mobile number  (<a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>)</td>
+<td style="text-align: right">dest_lng <br><em>double</em></td>
+<td>Destination longitude</td>
 </tr>
 <tr>
-<td style="text-align: right">email_alert <br><em>boolean</em></td>
-<td>True if contact has opted to receive email alerts</td>
+<td style="text-align: right">dest_address <br><em>string</em></td>
+<td>Geocoded destination address</td>
 </tr>
 <tr>
-<td style="text-align: right">sms_alert <br><em>boolean</em></td>
-<td>True if contact has opted to receive text alerts</td>
+<td style="text-align: right">end_lat <br><em>double</em></td>
+<td>Latitude where activity ended</td>
 </tr>
 <tr>
-<td style="text-align: right">push_alert <br><em>boolean</em></td>
-<td>True if contact has opted to receive push alerts</td>
+<td style="text-align: right">end_lng <br><em>double</em></td>
+<td>Longitude where activity ended</td>
 </tr>
 <tr>
-<td style="text-align: right">email_verified <br><em>boolean</em></td>
-<td>True if FABRIQ has verified contact&rsquo;s email address</td>
+<td style="text-align: right">end_address <br><em>string</em></td>
+<td>Geocoded end address</td>
 </tr>
 <tr>
-<td style="text-align: right">mobile_verified <br><em>boolean</em></td>
-<td>True if FABRIQ has verified contact&rsquo;s mobile number</td>
+<td style="text-align: right">start_date <br><em>timestamp</em></td>
+<td>Timestamp (UTC) when activity started</td>
 </tr>
 <tr>
-<td style="text-align: right">circles <br><em>array</em></td>
-<td>List of circles to which this contact has been added</td>
+<td style="text-align: right">end_date <br><em>timestamp</em></td>
+<td>Timestamp (UTC) when activity ended</td>
+</tr>
+<tr>
+<td style="text-align: right">elapsed_time <br><em>integer</em></td>
+<td>Duration of activity (ms)</td>
+</tr>
+<tr>
+<td style="text-align: right">total_distance <br><em>double</em></td>
+<td>Total distance traveled (meters)</td>
+</tr>
+<tr>
+<td style="text-align: right">average_speed <br><em>double</em></td>
+<td>Calculated average speed (meters/second)</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_settings <br><em>list</em></td>
+<td>List of <a href="#the-alert_setting-object">alert_setting</a> objects</td>
+</tr>
+<tr>
+<td style="text-align: right">alerts_triggered <br><em>list</em></td>
+<td>List of <code class="prettyprint">alert_uid</code> triggered for this activity. Returns <code class="prettyprint">null</code> if no alerts were triggered.</td>
 </tr>
 </tbody></table>
 
-          <h2 id="add-a-contact">Add a contact</h2>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>POST https://api.fabriq.io/contacts
-</code></pre>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/contacts'</span>  <span class="se">\</span>
-  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
-  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
-  -d <span class="s1">'{                                        
-         "first_name": "Jane",                    
-         "last_name": "Doe",                    
-         "email": "jane@example.com",                    
-         "mobile_number": "+12125551313",
-         "circles": ["d4826772-542f-11e5-9364-20c9d07e7899"]
-
-      }'</span>
-</code></pre>
-
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"761d4f1a-a121-40f8-a8d3-2993ba5861d9"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane doe"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">" jane@example.com"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551313"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"email_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sms_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"push_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"email_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"mobile_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"circles"</span><span class="p">:[{</span><span class="w">
-        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d4826772-542f-11e5-9364-20c9d07e7899"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<table><thead>
-<tr>
-<th style="text-align: right">ARGUMENTS</th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">first_name <br><strong>required</strong></td>
-<td>Contact&rsquo;s first name</td>
-</tr>
-<tr>
-<td style="text-align: right">last_name <br><strong>required</strong></td>
-<td>Contact&rsquo;s last name</td>
-</tr>
-<tr>
-<td style="text-align: right">mobile_number <br><strong>required</strong></td>
-<td>Contact&rsquo;s mobile number  (<a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>)</td>
-</tr>
-<tr>
-<td style="text-align: right">email <br><em>optional</em></td>
-<td>Contact&rsquo;s email address</td>
-</tr>
-<tr>
-<td style="text-align: right">circles <br><em>optional</em></td>
-<td>Array of <code class="prettyprint">circle_uid</code>&rsquo;s to which this contact should belong. If not specified, contact will be added to the user&rsquo;s default circle.</td>
-</tr>
-<tr>
-<td style="text-align: right">photo_data <br><em>optional</em></td>
-<td>-</td>
-</tr>
-<tr>
-<td style="text-align: right">photo_content_type <br><em>optional</em></td>
-<td>-</td>
-</tr>
-<tr>
-<td style="text-align: right">photo_size <br><em>optional</em></td>
-<td>-</td>
-</tr>
-</tbody></table>
-
-<h3 id="returns">Returns</h3>
-
-<p>A contact object.</p>
-
-          <h2 id="list-all-contacts">List all contacts</h2>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>GET https://api.fabriq.io/contacts
-</code></pre>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/contacts'</span>  <span class="se">\</span>
-  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
-</code></pre>
-
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d621e0d0-542f-11e5-9364-20c9d07e7899"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@example.com"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551212"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"email_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sms_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"push_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"email_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"mobile_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"circles"</span><span class="p">:[{</span><span class="w">
-        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d4826772-542f-11e5-9364-20c9d07e7899"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="err">...</span><span class="w">
-</span><span class="p">}]</span><span class="w">
-</span></code></pre>
-
-<h3 id="returns">Returns</h3>
-
-<p>An array of contacts or an empty array if the user has not added any contacts yet.</p>
-
-          <h1 id="circles">Circles</h1>
-
-<p>A user can add a contact to one or more circles.  In certain situations an alert or notification can then be made
-available only to the contacts contained by the selected circles.</p>
-
-          <h2 id="the-circle-object">The circle object</h2>
-
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df2ecdaa-5597-11e5-a0dd-38c98601185b"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<h3 id="the-alert_setting-object">The alert_setting object</h3>
 
 <table><thead>
 <tr>
@@ -1331,39 +1645,49 @@ available only to the contacts contained by the selected circles.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">uid <br><em>string</em></td>
-<td>Unique identifier of the circle</td>
+<td style="text-align: right">type <br><em>string</em></td>
+<td>Alert type. Values: <code class="prettyprint">start_activity</code>, <code class="prettyprint">end_activity</code>, <code class="prettyprint">timeout</code>, <code class="prettyprint">ping</code></td>
 </tr>
 <tr>
-<td style="text-align: right">name <br><em>string</em></td>
-<td>Name assigned to the circle</td>
+<td style="text-align: right">circles <br><em>list</em></td>
+<td>The list of circles that will notified if this alert is triggered</td>
 </tr>
 <tr>
-<td style="text-align: right">default <br><em>boolean</em></td>
-<td>Is this the user&rsquo;s default circle</td>
+<td style="text-align: right">timeout <br><em>integer</em></td>
+<td>[<code class="prettyprint">timeout</code>, <code class="prettyprint">ping</code>] Time (ms) to elapse before alert is triggered</td>
 </tr>
 <tr>
-<td style="text-align: right">photo_url <br><em>url</em></td>
-<td>Link to circle&rsquo;s icon or photo</td>
+<td style="text-align: right">interval <br><em>integer</em></td>
+<td>[<code class="prettyprint">ping</code>] Time (ms) between ping requests</td>
+</tr>
+<tr>
+<td style="text-align: right">retry_count <br><em>integer</em></td>
+<td>[<code class="prettyprint">ping</code>] Number of times to try a timed out ping before an alert is triggered</td>
 </tr>
 </tbody></table>
 
-          <h2 id="add-a-circle">Add a circle</h2>
+          <h2 id="start-an-activity">Start an activity</h2>
 
 <blockquote>
 <p>Definition</p>
 </blockquote>
-<pre class="highlight plaintext"><code>POST https://api.fabriq.io/circles
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/activities
 </code></pre>
 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/circles'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/activities'</span>  <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
   -d <span class="s1">'{                                        
-         "name": "Family"                    
+         "type": "run",                    
+         "start_lat": 40.00930405724701,                    
+         "start_lng": -105.2392134802841,
+         "dest_address": "1617 Pearl St, Boulder, CO 80302",
+         "alert_watch": true,                    
+         "alert_timeout": 900000,                    
+         "circles": [ "19223e56-58e1-11e5-a0dd-38c98601185b" ]
       }'</span>
 </code></pre>
 
@@ -1371,10 +1695,39 @@ available only to the contacts contained by the selected circles.</p>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60adf957-4d16-44ef-a271-217f6404b146"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Family"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"191e9aee-58e1-11e5-a0dd-38c98601185b"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"run"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/01/2015 06:42 AM"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1279 Harrison Ct, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"end_lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"dest_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01554089136423</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2499387414243</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1654 33rd St, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1435754562000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"elapsed_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total_distance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"average_speed"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"alert_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timeout"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400000</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1939767a-58e1-11e5-a0dd-38c98601185b"</span><span class="w">
+    </span><span class="p">},{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"start_activity"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1939767a-58e1-11e5-a0dd-38c98601185b"</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+
+    </span><span class="nt">"alerts_triggered"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1385,63 +1738,261 @@ available only to the contacts contained by the selected circles.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">name <br><strong>required</strong></td>
-<td>Name of the circle</td>
+<td style="text-align: right">type <br><strong>required</strong>, <em>string</em></td>
+<td>Activity type. Values: <code class="prettyprint">run</code>, <code class="prettyprint">walk</code>, <code class="prettyprint">bike</code>, <code class="prettyprint">social</code>, <code class="prettyprint">travel</code>, <code class="prettyprint">other</code><br><em>Additional activities will be added in future updates.</em></td>
 </tr>
 <tr>
-<td style="text-align: right">photo_data <br><em>optional</em></td>
-<td>Circle photo base64 encoded</td>
+<td style="text-align: right">start_lat <br><strong>required</strong>, <em>double</em></td>
+<td>Latitude where activity started</td>
 </tr>
 <tr>
-<td style="text-align: right">photo_content_type <br><em>optional</em></td>
-<td>Photo content type. (Required if photo_data is specified)</td>
+<td style="text-align: right">start_lng <br><strong>required</strong>, <em>double</em></td>
+<td>Longitude where activity started</td>
 </tr>
 <tr>
-<td style="text-align: right">photo_size <br><em>optional</em></td>
-<td>Size of the photo.</td>
+<td style="text-align: right">name <br><em>optional</em>, <em>string</em></td>
+<td>Name of this activity.  Defaults to local date and time.</td>
+</tr>
+<tr>
+<td style="text-align: right">dest_address <br><em>optional</em>, <em>string</em></td>
+<td>Destination address associated with activity</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_watch <br><em>optional</em>, <em>boolean</em></td>
+<td>Flag to request user&rsquo;s contacts to watch him or her.  Each contact will receive a message when the activity starts (and optionally when the activity stops) with a link to watch the user in real time.</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_timeout <br><em>optional</em>, <em>integer</em></td>
+<td>Number of milliseconds that the user expects the activity to last.  If the activity is not ended before this time, an alert will be triggered.  This timeout can be extended if the activity takes longer than the user initially anticipated.</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_ping_interval <br><em>optional</em>, <em>integer</em></td>
+<td>This enables the <a href="#ping-alert">ping</a> feature and sets the number of milliseconds between ping requests.</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_ping_timeout <br><em>optional</em>, <em>integer</em></td>
+<td>Number of milliseconds to wait for a user reply before the ping is flagged as an alert.</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_ping_retry_count <br><em>optional</em>, <em>integer</em></td>
+<td>Number of times to try a timed out ping before an alert is triggered.</td>
+</tr>
+<tr>
+<td style="text-align: right">circles <br><em>optional</em>, <em>list</em></td>
+<td>Array of <code class="prettyprint">circle_uid</code>&rsquo;s which will be messaged for the specified alert settings. This is required if any of the alert options are set.</td>
 </tr>
 </tbody></table>
 
 <h3 id="returns">Returns</h3>
 
-<p>A circle object.</p>
+<p>An activity object.</p>
 
-          <h2 id="list-all-circles">List all circles</h2>
+          <h2 id="update-position">Update position</h2>
 
 <blockquote>
 <p>Definition</p>
 </blockquote>
-<pre class="highlight plaintext"><code>GET https://api.fabriq.io/circles
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/activities/{ACTIVITY_UID}/position
 </code></pre>
 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/circles'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/activities/191e9aee-58e1-11e5-a0dd-38c98601185b/position'</span>  <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>         <span class="se">\</span>
+  -d <span class="s1">'[{                                        
+            "latitude": 40.01547488387676,
+            "longitude":-105.2499169484761,
+            "timestamp": 1401640190777                      
+       },{                                      
+            "latitude": 40.0154335191846,                    
+            "longitude": -105.2499519010123,                    
+            "timestamp": 1401640196770                      
+       }]'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight plaintext"><code>HTTP Status Code: 201
+</code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">positions <br><strong>required</strong></td>
+<td>An array of <a href="#position">position</a> objects. <code class="prettyprint">latitude</code>, <code class="prettyprint">longitude</code> and <code class="prettyprint">timestamp</code> fields are required.</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>This method will return a 201 HTTP Status code if the data was uploaded successfully.  It does not return a JSON object.</p>
+
+          <h2 id="end-an-activity">End an activity</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/activities/{ACTIVITY_UID}
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/activities/804fe823-e230-47aa-b0e9-3131ca6326b1'</span>  <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
+  -d <span class="nv">end_lat</span><span class="o">=</span>40.01592844038895  <span class="se">\</span>
+  -d <span class="nv">end_lng</span><span class="o">=</span>-105.2487217142231
+</code></pre>
+
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"191e9aee-58e1-11e5-a0dd-38c98601185b"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"run"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/01/2015 06:42 AM"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1279 Harrison Ct, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"end_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01554089136423</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2499387414243</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1654 33rd St, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"dest_lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1435754562000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1435755238000</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"elapsed_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">676000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total_distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">1897.0087033661473</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"average_speed"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.900624928694415</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"alert_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timeout"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400000</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1939767a-58e1-11e5-a0dd-38c98601185b"</span><span class="w">
+    </span><span class="p">},{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"start_activity"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1939767a-58e1-11e5-a0dd-38c98601185b"</span><span class="w">
+    </span><span class="p">},{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"end_activity"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1939767a-58e1-11e5-a0dd-38c98601185b"</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+
+    </span><span class="nt">"alerts_triggered"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">end_lat <br><em>optional</em>, <em>double</em></td>
+<td>Latitude where activity ended</td>
+</tr>
+<tr>
+<td style="text-align: right">end_lng <br><em>optional</em>, <em>double</em></td>
+<td>Longitude where activity ended</td>
+</tr>
+<tr>
+<td style="text-align: right">disable_alerts <br><em>optional</em>, <em>boolean</em></td>
+<td>If a watch alert was set when the activity was started, the user&rsquo;s contacts will automatically be notified when the activity end.  Set this to true to prevent this notification from being sent.</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>An activity object.</p>
+
+          <h2 id="retrieve-an-activity">Retrieve an activity</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/activities/{ACTIVITY_UID}
+</code></pre>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/activities/191e9aee-58e1-11e5-a0dd-38c98601185b'</span>  <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df2ecdaa-5597-11e5-a0dd-38c98601185b"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
- </span><span class="p">},</span><span class="w">
- </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60adf957-4d16-44ef-a271-217f6404b146"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Family"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"191e9aee-58e1-11e5-a0dd-38c98601185b"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"run"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/01/2015 06:42 AM"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1279 Harrison Ct, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"end_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01554089136423</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2499387414243</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1654 33rd St, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"dest_lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1435754562000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1435755238000</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"elapsed_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">676000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total_distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">1897.0087033661473</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"average_speed"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.900624928694415</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"alert_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timeout"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400000</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1939767a-58e1-11e5-a0dd-38c98601185b"</span><span class="w">
+    </span><span class="p">},{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"start_activity"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1939767a-58e1-11e5-a0dd-38c98601185b"</span><span class="w">
+    </span><span class="p">},{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"end_activity"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1939767a-58e1-11e5-a0dd-38c98601185b"</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+
+    </span><span class="nt">"alerts_triggered"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">activity_uid <br><strong>required</strong></td>
+<td>The UID of the activity to be retrieved</td>
+</tr>
+</tbody></table>
 
 <h3 id="returns">Returns</h3>
 
-<p>An array of circles. The array will include at least one circle which is the user&rsquo;s default circle.</p>
+<p>An activity object if a valid UID was provided.</p>
+
+          <h1 id="threats">Threats</h1>
 
           <h1 id="settings">Settings</h1>
 
@@ -1461,10 +2012,10 @@ available only to the contacts contained by the selected circles.</p>
     </span><span class="nt">"alert_activity_start_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, letting you know I'm heading out for my workout."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_activity_end_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, letting you know I'm back from my workout."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_activity_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I went for a workout and should've been back by now!"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_me_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I haven't responded to my security checks!"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_me_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">30000</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_me_retry_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_me_timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">60000</span><span class="w">
+    </span><span class="nt">"alert_ping_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I haven't responded to my security checks!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">30000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_retry_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">60000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1507,19 +2058,19 @@ available only to the contacts contained by the selected circles.</p>
 <td>Message sent when activity times out</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_me_timeout_message <br><em>string</em></td>
+<td style="text-align: right">alert_ping_timeout_message <br><em>string</em></td>
 <td>Message sent when user fails to respond to &lsquo;ping_me&rsquo; after the specified number of retries</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_me_interval <br><em>integer</em></td>
+<td style="text-align: right">alert_ping_interval <br><em>integer</em></td>
 <td>Time in milliseconds to send a &#39;ping_me&rsquo; message to the user</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_me_timeout <br><em>integer</em></td>
+<td style="text-align: right">alert_ping_timeout <br><em>integer</em></td>
 <td>Time in milliseconds to wait for a user to respond to a &#39;ping_me&rsquo;</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_me_retry_count <br><em>integer</em></td>
+<td style="text-align: right">alert_ping_retry_count <br><em>integer</em></td>
 <td>Number of times to try a &#39;ping_me&rsquo; after a timeout before triggering an alert</td>
 </tr>
 </tbody></table>
@@ -1551,10 +2102,10 @@ available only to the contacts contained by the selected circles.</p>
     </span><span class="nt">"alert_activity_start_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, letting you know I'm heading out for my workout."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_activity_end_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, letting you know I'm back from my workout."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_activity_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I went for a workout and should've been back by now!"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_me_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I haven't responded to my security checks!"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_me_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">30000</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_me_retry_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_me_timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">60000</span><span class="w">
+    </span><span class="nt">"alert_ping_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I haven't responded to my security checks!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">30000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_retry_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">60000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1593,10 +2144,10 @@ available only to the contacts contained by the selected circles.</p>
     </span><span class="nt">"alert_activity_start_message"</span><span class="p">:</span><span class="s2">"Hi, letting you know I'm heading out for my workout."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_activity_end_message"</span><span class="p">:</span><span class="s2">"Hi, letting you know I'm back from my workout."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_activity_timeout_message"</span><span class="p">:</span><span class="s2">"HELP! I went for a workout and should've been back by now!"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_me_timeout_message"</span><span class="p">:</span><span class="s2">"HELP! I haven't responded to my security checks!"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_me_interval"</span><span class="p">:</span><span class="mi">30000</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_me_retry_count"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_me_timeout"</span><span class="p">:</span><span class="mi">60000</span><span class="w">
+    </span><span class="nt">"alert_ping_timeout_message"</span><span class="p">:</span><span class="s2">"HELP! I haven't responded to my security checks!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_interval"</span><span class="p">:</span><span class="mi">30000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_retry_count"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_timeout"</span><span class="p">:</span><span class="mi">60000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1639,19 +2190,19 @@ available only to the contacts contained by the selected circles.</p>
 <td>-</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_me_timeout_message <br><em>optional</em></td>
+<td style="text-align: right">alert_ping_timeout_message <br><em>optional</em></td>
 <td>-</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_me_interval <br><em>optional</em></td>
+<td style="text-align: right">alert_ping_interval <br><em>optional</em></td>
 <td>-</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_me_retry_count <br><em>optional</em></td>
+<td style="text-align: right">alert_ping_retry_count <br><em>optional</em></td>
 <td>-</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_me_timeout <br><em>optional</em></td>
+<td style="text-align: right">alert_ping_timeout <br><em>optional</em></td>
 <td>-</td>
 </tr>
 </tbody></table>
@@ -1667,5 +2218,41 @@ available only to the contacts contained by the selected circles.</p>
           </div>
       </div>
     </div>
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-64463226-5', 'auto');
+  ga('send', 'pageview');
+
+    $(document).on("ready", function(){
+    var runned = false;
+    $(window).scroll( function() {
+        if ($(document).scrollTop() >= 250 && runned == false ) {
+            ga('send', 'event', {
+                eventCategory: 'Scrolled 250px',
+                eventAction: 'Scroll'
+            });
+            runned = true;
+        }
+    });
+
+
+    $(document).on("click", "a", function() {
+        var href = $(this).attr('href');
+        console.log("event: href: " + href);
+        ga('send', 'event', {
+            eventCategory: href,
+            eventAction: 'Click'
+        });
+    });
+    });
+</script>
+
   </body>
 </html>

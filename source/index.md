@@ -12,7 +12,11 @@ includes:
   - introduction
   - authentication
   - oauth
-  - errors
+
+  - errors/info
+  - errors/error-codes
+  - errors/error-response
+
   - versioning
 
   - inapp-browser
@@ -33,17 +37,18 @@ includes:
   - methods/position/info
   - methods/position/object
 
-  - methods/contacts/info
-  - methods/contacts/object
-  - methods/contacts/add
-  - methods/contacts/list
-
   - methods/circles/info
   - methods/circles/object
   - methods/circles/add
   - methods/circles/list
 
+  - methods/contacts/info
+  - methods/contacts/object
+  - methods/contacts/add
+  - methods/contacts/list
+
   - methods/alerts/info
+  - methods/alerts/types
   - methods/alerts/object
   - methods/alerts/panic
   - methods/alerts/media
@@ -53,8 +58,13 @@ includes:
   - methods/alerts/list
 
   - methods/activities/info
+  - methods/activities/object
+  - methods/activities/start
+  - methods/activities/position
+  - methods/activities/stop
+  - methods/activities/fetch
 
-  - methods/dangers/info
+  - methods/threats/info
 
   - methods/settings/info
   - methods/settings/object

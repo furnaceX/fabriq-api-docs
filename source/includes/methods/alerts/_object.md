@@ -18,11 +18,11 @@
 ATTRIBUTES||
 ---------:        | -----------
 uid <br>*string*   | Unique identifier of the alert
-type <br>*string*  | Type of the alert. Possible values `panic`
+type <br>*string*  | Type of the alert. Possible values `panic`, `timeout`, `ping`, `start_activity`, `end_activity`
 latitude <br>*double*  | Latitude where alert was triggered
 longitude <br>*double*  | Longitude where alert was triggered
 activity_uid <br>*string*  | Activity associated with this alert
 alert_date <br>*timestamp*  | Timestamp (UTC) when alert was triggered
-acknowledged <br>*boolean*  | Aert has been acknowledged by at least one contact
+acknowledged <br>*boolean*  | Alert has been acknowledged by at least one contact
 canceled <br>*boolean*  | Flag to indicate if this alert has been canceled
 canceled_date <br>*timestamp*  | Timestamp (UTC) when alert was canceled
