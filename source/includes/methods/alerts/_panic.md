@@ -35,6 +35,7 @@ curl -X POST 'https://api.fabriq.io/alerts/panic'  \
 
 ARGUMENTS ||
 ---------:        | -----------
+activity_uid <br>*optional*  | Activity associated with this alert
 latitude <br>*optional*  | Latitude where alert was triggered
 longitude <br>*optional*  | Longitude where alert was triggered
 

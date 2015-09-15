@@ -454,6 +454,7 @@ html, body {
       vertical-align: bottom;
       text-transform: uppercase;
       color: #888;
+      font-weight: 400;
     }
 
     th:first-child {
@@ -461,6 +462,7 @@ html, body {
         word-break: keep-all;
         white-space: nowrap;
         padding-right: 40px;
+        padding-left:0px;
 
     }
 

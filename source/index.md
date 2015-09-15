@@ -61,6 +61,7 @@ includes:
   - methods/activities/object
   - methods/activities/start
   - methods/activities/position
+  - methods/activities/media
   - methods/activities/stop
   - methods/activities/fetch
 
