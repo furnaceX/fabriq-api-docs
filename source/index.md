@@ -30,7 +30,8 @@ includes:
   - methods/users/update
 
   - methods/profile/info
-  - methods/profile/object
+  - methods/profile/public
+  - methods/profile/private
   - methods/profile/fetch
   - methods/profile/update
 
@@ -66,6 +67,12 @@ includes:
   - methods/activities/fetch
 
   - methods/threats/info
+  - methods/threats/object
+  - methods/threats/report
+  - methods/threats/media
+  - methods/threats/fetch
+  - methods/threats/remove
+  - methods/threats/list
 
   - methods/settings/info
   - methods/settings/object

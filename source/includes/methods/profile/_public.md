@@ -1,4 +1,5 @@
-## The profile object
+## Public profile
+
 > Sample Response
 
 ```json
