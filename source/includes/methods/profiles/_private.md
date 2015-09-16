@@ -19,13 +19,13 @@
     "residence2_address": "456 Any St., San Francisco, CA 54321",
     "residence3_address": null,
     "residence4_address": null,
-    "identifiers": "birth mark right calf",
     "doctor_name": "Dr. Jane Smith",
     "doctor_address": "123 Main St., New York, NY 12345",
     "doctor_phone_number": "+12125551212",
     "dentist_name": "Dr. John Doe",
     "dentist_address": "123 Main St., New York, NY 12345",
     "dentist_phone_number": "+12125551212",
+    "personal_identifiers": "birth mark right calf",
     "medical_conditions": null,
     "allergies": "gluten, penicillin",
     "medications": null,
@@ -50,13 +50,13 @@ residence1_address <br>*string*  | User's primary address
 residence2_address <br>*string*  | User's second address
 residence3_address <br>*string*  | User's third address
 residence4_address <br>*string*  | User's fourth address
-identifiers <br>*string*  | Any identifying marks such as scars, tatoos, etc.
 doctor_name <br>*string*  | Primary physician's name
 doctor_address <br>*string*  | Primary physician's address
 doctor_phone_number <br>*string*  | Primary physician's phone number
 dentist_name <br>*string*  | Dentist's name
 dentist_address <br>*string*  | Dentist's address
 doctor_phone_number <br>*string*  | Dentist's phone number
+personal_identifiers <br>*string*  | Any identifying marks such as scars, tatoos, etc.
 medical_conditions <br>*string*  | List of all known medical conditions
 allergies <br>*string*  | List of all known allergies
 medications <br>*string*  | List of medications user is currently taking

@@ -29,11 +29,11 @@ includes:
   - methods/users/fetch
   - methods/users/update
 
-  - methods/profile/info
-  - methods/profile/public
-  - methods/profile/private
-  - methods/profile/fetch
-  - methods/profile/update
+  - methods/profiles/info
+  - methods/profiles/public
+  - methods/profiles/private
+  - methods/profiles/fetch
+  - methods/profiles/update
 
   - methods/position/info
   - methods/position/object
