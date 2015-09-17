@@ -31,9 +31,14 @@ includes:
 
   - methods/profiles/info
   - methods/profiles/public
+  - methods/profiles/fetch-public
+  - methods/profiles/media-public
+  - methods/profiles/update-public
+
   - methods/profiles/private
-  - methods/profiles/fetch
-  - methods/profiles/update
+  - methods/profiles/fetch-private
+  - methods/profiles/media-private
+  - methods/profiles/update-private
 
   - methods/position/info
   - methods/position/object

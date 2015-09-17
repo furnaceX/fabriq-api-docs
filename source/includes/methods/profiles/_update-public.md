@@ -1,15 +1,15 @@
-## Update profile
+## Update public profile
 
 > Definition
 
 ```text
-PUT https://api.fabriq.io/profile
+PUT https://api.fabriq.io/profiles/public
 ```
 
 > Sample Request
 
 ```shell
-curl -X PUT 'https://api.fabriq.io/profile'        \
+curl -X PUT 'https://api.fabriq.io/profiles/public'        \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
   -H 'Content-Type: application/json'         \
   -d '{                                        
