@@ -10,7 +10,7 @@
     "facebook_url": "https://facebook.com/janedoe",
     "linkedin_url": null,
     "instagram_url": null,
-    "license_number": "NY I1234562",
+    "driver_license": "NY I1234562",
     "license_plate": "NY 5NQE861",
     "employer_name": "City University",
     "employer_address": "100 Campus St., New York, NY 12345",
@@ -41,7 +41,7 @@ twitter_url <br>*string*  | Link to user's twitter account
 facebook_url <br>*string*  | Link to user's facebook account
 linkedin_url <br>*string*  | Link to user's linkedin account
 instagram_url <br>*string*  | Link to user's instagram account
-license_number <br>*string*  | Driver's license number (should include country/state)
+driver_license <br>*string*  | Driver's license number (should include country/state)
 license_plate <br>*string*  | License plate number (should include country/state)
 employer_name <br>*string*  | Name of user's school or employer
 employer_address <br>*string*  | Address of user' school or employer
