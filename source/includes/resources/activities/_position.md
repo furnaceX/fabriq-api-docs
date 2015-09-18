@@ -34,7 +34,7 @@ curl -X POST 'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391/
 
 ARGUMENTS ||
 ---------:| -----------
-positions <br>**required**, *array*  | An array of [position](#position) objects. The `latitude`, `longitude` and `timestamp` fields are required.
+positions<br>**required**, *array*  | An array of [position](#position) objects. The `latitude`, `longitude` and `timestamp` fields are required.
 
 
 

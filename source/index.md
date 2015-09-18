@@ -49,11 +49,13 @@ includes:
   - resources/circles/info
   - resources/circles/object
   - resources/circles/add
+  - resources/circles/media
   - resources/circles/list
 
   - resources/contacts/info
   - resources/contacts/object
   - resources/contacts/add
+  - resources/contacts/media
   - resources/contacts/list
 
   - resources/alerts/info

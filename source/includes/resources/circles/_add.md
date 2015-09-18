@@ -21,7 +21,7 @@ curl -X POST 'https://api.fabriq.io/circles'  \
 
 ```json
 {
-    "uid": "60adf957-4d16-44ef-a271-217f6404b146",
+    "uid": "039d2aa25d4e11e5a0dd38c98601185b",
     "name": "Family",
     "default": false,
     "photo_url": null
@@ -30,10 +30,7 @@ curl -X POST 'https://api.fabriq.io/circles'  \
 
 ARGUMENTS ||
 ---------:        | -----------
-name <br>**required**  | Name of the circle
-photo_data <br>*optional*  | Circle photo base64 encoded
-photo_content_type <br>*optional*  | Photo content type. (Required if photo_data is specified)
-photo_size <br>*optional*  | Size of the photo.
+name<br>**required**  | Name of the circle
 
 
 ### Returns

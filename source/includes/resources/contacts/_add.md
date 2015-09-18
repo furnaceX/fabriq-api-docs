@@ -48,14 +48,11 @@ curl -X POST 'https://api.fabriq.io/contacts'  \
 
 ARGUMENTS ||
 ---------:        | -----------
-first_name <br>**required**  | Contact's first name
-last_name <br>**required**  | Contact's last name
-mobile_number <br>**required**  | Contact's mobile number  ([E.164 format](https://en.wikipedia.org/wiki/E.164))
-email <br>*optional*  | Contact's email address
-circles <br>*optional*  | Array of `circle_uid`'s to which this contact should belong. If not specified, contact will be added to the user's default circle.
-photo_data <br>*optional*  |  -
-photo_content_type <br>*optional*  |  -
-photo_size <br>*optional*  |  -
+first_name<br>**required**, *string* | Contact's first name
+last_name<br>**required**, *string*  | Contact's last name
+mobile_number<br>**required**, *string*  | Contact's mobile number  ([E.164 format](https://en.wikipedia.org/wiki/E.164))
+email<br>*optional*, *string*  | Contact's email address
+circles<br>*optional*, *array*  | Array of `circle_uid`'s to which this contact should belong. If not specified, contact will be added to the user's default circle.
 
 
 ### Returns

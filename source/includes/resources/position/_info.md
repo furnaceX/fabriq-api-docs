@@ -1,2 +1,2 @@
 # Position
-The user's position is updated during an activity or whenever an alert is triggered.
+The user's geolocation is updated during an activity or whenever an alert is triggered.

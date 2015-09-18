@@ -58,7 +58,7 @@ curl 'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391'  \
 
 ARGUMENTS  ||
 ---------: | -----------
-activity_uid <br>**required**, *string*  | The UID of the activity to be retrieved
+activity_uid<br>**required**, *string*  | The UID of the activity to be retrieved
 
 
 ### Returns

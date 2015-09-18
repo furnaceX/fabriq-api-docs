@@ -1,18 +1,16 @@
-## Upload media
+## Upload photo
 
 > Definition
 
 ```text
-POST https://api.fabriq.io/activities/{ACTIVITY_UID}/media
+POST https://api.fabriq.io/circles/{CIRCLE_UID}/photos
 ```
 
 > Sample Request
 
 ```shell
-curl 'https://api.fabriq.io/activities/ff77462fd128430b94c083b6f88f1cb9/media'  \
+curl 'https://api.fabriq.io/circles/039d2aa25d4e11e5a0dd38c98601185b/photos'  \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
-  -F latitude=40.01547488387676  \
-  -F longitude=-105.2499169484761  \
   -F file="@/path/to/photo.jpg"
 ```
 
@@ -35,9 +33,6 @@ Upload media files by sending a request of type `multipart/form-data`.
 ARGUMENTS ||
 ---------:        | -----------
 file<br>**required**, *file*  | The file to upload.  Currently, only image files are supported.
-latitude<br>*optional*, *double*  | Latitude where media was captured
-longitude<br>*optional*, *double*  | Longitude where media was captured
-description<br>*optional*, *string*  | User provided description of the media
 
 
 ### Returns

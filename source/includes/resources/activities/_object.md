@@ -44,24 +44,24 @@
 
 ATTRIBUTES||
 ---------:        | -----------
-uid <br>*string*   | Unique identifier of the activity
-type <br>*string*  | Activity type. Values: `run`, `walk`, `bike`, `social`, `travel`, `other`<br>*Additional activities will be added in future updates.*
-start_lat <br>*double*  | Latitude where activity started
-start_lng <br>*double*  | Longitude where activity started
-start_address <br>*string*  | Geocoded start address
-dest_lat <br>*double*  | Destination latitude
-dest_lng <br>*double*  | Destination longitude
-dest_address <br>*string*  | Geocoded destination address
-end_lat <br>*double*  |  Latitude where activity ended
-end_lng <br>*double*  | Longitude where activity ended
-end_address <br>*string*  | Geocoded end address
-start_date <br>*timestamp*  | Timestamp (UTC) when activity started
-end_date <br>*timestamp*  | Timestamp (UTC) when activity ended
-elapsed_time <br>*integer*  | Duration of activity (ms)
-total_distance <br>*double*  | Total distance traveled (meters)
-average_speed <br>*double*  | Calculated average speed (meters/second)
-alert_settings <br>*list*  | List of [alert_setting](#the-alert_setting-object) objects
-alerts_triggered <br>*list*  | List of `alert_uid` triggered for this activity. Returns `null` if no alerts were triggered.
+uid<br>*string*   | Unique identifier of the activity
+type<br>*string*  | Activity type. Values: `run`, `walk`, `bike`, `social`, `travel`, `other`<br>*Additional activities will be added in future updates.*
+start_lat<br>*double*  | Latitude where activity started
+start_lng<br>*double*  | Longitude where activity started
+start_address<br>*string*  | Geocoded start address
+dest_lat<br>*double*  | Destination latitude
+dest_lng<br>*double*  | Destination longitude
+dest_address<br>*string*  | Geocoded destination address
+end_lat<br>*double*  |  Latitude where activity ended
+end_lng<br>*double*  | Longitude where activity ended
+end_address<br>*string*  | Geocoded end address
+start_date<br>*timestamp*  | Timestamp (UTC) when activity started
+end_date<br>*timestamp*  | Timestamp (UTC) when activity ended
+elapsed_time<br>*integer*  | Duration of activity (ms)
+total_distance<br>*double*  | Total distance traveled (meters)
+average_speed<br>*double*  | Calculated average speed (meters/second)
+alert_settings<br>*list*  | List of [alert_setting](#the-alert_setting-object) objects
+alerts_triggered<br>*list*  | List of `alert_uid` triggered for this activity. Returns `null` if no alerts were triggered.
 
 
 ### The alert_setting object

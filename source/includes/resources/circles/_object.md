@@ -12,7 +12,7 @@
 
 ATTRIBUTES||
 ---------:        | -----------
-uid <br>*string*   | Unique identifier of the circle
-name <br>*string*  | Name assigned to the circle
-default <br>*boolean*  | Is this the user's default circle
-photo_url <br>*url*  | Link to circle's icon or photo
+uid<br>*string*   | Unique identifier of the circle
+name<br>*string*  | Name assigned to the circle
+default<br>*boolean*  | Is this the user's default circle
+photo_url<br>*url*  | Link to circle's icon or photo

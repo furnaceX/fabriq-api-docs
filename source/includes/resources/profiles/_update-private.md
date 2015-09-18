@@ -50,7 +50,7 @@ curl -X PUT 'https://api.fabriq.io/profiles/private'        \
 }
 ```
 
-To update the user's `email` or `mobile_number` update the [User](#user) object directly.
+To update the user's `email` or `mobile_number` update the [User](#the-user-object) object directly.
 
 <br>
 

@@ -1,1 +1,1 @@
-<h1 class="toc-divider hidden">Classes</h1>
+<h1 class="toc-divider hidden">Resources</h1>

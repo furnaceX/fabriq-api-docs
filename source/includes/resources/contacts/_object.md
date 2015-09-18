@@ -3,7 +3,7 @@
 
 ```json
 {
-    "uid": "d621e0d0-542f-11e5-9364-20c9d07e7899",
+    "uid": "46b9f6da5da311e5936420c9d07e7899",
     "first_name": "John",
     "last_name": "Doe",
     "display_name": "John Doe",
@@ -16,7 +16,7 @@
     "email_verified": true,
     "mobile_verified": true,
     "circles":[{
-        "uid": "d4826772-542f-11e5-9364-20c9d07e7899",
+        "uid": "45778d285da311e5936420c9d07e7899",
         "photo_url": null,
         "display_name": "Default"
     }]

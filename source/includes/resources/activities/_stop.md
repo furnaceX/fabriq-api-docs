@@ -60,9 +60,9 @@ curl -X DELETE -G 'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae4098340
 
 ARGUMENTS ||
 ---------:        | -----------
-end_lat <br>*optional*, *double*  | Latitude where activity ended
-end_lng <br>*optional*, *double*  | Longitude where activity ended
-disable_alerts <br>*optional*, *boolean*  | If a watch alert was set when the activity was started, the user's contacts will automatically be notified when the activity end.  Set this to true to prevent this notification from being sent.
+end_lat<br>*optional*, *double*  | Latitude where activity ended
+end_lng<br>*optional*, *double*  | Longitude where activity ended
+disable_alerts<br>*optional*, *boolean*  | If a watch alert was set when the activity was started, the user's contacts will automatically be notified when the activity end.  Set this to true to prevent this notification from being sent.
 
 <br/>
 <aside class="notice">

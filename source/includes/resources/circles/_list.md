@@ -17,13 +17,13 @@ curl 'https://api.fabriq.io/circles'  \
 
 ```json
 [{
-    "uid": "df2ecdaa-5597-11e5-a0dd-38c98601185b",
+    "uid": "45778d285da311e5936420c9d07e7899",
     "name": "Default",
     "default": true,
     "photo_url": null
  },
  {
-    "uid": "60adf957-4d16-44ef-a271-217f6404b146",
+    "uid": "039d2aa25d4e11e5a0dd38c98601185b",
     "name": "Family",
     "default": false,
     "photo_url": null
