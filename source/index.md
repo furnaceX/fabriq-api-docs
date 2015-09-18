@@ -21,68 +21,71 @@ includes:
 
   - inapp-browser
 
-  - divider-methods
+  - divider-resources
 
-  - methods/users/info
-  - methods/users/object
-  - methods/users/create
-  - methods/users/fetch
-  - methods/users/update
+  - resources/users/info
+  - resources/users/object
+  - resources/users/create
+  - resources/users/fetch
+  - resources/users/update
 
-  - methods/profiles/info
-  - methods/profiles/public
-  - methods/profiles/fetch-public
-  - methods/profiles/media-public
-  - methods/profiles/update-public
+  - resources/profiles/info
+  - resources/profiles/public
+  - resources/profiles/fetch-public
+  - resources/profiles/media-public
+  - resources/profiles/update-public
 
-  - methods/profiles/private
-  - methods/profiles/fetch-private
-  - methods/profiles/media-private
-  - methods/profiles/update-private
+  - resources/profiles/private
+  - resources/profiles/fetch-private
+  - resources/profiles/media-private
+  - resources/profiles/update-private
 
-  - methods/position/info
-  - methods/position/object
+  - resources/position/info
+  - resources/position/object
 
-  - methods/circles/info
-  - methods/circles/object
-  - methods/circles/add
-  - methods/circles/list
+  - resources/media/info
+  - resources/media/object
 
-  - methods/contacts/info
-  - methods/contacts/object
-  - methods/contacts/add
-  - methods/contacts/list
+  - resources/circles/info
+  - resources/circles/object
+  - resources/circles/add
+  - resources/circles/list
 
-  - methods/alerts/info
-  - methods/alerts/types
-  - methods/alerts/object
-  - methods/alerts/panic
-  - methods/alerts/media
-  - methods/alerts/position
-  - methods/alerts/fetch
-  - methods/alerts/cancel
-  - methods/alerts/list
+  - resources/contacts/info
+  - resources/contacts/object
+  - resources/contacts/add
+  - resources/contacts/list
 
-  - methods/activities/info
-  - methods/activities/object
-  - methods/activities/start
-  - methods/activities/position
-  - methods/activities/media
-  - methods/activities/stop
-  - methods/activities/fetch
+  - resources/alerts/info
+  - resources/alerts/types
+  - resources/alerts/object
+  - resources/alerts/panic
+  - resources/alerts/media
+  - resources/alerts/position
+  - resources/alerts/fetch
+  - resources/alerts/cancel
+  - resources/alerts/list
 
-  - methods/threats/info
-  - methods/threats/object
-  - methods/threats/report
-  - methods/threats/media
-  - methods/threats/fetch
-  - methods/threats/remove
-  - methods/threats/list
+  - resources/activities/info
+  - resources/activities/object
+  - resources/activities/start
+  - resources/activities/position
+  - resources/activities/media
+  - resources/activities/stop
+  - resources/activities/fetch
 
-  - methods/settings/info
-  - methods/settings/object
-  - methods/settings/fetch
-  - methods/settings/update
+  - resources/threats/info
+  - resources/threats/object
+  - resources/threats/report
+  - resources/threats/media
+  - resources/threats/fetch
+  - resources/threats/remove
+  - resources/threats/list
+
+  - resources/settings/info
+  - resources/settings/object
+  - resources/settings/fetch
+  - resources/settings/update
 
 search: true
 ---

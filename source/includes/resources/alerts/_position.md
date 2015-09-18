@@ -3,13 +3,13 @@
 > Definition
 
 ```text
-POST https://api.fabriq.io/activities/{ACTIVITY_UID}/position
+POST https://api.fabriq.io/alerts/{ALERT_UID}/position
 ```
 
 > Sample Request
 
 ```shell
-curl -X POST 'https://api.fabriq.io/activities/191e9aee-58e1-11e5-a0dd-38c98601185b/position'  \
+curl -X POST 'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9/position'  \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
   -H 'Content-Type: application/json'         \
   -d '[{                                        
@@ -27,7 +27,9 @@ curl -X POST 'https://api.fabriq.io/activities/191e9aee-58e1-11e5-a0dd-38c986011
 > Sample Response
 
 ```text
-HTTP Status Code: 201
+{
+    "count": 2
+}
 ```
 
 ARGUMENTS ||
@@ -37,4 +39,4 @@ positions <br>**required**  | An array of [position](#position) objects. `latitu
 
 
 ### Returns
-This method will return a 201 HTTP Status code if the data was uploaded successfully.  It does not return a JSON object.
+This method returns an object with the number of positions uploaded.

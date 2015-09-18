@@ -1,17 +1,16 @@
-## Upload public media
+## Upload private media
 
 > Definition
 
 ```text
-POST https://api.fabriq.io/profiles/public/media
+POST https://api.fabriq.io/profiles/private/media
 ```
 
 > Sample Request
 
 ```shell
-curl https://api.fabriq.io/profiles/public/media  \
+curl https://api.fabriq.io/profiles/private/media  \
   -H "Authorization: Bearer {ACCESS_TOKEN}"  \
-  -F primary_photo=true  \
   -F file="@/path/to/photo.jpg"
 
 ```
@@ -28,19 +27,18 @@ curl https://api.fabriq.io/profiles/public/media  \
 }
 ```
 
-Upload media files by sending a request of type `multipart/form-data`. The uploaded file should follow
-the specifications of RFC 2388 (which defines file transfers for the `multipart/form-data` protocol).
+Upload media files by sending a request of type `multipart/form-data`.
+
 
 <br>
 
 ARGUMENTS ||
 ---------:        | -----------
 file <br>**required**, *media file*  | The file to upload.  Currently, only image files are supported
-primary_photo <br>*optional*, *boolean*  | Set to true to make this image the user's primary photo
 latitude <br>*optional*, *double*  | Latitude where media was captured
 longitude <br>*optional*, *double*  | Longitude where media was captured
 description <br>*optional* *string*  | User provided description of the media
 
 
 ### Returns
-This method returns a media object with details of the file uploaded.
+This method returns a [media](#media) object with details of the file uploaded.

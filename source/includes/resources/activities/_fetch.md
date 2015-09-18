@@ -9,7 +9,7 @@ GET https://api.fabriq.io/activities/{ACTIVITY_UID}
 > Sample Request
 
 ```shell
-curl 'https://api.fabriq.io/activities/191e9aee-58e1-11e5-a0dd-38c98601185b'  \
+curl 'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391'  \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'
 ```
 
@@ -17,7 +17,7 @@ curl 'https://api.fabriq.io/activities/191e9aee-58e1-11e5-a0dd-38c98601185b'  \
 
 ```json
 {
-    "uid": "191e9aee-58e1-11e5-a0dd-38c98601185b",
+    "uid": "4ade0a3131ba4e1c942ae40983405391",
     "type": "run",
     "name": "07/01/2015 06:42 AM",
 
@@ -43,13 +43,13 @@ curl 'https://api.fabriq.io/activities/191e9aee-58e1-11e5-a0dd-38c98601185b'  \
     "alert_settings": [{
         "type": "timeout",
         "timeout": 2400000,
-        "circle_uid": "1939767a-58e1-11e5-a0dd-38c98601185b"
+        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
     },{
         "type": "start_activity",
-        "circle_uid": "1939767a-58e1-11e5-a0dd-38c98601185b"
+        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
     },{
         "type": "end_activity",
-        "circle_uid": "1939767a-58e1-11e5-a0dd-38c98601185b"
+        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
     }],
 
     "alerts_triggered": null
@@ -58,7 +58,7 @@ curl 'https://api.fabriq.io/activities/191e9aee-58e1-11e5-a0dd-38c98601185b'  \
 
 ARGUMENTS  ||
 ---------: | -----------
-activity_uid <br>**required**  | The UID of the activity to be retrieved
+activity_uid <br>**required**, *string*  | The UID of the activity to be retrieved
 
 
 ### Returns

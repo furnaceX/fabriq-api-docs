@@ -3,7 +3,7 @@
 
 ```json
 {
-    "uid": "191e9aee-58e1-11e5-a0dd-38c98601185b",
+    "uid": "4ade0a3131ba4e1c942ae40983405391",
     "type": "run",
     "name": "07/01/2015 06:42 AM",
 
@@ -29,13 +29,13 @@
     "alert_settings": [{
         "type": "timeout",
         "timeout": 2400000,
-        "circle_uid": "1939767a-58e1-11e5-a0dd-38c98601185b"
+        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
     },{
         "type": "start_activity",
-        "circle_uid": "1939767a-58e1-11e5-a0dd-38c98601185b"
+        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
     },{
         "type": "end_activity",
-        "circle_uid": "1939767a-58e1-11e5-a0dd-38c98601185b"
+        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
     }],
 
     "alerts_triggered": [ "451bc6c0-8231-44dd-8168-d722b86f04f5" ]

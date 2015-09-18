@@ -19,7 +19,7 @@ curl -X POST 'https://api.fabriq.io/activities'  \
          "dest_address": "1617 Pearl St, Boulder, CO 80302",
          "alert_watch": true,                    
          "alert_timeout": 900000,                    
-         "circles": [ "19223e56-58e1-11e5-a0dd-38c98601185b" ]
+         "circles": [ "039d2aa25d4e11e5a0dd38c98601185b" ]
       }'
 ```
 
@@ -27,7 +27,7 @@ curl -X POST 'https://api.fabriq.io/activities'  \
 
 ```json
 {
-    "uid": "191e9aee-58e1-11e5-a0dd-38c98601185b",
+    "uid": "4ade0a3131ba4e1c942ae40983405391",
     "type": "run",
     "name": "07/01/2015 06:42 AM",
 
@@ -53,10 +53,10 @@ curl -X POST 'https://api.fabriq.io/activities'  \
     "alert_settings": [{
         "type": "timeout",
         "timeout": 2400000,
-        "circle_uid": "1939767a-58e1-11e5-a0dd-38c98601185b"
+        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
     },{
         "type": "start_activity",
-        "circle_uid": "1939767a-58e1-11e5-a0dd-38c98601185b"
+        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
     }],
 
     "alerts_triggered": null

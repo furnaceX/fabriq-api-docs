@@ -3,18 +3,18 @@
 
 ```json
 {
-    "uid": "0001440886991323-a2d5c77b67d7-0001",
+    "uid": "9ff6178e851942cbb5a5ddc71f82588d",
     "username": "+12155551111",
-    "email": null,
+    "email": "test@example.com",
     "mobile_number": "+12155551111",
-    "has_contacts": false,
-    "is_verified": false,
+    "has_contacts": true,
+    "is_verified": true,
     "grants":[
         "panic",
         "geoblast",
-        "activity_tracking",
-        "ping_me",
-        "connect_911"
+        "breadcrumbs",
+        "ping",
+        "911"
     ]
 }
 ```
@@ -27,4 +27,4 @@ email <br>*string*  | User's email address
 mobile_number <br>*string*  | User's mobile number ([E.164 format](https://en.wikipedia.org/wiki/E.164))
 has_contacts <br>*boolean*  | True if user has at least one verified contact
 is_verified <br>*boolean*  | True if FABRIQ has validated user's email and mobile_number
-grants <br>*array*  | Array of features enabled for this user
+grants <br>*array*  | Array of features enabled for this user. Possible values: `panic`, `geoblast`, `breadcrumbs`, `ping`, `911`

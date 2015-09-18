@@ -9,7 +9,7 @@ GET https://api.fabriq.io/me
 > Sample Request
 
 ```shell
-curl 'https://api.fabriq.io/me'               \
+curl 'https://api.fabriq.io/me' \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
@@ -17,18 +17,18 @@ curl 'https://api.fabriq.io/me'               \
 
 ```json
 {
-    "uid": "0001440886991323-a2d5c77b67d7-0001",
+    "uid": "9ff6178e851942cbb5a5ddc71f82588d",
     "username": "+12155551111",
-    "email": null,
+    "email": "test@example.com",
     "mobile_number": "+12155551111",
-    "has_contacts": false,
-    "is_verified": false,
-    "grants": [
+    "has_contacts": true,
+    "is_verified": true,
+    "grants":[
         "panic",
         "geoblast",
-        "activity_tracking",
-        "ping_me",
-        "connect_911"
+        "breadcrumbs",
+        "ping",
+        "911"
     ]
 }
 ```

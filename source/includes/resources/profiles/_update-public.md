@@ -38,19 +38,15 @@ curl -X PUT 'https://api.fabriq.io/profiles/public'        \
 
 ARGUMENTS ||
 ---------:        | -----------
-first_name <br>*optional*  |  -
-last_name <br>*optional*  |  -
-display_name <br>*optional*  |  -
-birth_date <br>*optional*  |  -
-gender <br>*optional*  |  -
-height <br>*optional*  |  -
-weight <br>*optional*  |  -
-race <br>*optional*  |  -
-eye_color <br>*optional*  |  -
-hair_color <br>*optional*  |  -
-photo_data <br>*optional*  |  -
-photo_content_type <br>*optional*  |  -
-photo_size <br>*optional*  |  -
+first_name <br>*optional*, *string*  |  User's first name
+last_name <br>*optional*, *string*  |  User's last name
+birth_date <br>*optional*, *date string*  |  User's birthday formatted as YYYY-MM-DD (e.g. 1980-01-04)
+gender <br>*optional*, *string*  | Possible values: `male`, `female`
+height <br>*optional*, *double*  |  User's height in centimeters
+weight <br>*optional*, *double*  |  User's weight in kilograms
+race <br>*optional*, *string*  |  Possible values: `white`, `black`, `hispanic`, `asian`, `native_american`, `pacific_islander`, `other`, `unknown`
+eye_color <br>*optional*, *string*  |  Possible values: `brown`, `green`, `blue`, `hazel`
+hair_color <br>*optional*, *string*  |  Possible values: `black`, `brown`, `blonde`, `red`, `gray`, `white`, `bald`
 
 
 ### Returns

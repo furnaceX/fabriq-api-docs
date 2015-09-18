@@ -3,13 +3,13 @@
 > Definition
 
 ```text
-POST https://api.fabriq.io/alerts/{ALERT_UID}/position
+POST https://api.fabriq.io/activities/{ACTIVITY_UID}/position
 ```
 
 > Sample Request
 
 ```shell
-curl -X POST 'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9/position'  \
+curl -X POST 'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391/position'  \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
   -H 'Content-Type: application/json'         \
   -d '[{                                        
@@ -27,14 +27,16 @@ curl -X POST 'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9/
 > Sample Response
 
 ```text
-HTTP Status Code: 201
+{
+    "count": 2
+}
 ```
 
 ARGUMENTS ||
 ---------:| -----------
-positions <br>**required**  | An array of [position](#position) objects. `latitude`, `longitude` and `timestamp` fields are required.
+positions <br>**required**, *array*  | An array of [position](#position) objects. The `latitude`, `longitude` and `timestamp` fields are required.
 
 
 
 ### Returns
-This method will return a 201 HTTP Status code if the data was uploaded successfully.  It does not return a JSON object.
+This method returns an object with the number of positions uploaded.

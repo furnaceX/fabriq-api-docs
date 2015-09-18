@@ -9,7 +9,7 @@ DELETE https://api.fabriq.io/activities/{ACTIVITY_UID}
 > Sample Request
 
 ```shell
-curl -X DELETE 'https://api.fabriq.io/activities/804fe823-e230-47aa-b0e9-3131ca6326b1'  \
+curl -X DELETE -G 'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391'  \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
   -d end_lat=40.01592844038895  \
   -d end_lng=-105.2487217142231
@@ -19,7 +19,7 @@ curl -X DELETE 'https://api.fabriq.io/activities/804fe823-e230-47aa-b0e9-3131ca6
 
 ```json
 {
-    "uid": "191e9aee-58e1-11e5-a0dd-38c98601185b",
+    "uid": "4ade0a3131ba4e1c942ae40983405391",
     "type": "run",
     "name": "07/01/2015 06:42 AM",
 
@@ -45,13 +45,13 @@ curl -X DELETE 'https://api.fabriq.io/activities/804fe823-e230-47aa-b0e9-3131ca6
     "alert_settings": [{
         "type": "timeout",
         "timeout": 2400000,
-        "circle_uid": "1939767a-58e1-11e5-a0dd-38c98601185b"
+        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
     },{
         "type": "start_activity",
-        "circle_uid": "1939767a-58e1-11e5-a0dd-38c98601185b"
+        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
     },{
         "type": "end_activity",
-        "circle_uid": "1939767a-58e1-11e5-a0dd-38c98601185b"
+        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
     }],
 
     "alerts_triggered": null
@@ -63,6 +63,11 @@ ARGUMENTS ||
 end_lat <br>*optional*, *double*  | Latitude where activity ended
 end_lng <br>*optional*, *double*  | Longitude where activity ended
 disable_alerts <br>*optional*, *boolean*  | If a watch alert was set when the activity was started, the user's contacts will automatically be notified when the activity end.  Set this to true to prevent this notification from being sent.
+
+<br/>
+<aside class="notice">
+Please note that the arguments are passed in the HTTP DELETE method as query parameters in the REST API.
+</aside>
 
 ### Returns
 An activity object.
