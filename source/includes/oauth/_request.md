@@ -27,10 +27,12 @@ https://example.com/oauth_callback?code=8ts4YQ
 
 
 > **Example Denied Response**<br>
-> *Redirect with error message*
+> *Redirect with error message. Line breaks are for formatting only.*
 
 ```text
-https://example.com/oauth_callback?error=access_denied&error_description=User%20denied%20access
+https://example.com/oauth_callback
+  ?error=access_denied
+  &error_description=User%20denied%20access
 ```
 
 To obtain a user's authorization, you will need to direct her to FABRIQ's
