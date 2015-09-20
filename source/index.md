@@ -11,7 +11,11 @@ toc_footers:
 includes:
   - introduction
   - authentication
-  - oauth
+
+  - oauth/info
+  - oauth/scopes
+  - oauth/request
+  - oauth/access-token
 
   - errors/info
   - errors/error-codes
