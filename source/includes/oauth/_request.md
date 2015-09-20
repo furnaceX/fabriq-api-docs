@@ -26,10 +26,10 @@ https://api.fabriq.io/oauth/authorize
 https://example.com/oauth_callback?code=8ts4YQ
 ```
 
-To obtain a user's authorization to access her account, you will need to direct her to FABRIQ's
-authorization URL.  The URL's query parameters will include your client application (client_id),
-the permissions your app requires (scope) and the URL the user will be directed to after they grant
-or deny permissions to your application (redirect_uri).
+To obtain a user's authorization, you will need to direct her to FABRIQ's
+authorization URL.  The URL's query parameters will include your client application (`client_id`),
+the permissions your app requires (`scope`) and the URL the user will be directed to after they grant
+or deny permissions to your application (`redirect_uri`).
 
 ARGUMENTS||
 ---------:        | -----------

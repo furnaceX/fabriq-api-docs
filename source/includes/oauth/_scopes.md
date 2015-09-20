@@ -1,6 +1,6 @@
 ## Scopes
 
-When requesting authorization to access a user's account on her behalf, scopes let you specify exactly what type of
+When requesting authorization, scopes let you specify exactly what type of
 access you need. Scopes limit access for OAuth tokens. They do not grant any additional permission beyond that
 which the user already has.
 

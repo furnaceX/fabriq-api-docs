@@ -16,6 +16,7 @@ includes:
   - oauth/scopes
   - oauth/request
   - oauth/access-token
+  - oauth/refresh-token
 
   - errors/info
   - errors/error-codes

@@ -30,10 +30,9 @@ curl https://api.fabriq.io/oauth/token  \
 }
 ```
 
-To obtain a user's authorization to access her account, you will need to direct her to FABRIQ's
-authorization URL.  The URL's query parameters will include your client application (client_id),
-the permissions your app requires (scope) and the URL the user will be directed to after they grant
-or deny permissions to your application (redirect_uri).
+Once you have an authorization code, you can exchange it for a valid `access_token`.
+
+<br>
 
 ARGUMENTS||
 ---------:        | -----------
@@ -43,10 +42,20 @@ redirect_uri<br>**required**, *url*   | This URL must match the one specified in
 code<br>**required**, *string*   | The authorization code that was included in the redirect URL
 
 
+<br>
+
 ### Response object
+
+<br>
 
 ATTRIBUTES ||
 ---------:        | -----------
 access_token<br>*string*   | Access token with permissions enabled for the requested scopes
+refresh_token<br>*string*   | Use the refresh token to update the current access token
+scope<br>*string*   | List of scopes authorized by the user
 expires_in<br>*integer*   | Number of seconds until this token expires.  
-token_type<br>*string*   | Alwasy set to `bearer`
+token_type<br>*string*   | Always set to `bearer`
+
+<aside class="warning">
+Please note the list of scopes authorized by the user may differ from the set of requested scopes.
+</aside>
