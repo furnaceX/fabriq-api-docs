@@ -21,14 +21,13 @@ curl 'https://api.fabriq.io/circles'  \
     "name": "Default",
     "default": true,
     "photo_url": null
- },
- {
+},
+{
     "uid": "039d2aa25d4e11e5a0dd38c98601185b",
     "name": "Family",
     "default": false,
     "photo_url": null
-  }
-]
+ }]
 ```
 
 ### Returns

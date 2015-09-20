@@ -9,7 +9,7 @@ GET https://api.fabriq.io/alerts/{ALERT_UID}
 > Sample Request
 
 ```shell
-curl 'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9'  \
+curl 'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529'  \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'
 ```
 
@@ -17,12 +17,12 @@ curl 'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9'  \
 
 ```json
 {
-    "uid": "8d3dd9ed-146e-4526-a69b-d06c7d12cbf9",
+    "uid": "5c2e0f1b0ce94b7ea75104a2ef022529",
     "type": "panic",
     "latitude": 40.01592844038895,
     "longitude": -105.2487217142231,
     "activity_uid": null,
-    "alert_date": 1440975513777,
+    "alert_date": 1442763924000,
     "acknowledged": true,
     "canceled": false,
     "canceled_date": null
@@ -31,7 +31,7 @@ curl 'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9'  \
 
 ARGUMENTS  ||
 ---------: | -----------
-alert_uid <br>**required**  | The UID of the alert to be retrieved
+alert_uid<br>**required**, *string*  | The UID of the alert to be retrieved
 
 
 ### Returns

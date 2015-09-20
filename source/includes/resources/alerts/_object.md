@@ -3,15 +3,15 @@
 
 ```json
 {
-    "uid": "8d3dd9ed-146e-4526-a69b-d06c7d12cbf9",
+    "uid": "5c2e0f1b0ce94b7ea75104a2ef022529",
     "type": "panic",
     "latitude": 40.01592844038895,
     "longitude": -105.2487217142231,
     "activity_uid": null,
-    "alert_date": 1440975513777,
-    "acknowledged": true,
+    "alert_date": 1442763924433,
+    "acknowledged": false,
     "canceled": false,
-    "canceled_date": 1440975513777
+    "canceled_date": null
 }
 ```
 

@@ -9,7 +9,7 @@ POST https://api.fabriq.io/alerts/{ALERT_UID}/media
 > Sample Request
 
 ```shell
-curl 'https://api.fabriq.io/alerts/ff77462fd128430b94c083b6f88f1cb9/media'  \
+curl 'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/media'  \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
   -F file="@/path/to/recording.wav"
 ```
@@ -33,7 +33,7 @@ the specifications of RFC 2388 (which defines file transfers for the `multipart/
 
 ARGUMENTS ||
 ---------:        | -----------
-file <br>**required**  | The file to upload.  Currently only [WAV](https://en.wikipedia.org/wiki/WAV) and [AMR](https://en.wikipedia.org/wiki/Adaptive_Multi-Rate_audio_codec) audio files are supported.
+file<br>**required**, *file* | The file to upload.  Currently only [WAV](https://en.wikipedia.org/wiki/WAV) and [AMR](https://en.wikipedia.org/wiki/Adaptive_Multi-Rate_audio_codec) audio files are supported.
 
 ### Returns
 This method returns a media object with details of the file uploaded.

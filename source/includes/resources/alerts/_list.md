@@ -17,7 +17,7 @@ curl 'https://api.fabriq.io/alerts'  \
 
 ```json
 [{
-    "uid": "8d3dd9ed-146e-4526-a69b-d06c7d12cbf9",
+    "uid": "5c2e0f1b0ce94b7ea75104a2ef022529",
     "type": "panic",
     "latitude": 40.01592844038895,
     "longitude": -105.2487217142231,

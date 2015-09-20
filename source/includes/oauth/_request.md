@@ -18,12 +18,19 @@ https://api.fabriq.io/oauth/authorize
 ```
 
 
-> **Example Response**<br>
-> *Redirect to the following URL*
-
+> **Example Approved Response**<br>
+> *Redirect with authorization code*
 
 ```text
 https://example.com/oauth_callback?code=8ts4YQ
+```
+
+
+> **Example Denied Response**<br>
+> *Redirect with error message*
+
+```text
+https://example.com/oauth_callback?error=access_denied&error_description=User%20denied%20access
 ```
 
 To obtain a user's authorization, you will need to direct her to FABRIQ's

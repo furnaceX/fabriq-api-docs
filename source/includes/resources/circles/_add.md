@@ -30,7 +30,7 @@ curl -X POST 'https://api.fabriq.io/circles'  \
 
 ARGUMENTS ||
 ---------:        | -----------
-name<br>**required**  | Name of the circle
+name<br>**required**, *string*  | Name of the circle
 
 
 ### Returns

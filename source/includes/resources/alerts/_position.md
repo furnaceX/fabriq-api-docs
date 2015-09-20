@@ -9,7 +9,7 @@ POST https://api.fabriq.io/alerts/{ALERT_UID}/position
 > Sample Request
 
 ```shell
-curl -X POST 'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9/position'  \
+curl -X POST 'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/position'  \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
   -H 'Content-Type: application/json'         \
   -d '[{                                        
@@ -34,7 +34,7 @@ curl -X POST 'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9/
 
 ARGUMENTS ||
 ---------:| -----------
-positions <br>**required**  | An array of [position](#position) objects. `latitude`, `longitude` and `timestamp` fields are required.
+positions<br>**required**, *array*  | An array of [position](#position) objects. `latitude`, `longitude` and `timestamp` fields are required.
 
 
 

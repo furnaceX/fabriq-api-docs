@@ -6,7 +6,7 @@
 {
     "status": 403,
     "developer_message": "Invalid access request",
-    "reference_url": "https://docs.fabriq.io/#errors"
+    "reference_url": "https://docs.fabriq.io/api/#errors"
 }
 ```
 

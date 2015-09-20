@@ -29,6 +29,6 @@ alert_activity_start_message <br>*string*  | Message sent when activity is start
 alert_activity_end_message <br>*string*  | Message sent when activity is ended
 alert_activity_timeout_message <br>*string*  | Message sent when activity times out
 alert_ping_timeout_message <br>*string*  | Message sent when user fails to respond to 'ping_me' after the specified number of retries
-alert_ping_interval <br>*integer*  | Time in milliseconds to send a 'ping_me' message to the user
-alert_ping_timeout <br>*integer*  | Time in milliseconds to wait for a user to respond to a 'ping_me'
-alert_ping_retry_count <br>*integer*  | Number of times to try a 'ping_me' after a timeout before triggering an alert
+alert_ping_interval <br>*integer*  | Milliseconds between sending a `ping` message to the user
+alert_ping_timeout <br>*integer*  | Milliseconds to wait for a user to respond to a `ping`
+alert_ping_retry_count <br>*integer*  | Number of times to try a `ping` after a timeout before triggering an alert

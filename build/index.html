@@ -68,51 +68,278 @@ HTTP response codes (e.g. 200 OK) to communicate state.</p>
 
           <h1 id="oauth">OAuth</h1>
 
-<p>FABRIQ implements the OAuth 2.0 standard to facilitate user authorization. Similar to Facebook and Twitter’s
-authentication flow, the user is first presented with a permission dialog for your application, at which point
-the user can either approve the permissions requested, or reject them. Once the user approves, an
-authorization_code is sent to your application, which will then be exchanged for an access_token.</p>
+<p>FABRIQ implements OAuth 2.0 to enable a third-party application to access a user&rsquo;s account on her behalf.  The
+application first directs the user to a FABRIQ permission page where she can either approve or deny the
+authorization request. If the user approves the request, an <code class="prettyprint">authorization_code</code> is sent to the application,
+which will then be exchanged for an <code class="prettyprint">access_token</code>.</p>
 
-<p>The access_token can then be used to make API calls.  </p>
+<p>The <code class="prettyprint">access_token</code> can then be used to make API calls.  </p>
 
-<p>Access tokens currently are long lived and essentially do not expire.  This is will change in a future update of the API.  </p>
+<p>Access tokens currently are long lived by design so that a PANIC alert can be triggered at any time.  Future updates
+are likely to change the expiration length so to avoid any disruption in connectivity it&rsquo;s best to refresh the token
+at least once a month.</p>
 
-<h2 id="request-authorization">Request Authorization</h2>
+          <h2 id="scopes">Scopes</h2>
+
+<p>When requesting authorization, scopes let you specify exactly what type of
+access you need. Scopes limit access for OAuth tokens. They do not grant any additional permission beyond that
+which the user already has.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">public_profile</td>
+<td>Read and modify user&rsquo;s public profile</td>
+</tr>
+<tr>
+<td style="text-align: right">private_profile</td>
+<td>Read and modify user&rsquo;s private profile</td>
+</tr>
+<tr>
+<td style="text-align: right">contacts</td>
+<td>Read and modify user&rsquo;s set of circles and contacts</td>
+</tr>
+<tr>
+<td style="text-align: right">alerts</td>
+<td>Trigger, modify and cancel alerts</td>
+</tr>
+<tr>
+<td style="text-align: right">activities</td>
+<td>Start and stop activities</td>
+</tr>
+</tbody></table>
+
+          <h2 id="request-authorization">Request Authorization</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/oauth/authorize
+</code></pre>
+
+<blockquote>
+<p><strong>Example Request</strong><br>
+<em>Line breaks are for formatting only</em></p>
+</blockquote>
+<pre class="highlight shell"><code>https://api.fabriq.io/oauth/authorize
+  ?response_type<span class="o">=</span>code
+  &amp;client_id<span class="o">=</span>sb_c21c592ee4454a799b048179cd861144
+  &amp;redirect_uri<span class="o">=</span>https%3A%2F%2Fexample.com%2Foauth_callback
+  &amp;scope<span class="o">=</span>public_profile,private_profile,contacts,alerts
+</code></pre>
+
+<blockquote>
+<p><strong>Example Approved Response</strong><br>
+<em>Redirect with authorization code</em></p>
+</blockquote>
+<pre class="highlight plaintext"><code>https://example.com/oauth_callback?code=8ts4YQ
+</code></pre>
+
+<blockquote>
+<p><strong>Example Denied Response</strong><br>
+<em>Redirect with error message</em></p>
+</blockquote>
+<pre class="highlight plaintext"><code>https://example.com/oauth_callback?error=access_denied&amp;error_description=User%20denied%20access
+</code></pre>
+
+<p>To obtain a user&rsquo;s authorization, you will need to direct her to FABRIQ&rsquo;s
+authorization URL.  The URL&rsquo;s query parameters will include your client application (<code class="prettyprint">client_id</code>),
+the permissions your app requires (<code class="prettyprint">scope</code>) and the URL the user will be directed to after they grant
+or deny permissions to your application (<code class="prettyprint">redirect_uri</code>).</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">response_type<br><strong>required</strong>, <em>string</em></td>
+<td>Set to <code class="prettyprint">code</code></td>
+</tr>
+<tr>
+<td style="text-align: right">client_id<br><strong>required</strong>, <em>string</em></td>
+<td>Your application key</td>
+</tr>
+<tr>
+<td style="text-align: right">redirect_uri<br><strong>required</strong>, <em>url</em></td>
+<td>After the user approves or denies the authorization request, FABRIQ will redirect to this URL with either an authorization code or an error message appended as a query parameter.  The URL included here must match the one specified in your application details page.</td>
+</tr>
+<tr>
+<td style="text-align: right">scope<br><strong>required</strong>, <em>string</em></td>
+<td>Comma separated list of permissions your application requires. Possible values are <code class="prettyprint">public_profile</code>, <code class="prettyprint">private_profile</code>, <code class="prettyprint">contacts</code>, <code class="prettyprint">alerts</code>, <code class="prettyprint">activities</code></td>
+</tr>
+</tbody></table>
+
+          <h2 id="access-token">Access Token</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/oauth/token
+</code></pre>
 
 <blockquote>
 <p><strong>Example Request</strong></p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.fabriq.io/oauth/authorize"</span> <span class="se">\</span>
-  -d <span class="nv">response_type</span><span class="o">=</span>code                      <span class="se">\</span>
-  -d <span class="nv">client_id</span><span class="o">={</span>CLIENT_ID<span class="o">}</span>                  <span class="se">\</span>
-  -d <span class="nv">redirect_uri</span><span class="o">={</span>REDIRECT_URI<span class="o">}</span>
+<pre class="highlight shell"><code>curl https://api.fabriq.io/oauth/token  <span class="se">\</span>
+  -d <span class="nv">grant_type</span><span class="o">=</span>authorization_code <span class="se">\</span>
+  -d <span class="nv">client_id</span><span class="o">=</span>sb_c21c592ee4454a799b048179cd861144 <span class="se">\</span>
+  -d <span class="nv">redirect_uri</span><span class="o">=</span>https%3A%2F%2Fexample.com%2Foauth_callback <span class="se">\</span>
+  -d <span class="nv">code</span><span class="o">=</span>8ts4YQ
 </code></pre>
 
 <blockquote>
 <p><strong>Example Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"grants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"geoblast"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b4ad9e4-c1c9-4968-84e4-360c61148ec5"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"has_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"is_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test__d9c1f22e-1e41-4696-9643-67f1cc10005d"</span><span class="w">
+    </span><span class="nt">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sb_6328d8d110054601abfb47835fb504d3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"refresh_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sb_bd0a8cf35209406da1aded79bbcffc36"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alerts private_profile activities public_profile contacts"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">315357710</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>To start the OAuth process, construct the initiation URL which the user will visit in order to grant permission to
-your application. The request includes your client application (client_id), and where the user should be redirected to
-after they grant or deny permissions to your application (redirect_uri).</p>
+<p>Once you have an authorization code, you can exchange it for a valid <code class="prettyprint">access_token</code>.</p>
+
+<p><br></p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">grant_type<br><strong>required</strong>, <em>string</em></td>
+<td>Set to <code class="prettyprint">authorization_code</code></td>
+</tr>
+<tr>
+<td style="text-align: right">client_id<br><strong>required</strong>, <em>string</em></td>
+<td>Your application key</td>
+</tr>
+<tr>
+<td style="text-align: right">redirect_uri<br><strong>required</strong>, <em>url</em></td>
+<td>This URL must match the one specified in your authorization request</td>
+</tr>
+<tr>
+<td style="text-align: right">code<br><strong>required</strong>, <em>string</em></td>
+<td>The authorization code that was included in the redirect URL</td>
+</tr>
+</tbody></table>
+
+<p><br></p>
+
+<h3 id="response-object">Response object</h3>
+
+<p><br></p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ATTRIBUTES</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">access_token<br><em>string</em></td>
+<td>Access token with permissions enabled for the requested scopes</td>
+</tr>
+<tr>
+<td style="text-align: right">refresh_token<br><em>string</em></td>
+<td>Use the refresh token to update the current access token</td>
+</tr>
+<tr>
+<td style="text-align: right">scope<br><em>string</em></td>
+<td>List of scopes authorized by the user</td>
+</tr>
+<tr>
+<td style="text-align: right">expires_in<br><em>integer</em></td>
+<td>Number of seconds until this token expires.</td>
+</tr>
+<tr>
+<td style="text-align: right">token_type<br><em>string</em></td>
+<td>Always set to <code class="prettyprint">bearer</code></td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+Please note the list of scopes authorized by the user may differ from the set of requested scopes.
+</aside>
+
+          <h2 id="refresh-token">Refresh Token</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/oauth/token
+</code></pre>
+
+<blockquote>
+<p><strong>Example Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.fabriq.io/oauth/token  <span class="se">\</span>
+  -d <span class="nv">grant_type</span><span class="o">=</span>refresh_token <span class="se">\</span>
+  -d <span class="nv">client_id</span><span class="o">=</span>sb_c21c592ee4454a799b048179cd861144 <span class="se">\</span>
+  -d <span class="nv">refresh_token</span><span class="o">=</span>sb_6328d8d110054601abfb47835fb504d3
+</code></pre>
+
+<blockquote>
+<p><strong>Example Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sb_77f593d1e3cd454c883d47b815a540c0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"refresh_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sb_913f7fd244174a378476c8c8bcca70dd"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alerts private_profile activities public_profile contacts"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">315359999</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The <code class="prettyprint">refresh_token</code> is used to obtain a new <code class="prettyprint">access_token</code>.  </p>
+
+<aside class="notice">
+Note that when this method is called, the current <code>refresh_token</code> is expired and a new one is issued.
+Future calls to refresh the access token must use the most recently issued <code>refresh_token</code>.
+</aside>
+
+<p><br></p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">grant_type<br><strong>required</strong>, <em>string</em></td>
+<td>Set to <code class="prettyprint">refresh_token</code></td>
+</tr>
+<tr>
+<td style="text-align: right">client_id<br><strong>required</strong>, <em>string</em></td>
+<td>Your application key</td>
+</tr>
+<tr>
+<td style="text-align: right">refresh_token<br><strong>required</strong>, <em>string</em></td>
+<td>A valid refresh token</td>
+</tr>
+</tbody></table>
+
+<p><br></p>
+
+<h3 id="returns">Returns</h3>
+
+<p>A new <code class="prettyprint">access_token</code> object.</p>
 
           <h1 id="errors">Errors</h1>
 
-<p>FABRIQ uses standard HTTP response codes to indicate the status of an API request. In general, codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the provided information (e.g. a required parameter was missing), and codes in the 5xx range indicate an internal system or server error.</p>
+<p>FABRIQ uses standard HTTP response codes to indicate the status of an API request. In general, codes in the 2xx
+range indicate success, codes in the 4xx range indicate an error that resulted from the provided information
+(e.g. a required parameter was missing), and codes in the 5xx range indicate an internal system or server error.</p>
 
           <h2 id="error-codes">Error Codes</h2>
 
@@ -164,7 +391,7 @@ after they grant or deny permissions to your application (redirect_uri).</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">403</span><span class="p">,</span><span class="w">
     </span><span class="nt">"developer_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid access request"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"reference_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://docs.fabriq.io/#errors"</span><span class="w">
+    </span><span class="nt">"reference_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://docs.fabriq.io/api/#errors"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1365,7 +1592,7 @@ can choose which circles(s) receive the notifications.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">name<br><strong>required</strong></td>
+<td style="text-align: right">name<br><strong>required</strong>, <em>string</em></td>
 <td>Name of the circle</td>
 </tr>
 </tbody></table>
@@ -1445,14 +1672,13 @@ can choose which circles(s) receive the notifications.</p>
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
- </span><span class="p">},</span><span class="w">
- </span><span class="p">{</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Family"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+ </span><span class="p">}]</span><span class="w">
 </span></code></pre>
 
 <h3 id="returns">Returns</h3>
@@ -1759,15 +1985,15 @@ receive a message with a link to watch the user in real-time.</p>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8d3dd9ed-146e-4526-a69b-d06c7d12cbf9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c2e0f1b0ce94b7ea75104a2ef022529"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
     </span><span class="nt">"activity_uid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442763924433</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="w">
+    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1839,14 +2065,15 @@ receive a message with a link to watch the user in real-time.</p>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8d3dd9ed-146e-4526-a69b-d06c7d12cbf9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c2e0f1b0ce94b7ea75104a2ef022529"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
     </span><span class="nt">"activity_uid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442763924433</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1857,15 +2084,15 @@ receive a message with a link to watch the user in real-time.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">activity_uid <br><em>optional</em></td>
+<td style="text-align: right">activity_uid<br><em>optional</em>, <em>string</em></td>
 <td>Activity associated with this alert</td>
 </tr>
 <tr>
-<td style="text-align: right">latitude <br><em>optional</em></td>
+<td style="text-align: right">latitude<br><em>optional</em>, <em>double</em></td>
 <td>Latitude where alert was triggered</td>
 </tr>
 <tr>
-<td style="text-align: right">longitude <br><em>optional</em></td>
+<td style="text-align: right">longitude<br><em>optional</em>, <em>double</em></td>
 <td>Longitude where alert was triggered</td>
 </tr>
 </tbody></table>
@@ -1885,7 +2112,7 @@ receive a message with a link to watch the user in real-time.</p>
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/alerts/ff77462fd128430b94c083b6f88f1cb9/media'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/media'</span>  <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/recording.wav"</span>
 </code></pre>
@@ -1914,7 +2141,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">file <br><strong>required</strong></td>
+<td style="text-align: right">file<br><strong>required</strong>, <em>file</em></td>
 <td>The file to upload.  Currently only <a href="https://en.wikipedia.org/wiki/WAV">WAV</a> and <a href="https://en.wikipedia.org/wiki/Adaptive_Multi-Rate_audio_codec">AMR</a> audio files are supported.</td>
 </tr>
 </tbody></table>
@@ -1934,7 +2161,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9/position'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/position'</span>  <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>         <span class="se">\</span>
   -d <span class="s1">'[{                                        
@@ -1963,7 +2190,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">positions <br><strong>required</strong></td>
+<td style="text-align: right">positions<br><strong>required</strong>, <em>array</em></td>
 <td>An array of <a href="#position">position</a> objects. <code class="prettyprint">latitude</code>, <code class="prettyprint">longitude</code> and <code class="prettyprint">timestamp</code> fields are required.</td>
 </tr>
 </tbody></table>
@@ -1983,7 +2210,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529'</span>  <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
@@ -1991,12 +2218,12 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8d3dd9ed-146e-4526-a69b-d06c7d12cbf9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c2e0f1b0ce94b7ea75104a2ef022529"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
     </span><span class="nt">"activity_uid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442763924000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
@@ -2010,7 +2237,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">alert_uid <br><strong>required</strong></td>
+<td style="text-align: right">alert_uid<br><strong>required</strong>, <em>string</em></td>
 <td>The UID of the alert to be retrieved</td>
 </tr>
 </tbody></table>
@@ -2030,7 +2257,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE -G <span class="s1">'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529'</span>  <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -d <span class="nv">pin</span><span class="o">=</span>1234
 </code></pre>
@@ -2039,7 +2266,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8d3dd9ed-146e-4526-a69b-d06c7d12cbf9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c2e0f1b0ce94b7ea75104a2ef022529"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
@@ -2051,6 +2278,16 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<blockquote>
+<p>Sample Error</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">412</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"developer_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid pin: 1212"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"reference_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://docs.fabriq.io/api"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <table><thead>
 <tr>
 <th style="text-align: right">ARGUMENTS</th>
@@ -2058,21 +2295,22 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">pin <br><strong>required</strong></td>
+<td style="text-align: right">pin<br><strong>required</strong>, <em>string</em></td>
 <td>User&rsquo;s 4-digit PIN</td>
 </tr>
 </tbody></table>
 
 <p><br/>
 <aside class="notice">
-The supplied PIN can be either the user&rsquo;s OK PIN or distress PIN.  The OK PIN will actually
-cancel the alert while the distress PIN should cause the UI to seem like it has been disabled.
+The supplied PIN can be either the user&rsquo;s OK PIN or duress PIN.  The OK PIN will actually
+cancel the alert while the duress PIN should cause the UI to seem like it has been disabled.
 </aside></p>
 
 <h3 id="returns">Returns</h3>
 
-<p>An alert object with canceled status and date set.  If the distress PIN was entered, the <code class="prettyprint">canceled</code>
-attribute will return <code class="prettyprint">false</code>.</p>
+<p>An alert object with canceled status and date set.  If the duress PIN was entered, the <code class="prettyprint">canceled</code>
+attribute will return <code class="prettyprint">false</code>. If an incorrect PIN was submitted, a 412 HTTP response code will be returned with
+an error message.</p>
 
           <h2 id="list-active-alerts">List active alerts</h2>
 
@@ -2093,7 +2331,7 @@ attribute will return <code class="prettyprint">false</code>.</p>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8d3dd9ed-146e-4526-a69b-d06c7d12cbf9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c2e0f1b0ce94b7ea75104a2ef022529"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
@@ -3146,15 +3384,15 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </tr>
 <tr>
 <td style="text-align: right">alert_ping_interval <br><em>integer</em></td>
-<td>Time in milliseconds to send a &#39;ping_me&rsquo; message to the user</td>
+<td>Milliseconds between sending a <code class="prettyprint">ping</code> message to the user</td>
 </tr>
 <tr>
 <td style="text-align: right">alert_ping_timeout <br><em>integer</em></td>
-<td>Time in milliseconds to wait for a user to respond to a &#39;ping_me&rsquo;</td>
+<td>Milliseconds to wait for a user to respond to a <code class="prettyprint">ping</code></td>
 </tr>
 <tr>
 <td style="text-align: right">alert_ping_retry_count <br><em>integer</em></td>
-<td>Number of times to try a &#39;ping_me&rsquo; after a timeout before triggering an alert</td>
+<td>Number of times to try a <code class="prettyprint">ping</code> after a timeout before triggering an alert</td>
 </tr>
 </tbody></table>
 
@@ -3207,9 +3445,9 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://api.fabriq.io/settings'</span>        <span class="se">\</span>
-  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
-  -H <span class="s1">'Content-Type: application/json'</span>         <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://api.fabriq.io/settings'</span>  <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
   -d <span class="s1">'{                                        
         "panic_delay": 7000
       }'</span>
@@ -3241,52 +3479,52 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">panic_delay <br><em>optional</em></td>
-<td>-</td>
+<td style="text-align: right">panic_delay <br><em>optional</em>, <em>integer</em></td>
+<td>Milliseconds to wait before a PANIC alert is triggered</td>
 </tr>
 <tr>
-<td style="text-align: right">panic_silent <br><em>optional</em></td>
-<td>-</td>
+<td style="text-align: right">panic_silent <br><em>optional</em>, <em>boolean</em></td>
+<td>Flag to indicate if the device should sound an alarm and flash as strobe by default</td>
 </tr>
 <tr>
-<td style="text-align: right">metric_units <br><em>optional</em></td>
-<td>-</td>
+<td style="text-align: right">metric_units <br><em>optional</em>, <em>boolean</em></td>
+<td>Flag to indicate user&rsquo;s preference in displaying measurements (e.g height and weight)</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_panic_message <br><em>optional</em></td>
-<td>-</td>
+<td style="text-align: right">alert_panic_message <br><em>optional</em>, <em>string</em></td>
+<td>Message sent when panic is triggered</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_panic_cancel_message <br><em>optional</em></td>
-<td>-</td>
+<td style="text-align: right">alert_panic_cancel_message <br><em>optional</em>, <em>string</em></td>
+<td>Message sent when active alert is canceled</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_activity_start_message <br><em>optional</em></td>
-<td>-</td>
+<td style="text-align: right">alert_activity_start_message <br><em>optional</em>, <em>string</em></td>
+<td>Message sent when activity is started</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_activity_end_message <br><em>optional</em></td>
-<td>-</td>
+<td style="text-align: right">alert_activity_end_message <br><em>optional</em>, <em>string</em></td>
+<td>Message sent when activity is ended</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_activity_timeout_message <br><em>optional</em></td>
-<td>-</td>
+<td style="text-align: right">alert_activity_timeout_message <br><em>optional</em>, <em>string</em></td>
+<td>Message sent when activity times out</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_timeout_message <br><em>optional</em></td>
-<td>-</td>
+<td style="text-align: right">alert_ping_timeout_message <br><em>optional</em>, <em>string</em></td>
+<td>Message sent when user fails to respond to &lsquo;ping_me&rsquo; after the specified number of retries</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_interval <br><em>optional</em></td>
-<td>-</td>
+<td style="text-align: right">alert_ping_interval <br><em>optional</em>, <em>integer</em></td>
+<td>Milliseconds to wait between successful pings</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_retry_count <br><em>optional</em></td>
-<td>-</td>
+<td style="text-align: right">alert_ping_retry_count <br><em>optional</em>, <em>integer</em></td>
+<td>Number of times to try a ping before triggering an alert</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_timeout <br><em>optional</em></td>
-<td>-</td>
+<td style="text-align: right">alert_ping_timeout <br><em>optional</em>, <em>integer</em></td>
+<td>Milliseconds to wait for a reply from the user</td>
 </tr>
 </tbody></table>
 
