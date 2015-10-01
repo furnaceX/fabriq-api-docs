@@ -1,19 +1,20 @@
 ## Retrieve a threat
 
-> Definition
+> **Definition**
 
 ```text
 GET https://api.fabriq.io/threats/{THREAT_UID}
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl 'https://api.fabriq.io/threats/7ed205f519264529a86014901151dda5'  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {

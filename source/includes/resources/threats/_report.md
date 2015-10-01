@@ -1,15 +1,16 @@
 ## Report a threat
 
-> Definition
+> **Definition**
 
 ```text
 POST https://api.fabriq.io/threats
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl -X POST 'https://api.fabriq.io/threats'  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
   -H 'Content-Type: application/json'  \
   -d '{                                        
@@ -20,7 +21,7 @@ curl -X POST 'https://api.fabriq.io/threats'  \
        }'
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {

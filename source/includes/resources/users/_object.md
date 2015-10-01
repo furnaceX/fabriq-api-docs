@@ -1,5 +1,6 @@
 ## The user object
-> Sample Response
+
+> **Sample Response**
 
 ```json
 {

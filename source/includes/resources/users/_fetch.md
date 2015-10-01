@@ -1,19 +1,20 @@
 ## Retrieve current user
 
-> Definition
+> **Definition**
 
 ```text
 GET https://api.fabriq.io/me
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl 'https://api.fabriq.io/me' \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {

@@ -1,15 +1,16 @@
 ## Add a circle
 
-> Definition
+> **Definition**
 
 ```text
 POST https://api.fabriq.io/circles
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl -X POST 'https://api.fabriq.io/circles'  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
   -H 'Content-Type: application/json'  \
   -d '{                                        
@@ -17,7 +18,7 @@ curl -X POST 'https://api.fabriq.io/circles'  \
       }'
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {

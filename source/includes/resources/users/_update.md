@@ -1,15 +1,16 @@
 ## Update current user
 
-> Definition
+> **Definition**
 
 ```text
 PUT https://api.fabriq.io/me
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl -X PUT 'https://api.fabriq.io/me'  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
   -H 'Content-Type: application/json'  \
   -d '{                                        
@@ -17,7 +18,7 @@ curl -X PUT 'https://api.fabriq.io/me'  \
       }'
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {

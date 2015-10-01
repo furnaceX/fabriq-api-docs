@@ -1,5 +1,6 @@
 ## The media object
-> Sample Response
+
+> **Sample Response**
 
 ```json
 {

@@ -1,5 +1,6 @@
 ## The activity object
-> Sample Response
+
+> **Sample Response**
 
 ```json
 {

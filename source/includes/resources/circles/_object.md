@@ -1,5 +1,6 @@
 ## The circle object
-> Sample Response
+
+> **Sample Response**
 
 ```json
 {

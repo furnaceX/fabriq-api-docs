@@ -1,22 +1,23 @@
 ## Upload media
 
-> Definition
+> **Definition**
 
 ```text
 POST https://api.fabriq.io/activities/{ACTIVITY_UID}/media
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl 'https://api.fabriq.io/activities/ff77462fd128430b94c083b6f88f1cb9/media'  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
   -F latitude=40.01547488387676  \
   -F longitude=-105.2499169484761  \
   -F file="@/path/to/photo.jpg"
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {

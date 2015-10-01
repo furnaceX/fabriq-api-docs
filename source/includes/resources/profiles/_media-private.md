@@ -1,21 +1,22 @@
 ## Upload private media
 
-> Definition
+> **Definition**
 
 ```text
 POST https://api.fabriq.io/profiles/private/media
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl https://api.fabriq.io/profiles/private/media  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H "Authorization: Bearer {ACCESS_TOKEN}"  \
   -F file="@/path/to/photo.jpg"
 
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {

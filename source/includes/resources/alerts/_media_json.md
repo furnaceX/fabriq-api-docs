@@ -1,15 +1,16 @@
 ## Upload media
 
-> Definition
+> **Definition**
 
 ```text
 POST https://api.fabriq.io/alerts/{ALERT_UID}/media
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl -X POST 'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9/media'  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
   -H 'Content-Type: application/json'         \
   -d '{                                        
@@ -18,7 +19,7 @@ curl -X POST 'https://api.fabriq.io/alerts/8d3dd9ed-146e-4526-a69b-d06c7d12cbf9/
       }'
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```text
 {

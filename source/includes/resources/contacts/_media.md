@@ -1,20 +1,21 @@
 ## Upload photo
 
-> Definition
+> **Definition**
 
 ```text
 POST https://api.fabriq.io/contacts/{CONTACT_UID}/photos
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl 'https://api.fabriq.io/contacts/46b9f6da5da311e5936420c9d07e7899/photos'  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
   -F file="@/path/to/photo.jpg"
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {

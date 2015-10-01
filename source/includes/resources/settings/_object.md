@@ -1,5 +1,6 @@
 ## The settings object
-> Sample Response
+
+> **Sample Response**
 
 ```json
 {

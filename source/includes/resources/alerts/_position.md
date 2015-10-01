@@ -1,15 +1,16 @@
 ## Update position
 
-> Definition
+> **Definition**
 
 ```text
 POST https://api.fabriq.io/alerts/{ALERT_UID}/position
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl -X POST 'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/position'  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
   -H 'Content-Type: application/json'         \
   -d '[{                                        
@@ -24,7 +25,7 @@ curl -X POST 'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/posi
 ```
 
 
-> Sample Response
+> **Sample Response**
 
 ```text
 {

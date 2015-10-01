@@ -1,15 +1,16 @@
 ## Trigger a PANIC alert
 
-> Definition
+> **Definition**
 
 ```text
 POST https://api.fabriq.io/alerts/panic
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl -X POST 'https://api.fabriq.io/alerts/panic'  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
   -H 'Content-Type: application/json'  \
   -d '{                                        
@@ -18,7 +19,7 @@ curl -X POST 'https://api.fabriq.io/alerts/panic'  \
        }'
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {

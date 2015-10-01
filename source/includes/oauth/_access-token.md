@@ -1,6 +1,6 @@
 ## Access Token
 
-> Definition
+> **Definition**
 
 ```text
 POST https://api.fabriq.io/oauth/token

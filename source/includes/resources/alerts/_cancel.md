@@ -1,20 +1,21 @@
 ## Cancel an alert
 
-> Definition
+> **Definition**
 
 ```text
 DELETE https://api.fabriq.io/alerts/{ALERT_UID}
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl -X DELETE -G 'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529'  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
   -d pin=1234
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {
@@ -30,7 +31,7 @@ curl -X DELETE -G 'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529
 }
 ```
 
-> Sample Error
+> **Sample Error**
 
 ```json
 {

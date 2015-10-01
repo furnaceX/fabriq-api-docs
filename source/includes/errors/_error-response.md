@@ -1,6 +1,6 @@
 ## Error Response
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {

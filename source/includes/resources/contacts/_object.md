@@ -1,5 +1,6 @@
 ## The contact object
-> Sample Response
+
+> **Sample Response**
 
 ```json
 {

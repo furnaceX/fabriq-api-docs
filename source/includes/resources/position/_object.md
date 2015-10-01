@@ -1,5 +1,6 @@
 ## The position object
-> Sample Response
+
+> **Sample Response**
 
 ```json
 {

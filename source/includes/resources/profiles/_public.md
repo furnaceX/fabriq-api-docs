@@ -1,6 +1,6 @@
 ## Public profile
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {

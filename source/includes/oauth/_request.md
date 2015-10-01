@@ -1,6 +1,6 @@
 ## Request Authorization
 
-> Definition
+> **Definition**
 
 ```text
 GET https://api.fabriq.io/oauth/authorize

@@ -1,6 +1,6 @@
 # Inapp Browser
 
-> Definition
+> **Definition**
 
 ```text
 https://portal.fabriq.io/#/?access_token={ACCESS_TOKEN}

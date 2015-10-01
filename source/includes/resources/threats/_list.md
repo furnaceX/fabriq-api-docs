@@ -1,15 +1,16 @@
 ## List nearby threats
 
-> Definition
+> **Definition**
 
 ```text
 GET https://api.fabriq.io/threats
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl -G 'https://api.fabriq.io/threats'  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}' \
   -d latitude=40.00930405724701  \
   -d longitude=-105.2392134802841  \
@@ -19,7 +20,7 @@ curl -G 'https://api.fabriq.io/threats'  \
   -d types=wildlife
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 [{

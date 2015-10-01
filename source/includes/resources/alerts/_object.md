@@ -1,5 +1,6 @@
 ## The alert object
-> Sample Response
+
+> **Sample Response**
 
 ```json
 {

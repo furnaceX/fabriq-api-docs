@@ -1,12 +1,12 @@
 ## Create a user
 
-> Definition
+> **Definition**
 
 ```text
 POST https://api.fabriq.io/users
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl -X POST 'https://api.fabriq.io/users'  \
@@ -17,7 +17,7 @@ curl -X POST 'https://api.fabriq.io/users'  \
       }'
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {
@@ -48,7 +48,7 @@ login <br>*optional*, *boolean*  | If true, the user will be logged in and the r
 Please note that the argument <code>login</code> should be passed in as query parameter in the REST API.
 </aside>
 
-<code style="display:block;text-align:center;margin-top:20px;color:#000;">
+<code style="display:block;text-align:center;margin-top:20px;color:#000;padding:10px;">
 POST https://api.fabriq.io/users?login=true
 </code>
 

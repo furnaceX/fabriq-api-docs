@@ -27,7 +27,7 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+        <a href="/#/"><img src="images/logo.png" /></a>
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
@@ -54,17 +54,70 @@
 <pre class="highlight plaintext"><code>https://api.fabriq.io
 </code></pre>
 
-<p>The FABRIQ API makes it easy to embed powerful and intelligent safety features into apps and wearables.  Use it
-to trigger an alert, monitor an activity or periodically check on the welfare of a loved one.  The possibilities
-to enhance our personal safety are endless!</p>
+<p>FABRIQ is a <strong>Social Safety Platform</strong>.  The API makes it easy to embed powerful and intelligent safety
+features into apps and wearables.  Use it to trigger an alert, monitor an activity or periodically check on
+the welfare of a loved one.  The possibilities to enhance personal safety are endless!</p>
 
 <p>The API is organized around <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> and uses
 resource-oriented URLs. It makes use of HTTP verbs (e.g. GET, POST, etc.) to perform actions and
 HTTP response codes (e.g. 200 OK) to communicate state.</p>
 
-<p>All responses are returned in JSON, including application and system errors.</p>
+<p>All requests must be authenticated and sent over <a href="https://en.wikipedia.org/wiki/HTTPS">HTTPS</a>. Responses are returned in JSON, including application and system errors.</p>
 
           <h1 id="authentication">Authentication</h1>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/users'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>  <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
+  -d <span class="s1">'{                                        
+        "mobile_number": "+12155551111"
+      }'</span>
+</code></pre>
+
+<p>Interacting with the API requires a <code class="prettyprint">client_id</code> (also called an API Key or Application Key).  You can
+obtain a <code class="prettyprint">client_id</code> by signing into the <a href="https://developer.fabriq.io">developer portal</a> and creating a new application.
+A different key is generated for each application you create.</p>
+
+<p>Once obtained, the <code class="prettyprint">client_id</code> should be inclulded in <strong>every</strong> HTTP request using the custom 
+X-FABRIQ-CLIENT-ID header.  </p>
+
+<p>For example:</p>
+
+<p><code style="display:block;text-align:center;margin-top:20px;color:#000;padding:10px;">
+X-FABRIQ-CLIENT-ID: 870b1d58a98e4bd0bc489d6ccb3cb66e
+</code></p>
+
+<p><br></p>
+
+<p>In addition to the <code class="prettyprint">client_id</code>, most endpoints require a user <code class="prettyprint">access_token</code>.  FABRIQ implements the 
+<a href="#oauth">OAUTH 2.0</a> standard to enable an application to securely make requests on behalf of a user.</p>
+
+<p>For endpoints that require an OAuth <code class="prettyprint">access_token</code>, it should be included in the Authorization HTTP header 
+as a Bearer token.  </p>
+
+<p>For example:</p>
+
+<p><code style="display:block;text-align:center;margin-top:20px;color:#000;padding:10px;">
+Authorization: Bearer fbe54027e4a443d1a2f76adaec1d70d8
+</code></p>
+
+<h2 id="sandbox">Sandbox</h2>
+
+<p>To enable testing, when you create an application, two client_id&rsquo;s will be created: a live-mode client_id 
+for production use and a test-mode client_id for use in the sandbox environment.  All sandbox client_ids 
+and access_tokens are prefixed by <strong>sb_</strong> </p>
+
+<p>For example:</p>
+
+<p><code style="display:block;text-align:center;margin-top:20px;color:#000;padding:10px;">
+X-FABRIQ-CLIENT-ID: sb_c21c592ee4454a799b048179cd861144
+</code></p>
+
+<p>All API requests made using the sandbox client_id will be directed to the sandbox environment.  Please note
+that access_tokens obtained in the sandbox environment will fail in the production environment.</p>
 
           <h1 id="oauth">OAuth</h1>
 
@@ -116,7 +169,7 @@ which the user already has.</p>
           <h2 id="request-authorization">Request Authorization</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>GET https://api.fabriq.io/oauth/authorize
 </code></pre>
@@ -180,7 +233,7 @@ or deny permissions to your application (<code class="prettyprint">redirect_uri<
           <h2 id="access-token">Access Token</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/oauth/token
 </code></pre>
@@ -276,7 +329,7 @@ Please note the list of scopes authorized by the user may differ from the set of
           <h2 id="refresh-token">Refresh Token</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/oauth/token
 </code></pre>
@@ -388,7 +441,7 @@ range indicate success, codes in the 4xx range indicate an error that resulted f
           <h2 id="error-response">Error Response</h2>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">403</span><span class="p">,</span><span class="w">
@@ -423,10 +476,26 @@ range indicate success, codes in the 4xx range indicate an error that resulted f
 
           <h1 id="versioning">Versioning</h1>
 
+<p>Rather than hardcoding a version number in the request URL, you can control which version of the API
+you want to access directly from your <a href="https://developer.fabriq.io">application dashboard</a>.  You can 
+override this value in individual requests by setting the HTTP header X-FABRIQ-API-VERSION. </p>
+
+<p>For example:</p>
+
+<p><code style="display:block;text-align:center;margin-top:20px;color:#000;padding:10px;">
+X-FABRIQ-API-VERSION: v1
+</code></p>
+
+<p><br></p>
+
+<p>The current version is <strong>v1</strong> and new versions will be created when backward-incompatible changes 
+are introduced to the API.  Refer to the <a href="https://developer.fabriq.io">developer portal</a>
+for details of changes between API versions.</p>
+
           <h1 id="inapp-browser">Inapp Browser</h1>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>https://portal.fabriq.io/#/?access_token={ACCESS_TOKEN}
 </code></pre>
@@ -467,7 +536,7 @@ https://portal.fabriq.io/#/?access_token={ACCESS_TOKEN}
           <h2 id="the-user-object">The user object</h2>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
@@ -525,13 +594,13 @@ https://portal.fabriq.io/#/?access_token={ACCESS_TOKEN}
           <h2 id="create-a-user">Create a user</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/users
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/users'</span>  <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>  <span class="se">\</span>
@@ -542,7 +611,7 @@ https://portal.fabriq.io/#/?access_token={ACCESS_TOKEN}
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f3c84161994841c49d729ff97bd0ead0"</span><span class="p">,</span><span class="w">
@@ -595,7 +664,7 @@ https://portal.fabriq.io/#/?access_token={ACCESS_TOKEN}
 Please note that the argument <code>login</code> should be passed in as query parameter in the REST API.
 </aside></p>
 
-<p><code style="display:block;text-align:center;margin-top:20px;color:#000;">
+<p><code style="display:block;text-align:center;margin-top:20px;color:#000;padding:10px;">
 POST https://api.fabriq.io/users?login=true
 </code></p>
 
@@ -607,20 +676,21 @@ access_token.</p>
           <h2 id="retrieve-current-user">Retrieve current user</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>GET https://api.fabriq.io/me
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/me'</span> <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
@@ -646,15 +716,16 @@ access_token.</p>
           <h2 id="update-current-user">Update current user</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>PUT https://api.fabriq.io/me
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://api.fabriq.io/me'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
   -d <span class="s1">'{                                        
@@ -663,7 +734,7 @@ access_token.</p>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f3c84161994841c49d729ff97bd0ead0"</span><span class="p">,</span><span class="w">
@@ -713,7 +784,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
           <h2 id="public-profile">Public profile</h2>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
@@ -785,20 +856,21 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
           <h2 id="retrieve-public-profile">Retrieve public profile</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>GET https://api.fabriq.io/profiles/public
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/profiles/public'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
@@ -822,15 +894,16 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
           <h2 id="upload-public-media">Upload public media</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/profiles/public/media
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.fabriq.io/profiles/public/media  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>  <span class="se">\</span>
   -F <span class="nv">primary_photo</span><span class="o">=</span><span class="nb">true</span>  <span class="se">\</span>
   -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
@@ -838,7 +911,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be2aef2302e54b9e9ff9a4cf35c756a2"</span><span class="p">,</span><span class="w">
@@ -888,15 +961,16 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
           <h2 id="update-public-profile">Update public profile</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>PUT https://api.fabriq.io/profiles/public
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://api.fabriq.io/profiles/public'</span>        <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>         <span class="se">\</span>
   -d <span class="s1">'{                                        
@@ -905,7 +979,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
@@ -973,7 +1047,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
           <h2 id="private-profile">Private profile</h2>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jane@example.com"</span><span class="p">,</span><span class="w">
@@ -1125,20 +1199,21 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
           <h2 id="retrieve-private-profile">Retrieve private profile</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>GET https://api.fabriq.io/profiles/private
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/profiles/private'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jane@example.com"</span><span class="p">,</span><span class="w">
@@ -1178,22 +1253,23 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
           <h2 id="upload-private-media">Upload private media</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/profiles/private/media
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.fabriq.io/profiles/private/media  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>  <span class="se">\</span>
   -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
 
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be2aef2302e54b9e9ff9a4cf35c756a2"</span><span class="p">,</span><span class="w">
@@ -1239,15 +1315,16 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
           <h2 id="update-private-profile">Update private profile</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>PUT https://api.fabriq.io/profiles/private
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://api.fabriq.io/profiles/private'</span>        <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>         <span class="se">\</span>
   -d <span class="s1">'{                                        
@@ -1256,7 +1333,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jane@example.com"</span><span class="p">,</span><span class="w">
@@ -1411,7 +1488,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
           <h2 id="the-position-object">The position object</h2>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.0154335191846</span><span class="p">,</span><span class="w">
@@ -1474,7 +1551,7 @@ RFC 2388 which defines file transfers for the <code class="prettyprint">multipar
           <h2 id="the-media-object">The media object</h2>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fa4c01b994974daf83e4b121a078f428"</span><span class="p">,</span><span class="w">
@@ -1523,7 +1600,7 @@ can choose which circles(s) receive the notifications.</p>
           <h2 id="the-circle-object">The circle object</h2>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df2ecdaa-5597-11e5-a0dd-38c98601185b"</span><span class="p">,</span><span class="w">
@@ -1560,15 +1637,16 @@ can choose which circles(s) receive the notifications.</p>
           <h2 id="add-a-circle">Add a circle</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/circles
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/circles'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
   -d <span class="s1">'{                                        
@@ -1577,7 +1655,7 @@ can choose which circles(s) receive the notifications.</p>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="p">,</span><span class="w">
@@ -1606,21 +1684,22 @@ can choose which circles(s) receive the notifications.</p>
           <h2 id="upload-photo">Upload photo</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/circles/{CIRCLE_UID}/photos
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/circles/039d2aa25d4e11e5a0dd38c98601185b/photos'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"990610ab5b2d437cab3205523dcb83a5"</span><span class="p">,</span><span class="w">
@@ -1654,20 +1733,21 @@ can choose which circles(s) receive the notifications.</p>
           <h2 id="list-all-circles">List all circles</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>GET https://api.fabriq.io/circles
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/circles'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45778d285da311e5936420c9d07e7899"</span><span class="p">,</span><span class="w">
@@ -1698,7 +1778,7 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
           <h2 id="the-contact-object">The contact object</h2>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46b9f6da5da311e5936420c9d07e7899"</span><span class="p">,</span><span class="w">
@@ -1784,15 +1864,16 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
           <h2 id="add-a-contact">Add a contact</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/contacts
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/contacts'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
   -d <span class="s1">'{                                        
@@ -1806,7 +1887,7 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"761d4f1a-a121-40f8-a8d3-2993ba5861d9"</span><span class="p">,</span><span class="w">
@@ -1864,21 +1945,22 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
           <h2 id="upload-photo">Upload photo</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/contacts/{CONTACT_UID}/photos
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/contacts/46b9f6da5da311e5936420c9d07e7899/photos'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53ff178a7bfc473e853a59a680a86a3a"</span><span class="p">,</span><span class="w">
@@ -1912,20 +1994,21 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
           <h2 id="list-all-contacts">List all contacts</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>GET https://api.fabriq.io/contacts
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/contacts'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46b9f6da5da311e5936420c9d07e7899"</span><span class="p">,</span><span class="w">
@@ -1984,7 +2067,7 @@ receive a message with a link to watch the user in real-time.</p>
           <h2 id="the-alert-object">The alert object</h2>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c2e0f1b0ce94b7ea75104a2ef022529"</span><span class="p">,</span><span class="w">
@@ -2046,15 +2129,16 @@ receive a message with a link to watch the user in real-time.</p>
           <h2 id="trigger-a-panic-alert">Trigger a PANIC alert</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/alerts/panic
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/alerts/panic'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
   -d <span class="s1">'{                                        
@@ -2064,7 +2148,7 @@ receive a message with a link to watch the user in real-time.</p>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c2e0f1b0ce94b7ea75104a2ef022529"</span><span class="p">,</span><span class="w">
@@ -2106,21 +2190,22 @@ receive a message with a link to watch the user in real-time.</p>
           <h2 id="upload-media">Upload media</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/alerts/{ALERT_UID}/media
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/media'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/recording.wav"</span>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e7302afdc5b145b5820a126d96d0885e"</span><span class="p">,</span><span class="w">
@@ -2155,15 +2240,16 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
           <h2 id="update-position">Update position</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/alerts/{ALERT_UID}/position
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/position'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>         <span class="se">\</span>
   -d <span class="s1">'[{                                        
@@ -2178,7 +2264,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
     "count": 2
@@ -2204,20 +2290,21 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
           <h2 id="retrieve-an-alert">Retrieve an alert</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>GET https://api.fabriq.io/alerts/{ALERT_UID}
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c2e0f1b0ce94b7ea75104a2ef022529"</span><span class="p">,</span><span class="w">
@@ -2251,21 +2338,22 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
           <h2 id="cancel-an-alert">Cancel an alert</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/alerts/{ALERT_UID}
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X DELETE -G <span class="s1">'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -d <span class="nv">pin</span><span class="o">=</span>1234
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c2e0f1b0ce94b7ea75104a2ef022529"</span><span class="p">,</span><span class="w">
@@ -2281,7 +2369,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </span></code></pre>
 
 <blockquote>
-<p>Sample Error</p>
+<p><strong>Sample Error</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">412</span><span class="p">,</span><span class="w">
@@ -2317,20 +2405,21 @@ an error message.</p>
           <h2 id="list-active-alerts">List active alerts</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>GET https://api.fabriq.io/alerts
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/alerts'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c2e0f1b0ce94b7ea75104a2ef022529"</span><span class="p">,</span><span class="w">
@@ -2355,7 +2444,7 @@ an error message.</p>
           <h2 id="the-activity-object">The activity object</h2>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ade0a3131ba4e1c942ae40983405391"</span><span class="p">,</span><span class="w">
@@ -2510,15 +2599,16 @@ an error message.</p>
           <h2 id="start-an-activity">Start an activity</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/activities
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/activities'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
   -d <span class="s1">'{                                        
@@ -2533,7 +2623,7 @@ an error message.</p>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ade0a3131ba4e1c942ae40983405391"</span><span class="p">,</span><span class="w">
@@ -2631,15 +2721,16 @@ an error message.</p>
           <h2 id="update-position">Update position</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/activities/{ACTIVITY_UID}/position
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391/position'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>         <span class="se">\</span>
   -d <span class="s1">'[{                                        
@@ -2654,7 +2745,7 @@ an error message.</p>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>{
     "count": 2
@@ -2680,15 +2771,16 @@ an error message.</p>
           <h2 id="upload-media">Upload media</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/activities/{ACTIVITY_UID}/media
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/activities/ff77462fd128430b94c083b6f88f1cb9/media'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -F <span class="nv">latitude</span><span class="o">=</span>40.01547488387676  <span class="se">\</span>
   -F <span class="nv">longitude</span><span class="o">=</span>-105.2499169484761  <span class="se">\</span>
@@ -2696,7 +2788,7 @@ an error message.</p>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"990610ab5b2d437cab3205523dcb83a5"</span><span class="p">,</span><span class="w">
@@ -2742,22 +2834,23 @@ an error message.</p>
           <h2 id="end-an-activity">End an activity</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/activities/{ACTIVITY_UID}
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X DELETE -G <span class="s1">'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -d <span class="nv">end_lat</span><span class="o">=</span>40.01592844038895  <span class="se">\</span>
   -d <span class="nv">end_lng</span><span class="o">=</span>-105.2487217142231
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ade0a3131ba4e1c942ae40983405391"</span><span class="p">,</span><span class="w">
@@ -2831,20 +2924,21 @@ Please note that the arguments are passed in the HTTP DELETE method as query par
           <h2 id="retrieve-an-activity">Retrieve an activity</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>GET https://api.fabriq.io/activities/{ACTIVITY_UID}
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ade0a3131ba4e1c942ae40983405391"</span><span class="p">,</span><span class="w">
@@ -2911,7 +3005,7 @@ an external source (e.g. a police report).</p>
           <h2 id="the-threat-object">The threat object</h2>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ed205f519264529a86014901151dda5"</span><span class="p">,</span><span class="w">
@@ -2989,15 +3083,16 @@ an external source (e.g. a police report).</p>
           <h2 id="report-a-threat">Report a threat</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/threats
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/threats'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
   -d <span class="s1">'{                                        
@@ -3009,7 +3104,7 @@ an external source (e.g. a police report).</p>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ed205f519264529a86014901151dda5"</span><span class="p">,</span><span class="w">
@@ -3077,15 +3172,16 @@ an external source (e.g. a police report).</p>
           <h2 id="upload-media">Upload media</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.fabriq.io/threats/{THREAT_UID}/media
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/threats/7ed205f519264529a86014901151dda5/media'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -F <span class="nv">latitude</span><span class="o">=</span>40.01547488387676  <span class="se">\</span>
   -F <span class="nv">longitude</span><span class="o">=</span>-105.2499169484761  <span class="se">\</span>
@@ -3093,7 +3189,7 @@ an external source (e.g. a police report).</p>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fa4c01b994974daf83e4b121a078f428"</span><span class="p">,</span><span class="w">
@@ -3140,20 +3236,21 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
           <h2 id="retrieve-a-threat">Retrieve a threat</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>GET https://api.fabriq.io/threats/{THREAT_UID}
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/threats/7ed205f519264529a86014901151dda5'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ed205f519264529a86014901151dda5"</span><span class="p">,</span><span class="w">
@@ -3195,20 +3292,21 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
           <h2 id="remove-a-threat">Remove a threat</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/threats/{THREAT_UID}
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/threats/775a91b7390d4108ba650003143f8487'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -3235,15 +3333,16 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
           <h2 id="list-nearby-threats">List nearby threats</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>GET https://api.fabriq.io/threats
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -G <span class="s1">'https://api.fabriq.io/threats'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span> <span class="se">\</span>
   -d <span class="nv">latitude</span><span class="o">=</span>40.00930405724701  <span class="se">\</span>
   -d <span class="nv">longitude</span><span class="o">=</span>-105.2392134802841  <span class="se">\</span>
@@ -3254,7 +3353,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ed205f519264529a86014901151dda5"</span><span class="p">,</span><span class="w">
@@ -3324,7 +3423,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
           <h2 id="the-settings-object">The settings object</h2>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"panic_delay"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -3401,20 +3500,21 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
           <h2 id="retrieve-settings">Retrieve settings</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>GET https://api.fabriq.io/settings
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/settings'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"panic_delay"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -3439,15 +3539,16 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
           <h2 id="update-setting">Update setting</h2>
 
 <blockquote>
-<p>Definition</p>
+<p><strong>Definition</strong></p>
 </blockquote>
 <pre class="highlight plaintext"><code>PUT https://api.fabriq.io/settings
 </code></pre>
 
 <blockquote>
-<p>Sample Request</p>
+<p><strong>Sample Request</strong></p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://api.fabriq.io/settings'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
   -d <span class="s1">'{                                        
@@ -3456,7 +3557,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </code></pre>
 
 <blockquote>
-<p>Sample Response</p>
+<p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"panic_delay"</span><span class="p">:</span><span class="mi">7000</span><span class="p">,</span><span class="w">

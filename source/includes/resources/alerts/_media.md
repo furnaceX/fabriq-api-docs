@@ -1,20 +1,21 @@
 ## Upload media
 
-> Definition
+> **Definition**
 
 ```text
 POST https://api.fabriq.io/alerts/{ALERT_UID}/media
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl 'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/media'  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
   -F file="@/path/to/recording.wav"
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {

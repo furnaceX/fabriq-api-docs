@@ -1,5 +1,6 @@
 ## The threat object
-> Sample Response
+
+> **Sample Response**
 
 ```json
 {

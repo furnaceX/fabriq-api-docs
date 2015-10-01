@@ -1,21 +1,22 @@
 ## End an activity
 
-> Definition
+> **Definition**
 
 ```text
 DELETE https://api.fabriq.io/activities/{ACTIVITY_UID}
 ```
 
-> Sample Request
+> **Sample Request**
 
 ```shell
 curl -X DELETE -G 'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391'  \
+  -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
   -d end_lat=40.01592844038895  \
   -d end_lng=-105.2487217142231
 ```
 
-> Sample Response
+> **Sample Response**
 
 ```json
 {
