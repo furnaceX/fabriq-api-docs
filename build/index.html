@@ -64,6 +64,13 @@ HTTP response codes (e.g. 200 OK) to communicate state.</p>
 
 <p>All requests must be authenticated and sent over <a href="https://en.wikipedia.org/wiki/HTTPS">HTTPS</a>. Responses are returned in JSON, including application and system errors.</p>
 
+<p><br></p>
+
+<aside class="info">
+The API is currently in <b><i>beta</i></b>.  In this release, only <a href="#sandbox">sandbox</a> client_id&rsquo;s will be generated in
+the developer portal.  Live-mode client_id&rsquo;s will be made available once the API is fully released.
+</aside>
+
           <h1 id="authentication">Authentication</h1>
 
 <blockquote>
@@ -81,7 +88,7 @@ HTTP response codes (e.g. 200 OK) to communicate state.</p>
 obtain a <code class="prettyprint">client_id</code> by signing into the <a href="https://developer.fabriq.io">developer portal</a> and creating a new application.
 A different key is generated for each application you create.</p>
 
-<p>Once obtained, the <code class="prettyprint">client_id</code> should be inclulded in <strong>every</strong> HTTP request using the custom 
+<p>Once obtained, the <code class="prettyprint">client_id</code> should be included in <strong>every</strong> HTTP request using the custom
 X-FABRIQ-CLIENT-ID header.  </p>
 
 <p>For example:</p>
@@ -92,10 +99,10 @@ X-FABRIQ-CLIENT-ID: 870b1d58a98e4bd0bc489d6ccb3cb66e
 
 <p><br></p>
 
-<p>In addition to the <code class="prettyprint">client_id</code>, most endpoints require a user <code class="prettyprint">access_token</code>.  FABRIQ implements the 
+<p>In addition to the <code class="prettyprint">client_id</code>, most endpoints require a user <code class="prettyprint">access_token</code>.  FABRIQ implements the
 <a href="#oauth">OAUTH 2.0</a> standard to enable an application to securely make requests on behalf of a user.</p>
 
-<p>For endpoints that require an OAuth <code class="prettyprint">access_token</code>, it should be included in the Authorization HTTP header 
+<p>For endpoints that require an OAuth <code class="prettyprint">access_token</code>, it should be included in the Authorization HTTP header
 as a Bearer token.  </p>
 
 <p>For example:</p>
@@ -106,9 +113,36 @@ Authorization: Bearer fbe54027e4a443d1a2f76adaec1d70d8
 
 <h2 id="sandbox">Sandbox</h2>
 
-<p>To enable testing, when you create an application, two client_id&rsquo;s will be created: a live-mode client_id 
-for production use and a test-mode client_id for use in the sandbox environment.  All sandbox client_ids 
-and access_tokens are prefixed by <strong>sb_</strong> </p>
+<blockquote>
+<p><strong>Production Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/me'</span> <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: 870b1d58a98e4bd0bc489d6ccb3cb66e'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer fbe54027e4a443d1a2f76adaec1d70d8"</span>
+</code></pre>
+
+<blockquote>
+<p><br/> <br/></p>
+
+<p><strong>Sandbox Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/me'</span> <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: sb_c21c592ee4454a799b048179cd861144'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer sb_c21c592ee4454a799b048179cd861144"</span>
+</code></pre>
+
+<p>When you create an application in the <a href="https://developer.fabriq.io">developer portal</a> ,
+two client_id&rsquo;s will be generated: a <strong>live-mode</strong> client_id
+for production use and a <strong>test-mode</strong> client_id for use in the sandbox environment.  Use the sandbox to test your
+code and try out new features.</p>
+
+<aside class="notice">
+While the data in the sandbox environment is isolated from the production environment, alerts and notifications are
+still sent from this environment.  This means that all users and contacts created in this environment require valid
+mobile numbers and email addresses.  Where there are exceptions, they will be noted in the documentation below.
+</aside>
+
+<p>All sandbox client_ids and access_tokens are prefixed by <strong>sb_</strong>.</p>
 
 <p>For example:</p>
 
@@ -116,8 +150,17 @@ and access_tokens are prefixed by <strong>sb_</strong> </p>
 X-FABRIQ-CLIENT-ID: sb_c21c592ee4454a799b048179cd861144
 </code></p>
 
-<p>All API requests made using the sandbox client_id will be directed to the sandbox environment.  Please note
+<p><br/></p>
+
+<p>All API requests made using the sandbox <code class="prettyprint">client_id</code> will be directed to the sandbox environment.  Please note
 that access_tokens obtained in the sandbox environment will fail in the production environment.</p>
+
+<p><br/></p>
+
+<aside class="warning">
+The API is currently in <b><i>beta</i></b>.  In this release, only sandbox client_id&rsquo;s will be generated in
+the developer portal.  Live-mode client_id&rsquo;s will be made available once the API is fully released.
+</aside>
 
           <h1 id="oauth">OAuth</h1>
 
@@ -477,8 +520,8 @@ range indicate success, codes in the 4xx range indicate an error that resulted f
           <h1 id="versioning">Versioning</h1>
 
 <p>Rather than hardcoding a version number in the request URL, you can control which version of the API
-you want to access directly from your <a href="https://developer.fabriq.io">application dashboard</a>.  You can 
-override this value in individual requests by setting the HTTP header X-FABRIQ-API-VERSION. </p>
+you want to access directly from your <a href="https://developer.fabriq.io">application dashboard</a>.  You can
+override this value in individual requests by setting the HTTP header X-FABRIQ-API-VERSION.</p>
 
 <p>For example:</p>
 
@@ -488,9 +531,16 @@ X-FABRIQ-API-VERSION: v1
 
 <p><br></p>
 
-<p>The current version is <strong>v1</strong> and new versions will be created when backward-incompatible changes 
+<p>The current version is <strong>v1</strong> and new versions will be created when backward-incompatible changes
 are introduced to the API.  Refer to the <a href="https://developer.fabriq.io">developer portal</a>
 for details of changes between API versions.</p>
+
+<p><br></p>
+
+<aside class="warning">
+The API is currently in <b><i>beta</i></b>.  In this release, only sandbox client_id&rsquo;s will be generated in
+the developer portal.  Live-mode client_id&rsquo;s will be made available once the API is fully released.
+</aside>
 
           <h1 id="inapp-browser">Inapp Browser</h1>
 
@@ -509,7 +559,7 @@ changes made to their account.</p>
 
 <p>The in-app browser should be directed to the following URL:</p>
 
-<p><code style="margin:auto;">
+<p><code style="display:block;text-align:center;margin-top:20px;color:#000;padding:10px;">
 https://portal.fabriq.io/#/?access_token={ACCESS_TOKEN}
 </code></p>
 

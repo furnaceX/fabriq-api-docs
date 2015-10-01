@@ -16,3 +16,11 @@ resource-oriented URLs. It makes use of HTTP verbs (e.g. GET, POST, etc.) to per
 HTTP response codes (e.g. 200 OK) to communicate state.
 
 All requests must be authenticated and sent over [HTTPS](https://en.wikipedia.org/wiki/HTTPS). Responses are returned in JSON, including application and system errors.
+
+
+<br>
+
+<aside class="info">
+The API is currently in <b><i>beta</i></b>.  In this release, only <a href="#sandbox">sandbox</a> client_id's will be generated in
+the developer portal.  Live-mode client_id's will be made available once the API is fully released.
+</aside>

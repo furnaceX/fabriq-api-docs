@@ -15,7 +15,7 @@ changes made to their account.
 
 The in-app browser should be directed to the following URL:
 
-<code style="margin:auto;">
+<code style="display:block;text-align:center;margin-top:20px;color:#000;padding:10px;">
 https://portal.fabriq.io/#/?access_token={ACCESS_TOKEN}
 </code>
 
