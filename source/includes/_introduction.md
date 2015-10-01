@@ -7,7 +7,7 @@ https://api.fabriq.io
 ```
 
 
-FABRIQ is a **Safety as a Service** platform.  The API makes it easy to embed powerful and intelligent safety
+FABRIQ is a **Social Safety Platform**.  The API makes it easy to embed powerful and intelligent safety
 features into apps and wearables.  Use it to trigger an alert, monitor an activity or periodically check on
 the welfare of a loved one.  The possibilities to enhance personal safety are endless!
 
