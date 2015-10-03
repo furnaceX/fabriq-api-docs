@@ -30,13 +30,13 @@
     "alert_settings": [{
         "type": "timeout",
         "timeout": 2400000,
-        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
+        "circle": "039d2aa25d4e11e5a0dd38c98601185b"
     },{
         "type": "start_activity",
-        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
+        "circle": "039d2aa25d4e11e5a0dd38c98601185b"
     },{
         "type": "end_activity",
-        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
+        "circle": "039d2aa25d4e11e5a0dd38c98601185b"
     }],
 
     "alerts_triggered": [ "451bc6c0-8231-44dd-8168-d722b86f04f5" ]

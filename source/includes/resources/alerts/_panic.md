@@ -27,7 +27,8 @@ curl -X POST 'https://api.fabriq.io/alerts/panic'  \
     "type": "panic",
     "latitude": 40.01592844038895,
     "longitude": -105.2487217142231,
-    "activity_uid": null,
+    "device": null,
+    "activity": null,
     "alert_date": 1442763924433,
     "acknowledged": false,
     "canceled": false,
@@ -37,7 +38,8 @@ curl -X POST 'https://api.fabriq.io/alerts/panic'  \
 
 ARGUMENTS ||
 ---------:        | -----------
-activity_uid<br>*optional*, *string*  | Activity associated with this alert
+device<br>*optional*, *string*  | Device that triggered this alert
+activity<br>*optional*, *string*  | Activity associated with this alert
 latitude<br>*optional*, *double*  | Latitude where alert was triggered
 longitude<br>*optional*, *double*  | Longitude where alert was triggered
 

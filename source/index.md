@@ -51,6 +51,11 @@ includes:
   - resources/media/info
   - resources/media/object
 
+  - resources/devices/info
+  - resources/devices/object
+  - resources/devices/add
+  - resources/devices/list
+
   - resources/circles/info
   - resources/circles/object
   - resources/circles/add

@@ -46,13 +46,13 @@ curl -X DELETE -G 'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae4098340
     "alert_settings": [{
         "type": "timeout",
         "timeout": 2400000,
-        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
+        "circle": "039d2aa25d4e11e5a0dd38c98601185b"
     },{
         "type": "start_activity",
-        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
+        "circle": "039d2aa25d4e11e5a0dd38c98601185b"
     },{
         "type": "end_activity",
-        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
+        "circle": "039d2aa25d4e11e5a0dd38c98601185b"
     }],
 
     "alerts_triggered": null

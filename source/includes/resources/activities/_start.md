@@ -54,10 +54,10 @@ curl -X POST 'https://api.fabriq.io/activities'  \
     "alert_settings": [{
         "type": "timeout",
         "timeout": 2400000,
-        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
+        "circle": "039d2aa25d4e11e5a0dd38c98601185b"
     },{
         "type": "start_activity",
-        "circle_uid": "039d2aa25d4e11e5a0dd38c98601185b"
+        "circle": "039d2aa25d4e11e5a0dd38c98601185b"
     }],
 
     "alerts_triggered": null

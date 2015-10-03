@@ -41,15 +41,15 @@ curl -X POST 'https://api.fabriq.io/threats'  \
 
 ARGUMENTS ||
 ---------:        | -----------
-type <br>**required**, *string*  | Threat type.  Possible values: `suspicous_person`, `suspicious_object`, `accident`, `road_block`, `road_ice`, `utility`, `weather`, `flood`, `fire`, `wildlife`, `shooting`, `hazardous_material`, `other`
-latitude <br>**required**, *double*  | Latitude of the reported threat
-longitude <br>**required**, *double*  | Longitude of the reported threat
-level <br>*optional*, *string*  |  Threat level.  Possible values: `low`, `medium`, `high`, `severe`.  Default is `medium`
-description <br>*optional*, *string*  |  User provided description of the threat
-activity_uid <br>*optional*, *string*  |  If an [activity](#activity) is in progress, set its `uid`
-test <br>*optional*, *boolean*  |  Indicate this is a test report which should not be displayed to users
-anonymous <br>*optional*, *boolean*  |  Indicate that this user wishes to submit this report anonymously
-threat_date <br>*optional*, *timestamp*  |  Timestamp when the threat occurred.  Defaults to current time if not known
+type<br>**required**, *string*  | Threat type.  Possible values: `suspicous_person`, `suspicious_object`, `accident`, `road_block`, `road_ice`, `utility`, `weather`, `flood`, `fire`, `wildlife`, `shooting`, `hazardous_material`, `other`
+latitude<br>**required**, *double*  | Latitude of the reported threat
+longitude<br>**required**, *double*  | Longitude of the reported threat
+level<br>*optional*, *string*  |  Threat level.  Possible values: `low`, `medium`, `high`, `severe`.  Default is `medium`
+description<br>*optional*, *string*  |  User provided description of the threat
+activity<br>*optional*, *string*  |  If an [activity](#activity) is in progress, set its `uid`
+test<br>*optional*, *boolean*  |  Indicate this is a test report which should not be displayed to users
+anonymous<br>*optional*, *boolean*  |  Indicate that this user wishes to submit this report anonymously
+threat_date<br>*optional*, *timestamp*  |  Timestamp when the threat occurred.  Defaults to current time if not known
 
 
 ### Returns
