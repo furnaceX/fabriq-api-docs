@@ -54,18 +54,24 @@ includes:
   - resources/devices/info
   - resources/devices/object
   - resources/devices/add
+  - resources/devices/fetch
+  - resources/devices/remove
   - resources/devices/list
 
   - resources/circles/info
   - resources/circles/object
   - resources/circles/add
+  - resources/circles/fetch
   - resources/circles/media
+  - resources/circles/remove
   - resources/circles/list
 
   - resources/contacts/info
   - resources/contacts/object
   - resources/contacts/add
+  - resources/contacts/fetch
   - resources/contacts/media
+  - resources/contacts/remove
   - resources/contacts/list
 
   - resources/alerts/info
