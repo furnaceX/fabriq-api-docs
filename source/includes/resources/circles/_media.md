@@ -1,15 +1,15 @@
-## Upload photo
+## Upload media
 
 > **Definition**
 
 ```text
-POST https://api.fabriq.io/circles/{CIRCLE_UID}/photos
+POST https://api.fabriq.io/circles/{CIRCLE_UID}/media
 ```
 
 > **Sample Request**
 
 ```shell
-curl 'https://api.fabriq.io/circles/039d2aa25d4e11e5a0dd38c98601185b/photos'  \
+curl 'https://api.fabriq.io/circles/039d2aa25d4e11e5a0dd38c98601185b/media'  \
   -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
   -F file="@/path/to/photo.jpg"
@@ -27,7 +27,7 @@ curl 'https://api.fabriq.io/circles/039d2aa25d4e11e5a0dd38c98601185b/photos'  \
 }
 ```
 
-Upload media files by sending a request of type `multipart/form-data`.
+Upload a logo or photo to represent this circle.
 
 <br>
 
