@@ -1,49 +1,49 @@
-## Upload media
+## Upload private media
 
 > **Definition**
 
 ```text
-POST https://api.fabriq.io/activities/{ACTIVITY_UID}/media
+POST https://api.fabriq.io/profiles/private/media
 ```
 
 > **Sample Request**
 
 ```shell
-curl 'https://api.fabriq.io/activities/ff77462fd128430b94c083b6f88f1cb9/media'  \
+curl https://api.fabriq.io/profiles/private/media  \
   -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
-  -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
-  -F latitude=40.01547488387676  \
-  -F longitude=-105.2499169484761  \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"  \
   -F file="@/path/to/photo.jpg"
+
 ```
 
 > **Sample Response**
 
 ```json
 {
-    "uid": "990610ab5b2d437cab3205523dcb83a5",
-    "url": "https://fabriq.io/files/0200/0220/0224/024983F11F0912BA570C8D6CB1E345E770C0",
+    "uid": "90eeaf15a65c4038b1043cbffab8f7ce",
+    "url": "https://fabriq.io/files/0251/0225/0163/0012C9287B60724FEB0E7669AC49F092F313",
     "content_type": "image/jpeg",
     "size": 45950,
-    "latitude": 40.01547488387676,
-    "longitude": -105.2499169484761,
+    "latitude": null,
+    "longitude": null,
     "floor": null,
     "description": null,
-    "created_date": 1442289154770
+    "created_date": 1442341374150
 }
 ```
 
 Upload media files by sending a request of type `multipart/form-data`.
 
+
 <br>
 
 ARGUMENTS ||
 ---------:        | -----------
-file<br>**required**, *file*  | The file to upload.  Currently, only image files are supported.
+file<br>**required**, *media file*  | The file to upload.  Currently, only image files are supported
 latitude<br>*optional*, *double*  | Latitude where media was captured
 longitude<br>*optional*, *double*  | Longitude where media was captured
 floor<br>*optional*, *integer*  | If indoors, floor of the venue<br>*Street level (ground floor) is 0*
-description<br>*optional*, *string*  | User provided description of the media
+description<br>*optional* *string*  | User provided description of the media
 
 
 ### Returns

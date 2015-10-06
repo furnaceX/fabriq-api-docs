@@ -31,6 +31,7 @@ curl -X POST 'https://api.fabriq.io/threats'  \
     "test": false,
     "latitude": 40.00930405724701,
     "longitude": -105.2392134802841,
+    "floor": null,
     "address": "1279 Harrison Ct, Boulder, CO 80303, USA",
     "description": "rattlesnake on the path",
     "threat_date": 1442341176384,
@@ -44,6 +45,7 @@ ARGUMENTS ||
 type<br>**required**, *string*  | Threat type.  Possible values: `suspicous_person`, `suspicious_object`, `accident`, `road_block`, `road_ice`, `utility`, `weather`, `flood`, `fire`, `wildlife`, `shooting`, `hazardous_material`, `other`
 latitude<br>**required**, *double*  | Latitude of the reported threat
 longitude<br>**required**, *double*  | Longitude of the reported threat
+floor<br>*optional*, *integer*  | If indoors, floor of the venue<br>*Street level (ground floor) is 0*
 level<br>*optional*, *string*  |  Threat level.  Possible values: `low`, `medium`, `high`, `severe`.  Default is `medium`
 description<br>*optional*, *string*  |  User provided description of the threat
 activity<br>*optional*, *string*  |  If an [activity](#activity) is in progress, set its `uid`

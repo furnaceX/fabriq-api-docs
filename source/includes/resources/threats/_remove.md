@@ -18,7 +18,6 @@ curl -X DELETE 'https://api.fabriq.io/threats/775a91b7390d4108ba650003143f8487' 
 
 ```json
 {
-    "deleted": true,
     "uid": "775a91b7390d4108ba650003143f8487"
 }
 ```

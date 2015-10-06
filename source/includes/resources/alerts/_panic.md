@@ -27,6 +27,7 @@ curl -X POST 'https://api.fabriq.io/alerts/panic'  \
     "type": "panic",
     "latitude": 40.01592844038895,
     "longitude": -105.2487217142231,
+    "floor": null,
     "device": null,
     "activity": null,
     "alert_date": 1442763924433,
@@ -42,6 +43,7 @@ device<br>*optional*, *string*  | Device that triggered this alert
 activity<br>*optional*, *string*  | Activity associated with this alert
 latitude<br>*optional*, *double*  | Latitude where alert was triggered
 longitude<br>*optional*, *double*  | Longitude where alert was triggered
+floor<br>*optional*, *integer*  | If indoors, floor of the venue<br>*Street level (ground floor) is 0*
 
 
 ### Returns

@@ -17,7 +17,7 @@ curl -X POST 'https://api.fabriq.io/devices'  \
          "name": "Teddy Tag",                   
          "user": "9ff6178e851942cbb5a5ddc71f82588d",                   
          "ble_mac_address": "20:FF:D0:FF:D1:C0",                   
-         "capabilities": "ble"                   
+         "capabilities": ["ble"]                   
       }'
 ```
 
@@ -41,7 +41,7 @@ curl -X POST 'https://api.fabriq.io/devices'  \
     "hardware_version": null,
     "firmware_version": null,
     "software_version": null,
-    "capabilities": "ble"
+    "capabilities": ["ble"]
 }
 ```
 

@@ -22,6 +22,7 @@ curl 'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529'  \
     "type": "panic",
     "latitude": 40.01592844038895,
     "longitude": -105.2487217142231,
+    "floor": null,
     "device": null,
     "activity": null,
     "alert_date": 1442763924000,

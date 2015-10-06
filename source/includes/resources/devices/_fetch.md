@@ -34,7 +34,7 @@ curl 'https://api.fabriq.io/devices/7ce9d0b43d8543b2a53a3990028b4f27' \
     "hardware_version": null,
     "firmware_version": null,
     "software_version": null,
-    "capabilities": "ble"
+    "capabilities": ["ble"]
 }
 ```
 

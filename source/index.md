@@ -37,13 +37,15 @@ includes:
   - resources/profiles/info
   - resources/profiles/public
   - resources/profiles/fetch-public
-  - resources/profiles/media-public
   - resources/profiles/update-public
+  - resources/profiles/add-public-media
+  - resources/profiles/remove-public-media
 
   - resources/profiles/private
   - resources/profiles/fetch-private
-  - resources/profiles/media-private
   - resources/profiles/update-private
+  - resources/profiles/add-private-media
+  - resources/profiles/remove-private-media
 
   - resources/position/info
   - resources/position/object
@@ -95,7 +97,8 @@ includes:
   - resources/threats/info
   - resources/threats/object
   - resources/threats/report
-  - resources/threats/media
+  - resources/threats/add-media
+  - resources/threats/remove-media
   - resources/threats/fetch
   - resources/threats/remove
   - resources/threats/list

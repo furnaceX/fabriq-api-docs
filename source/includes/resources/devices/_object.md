@@ -20,7 +20,7 @@
     "hardware_version": null,
     "firmware_version": null,
     "software_version": null,
-    "capabilities": "ble"
+    "capabilities": ["ble"]
 }
 ```
 
@@ -42,4 +42,4 @@ serial_no<br>*string*  | Serial number of the device
 hardware_version<br>*string*  | Hardware version of the device
 firmware_version<br>*string*  | Firmware version of the device
 software_version<br>*string*  | Software version of the device
-capabilities<br>*string*  | Possible values `ble`, `rfid`, `wifi`, `cellular`, `gps`, `camera`, `audio`, `microphone`, `accelerometer`, `gyroscope`
+capabilities<br>*array*  | List of features the device supports. Possible values `ble`, `rfid`, `wifi`, `cellular`, `gps`, `camera`, `audio`, `microphone`, `accelerometer`, `gyroscope`
