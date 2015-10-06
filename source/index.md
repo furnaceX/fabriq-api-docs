@@ -64,7 +64,7 @@ includes:
   - resources/circles/object
   - resources/circles/add
   - resources/circles/fetch
-  - resources/circles/media
+  - resources/circles/add-media
   - resources/circles/remove
   - resources/circles/list
 
@@ -72,7 +72,7 @@ includes:
   - resources/contacts/object
   - resources/contacts/add
   - resources/contacts/fetch
-  - resources/contacts/media
+  - resources/contacts/add-media
   - resources/contacts/remove
   - resources/contacts/list
 

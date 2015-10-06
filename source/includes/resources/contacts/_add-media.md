@@ -1,17 +1,17 @@
-## Upload photo
+## Upload media
 
 > **Definition**
 
 ```text
-POST https://api.fabriq.io/contacts/{CONTACT_UID}/photos
+POST https://api.fabriq.io/contacts/{CONTACT_UID}/media
 ```
 
 > **Sample Request**
 
 ```shell
-curl 'https://api.fabriq.io/contacts/46b9f6da5da311e5936420c9d07e7899/photos'  \
+curl 'https://api.fabriq.io/contacts/46b9f6da5da311e5936420c9d07e7899/media'  \
   -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
-  -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
+  -H 'Authorization: Bearer {ACCESS_TOKEN}' \
   -F file="@/path/to/photo.jpg"
 ```
 

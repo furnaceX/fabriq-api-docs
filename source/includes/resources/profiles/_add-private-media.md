@@ -1,4 +1,4 @@
-## Upload private media
+## Add private media
 
 > **Definition**
 
