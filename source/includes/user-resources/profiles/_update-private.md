@@ -47,7 +47,8 @@ curl -X PUT 'https://api.fabriq.io/profiles/private'        \
     "medical_conditions": null,
     "allergies": "gluten, penicillin",
     "medications": null,
-    "emergency_instructions": null
+    "emergency_instructions": null,
+    "media": null
 }
 ```
 

@@ -1,4 +1,4 @@
-## Upload media
+## Add a logo
 
 > **Definition**
 

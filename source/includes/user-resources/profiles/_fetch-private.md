@@ -44,7 +44,18 @@ curl 'https://api.fabriq.io/profiles/private'  \
     "medical_conditions": null,
     "allergies": "gluten, penicillin",
     "medications": null,
-    "emergency_instructions": null
+    "emergency_instructions": null,
+    "media": [{
+        "uid": "90eeaf15a65c4038b1043cbffab8f7ce",
+        "url": "https://fabriq.io/files/0251/0225/0163/0012C9287B60724FEB0E7669AC49F092F313",
+        "content_type": "image/jpeg",
+        "size": 45950,
+        "latitude": null,
+        "longitude": null,
+        "floor": null,
+        "description": null,
+        "created_date": 1442341374150
+    }]
 }
 ```
 

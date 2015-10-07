@@ -26,87 +26,92 @@ includes:
 
   - inapp-browser
 
-  - divider-resources
+  - divider-user-resources
 
-  - resources/users/info
-  - resources/users/object
-  - resources/users/create
-  - resources/users/fetch
-  - resources/users/update
+  - user-resources/users/info
+  - user-resources/users/object
+  - user-resources/users/fetch
+  - user-resources/users/update
 
-  - resources/profiles/info
-  - resources/profiles/public
-  - resources/profiles/fetch-public
-  - resources/profiles/update-public
-  - resources/profiles/add-public-media
-  - resources/profiles/remove-public-media
+  - user-resources/profiles/info
+  - user-resources/profiles/public
+  - user-resources/profiles/fetch-public
+  - user-resources/profiles/update-public
+  - user-resources/profiles/add-public-media
+  - user-resources/profiles/remove-public-media
 
-  - resources/profiles/private
-  - resources/profiles/fetch-private
-  - resources/profiles/update-private
-  - resources/profiles/add-private-media
-  - resources/profiles/remove-private-media
+  - user-resources/profiles/private
+  - user-resources/profiles/fetch-private
+  - user-resources/profiles/update-private
+  - user-resources/profiles/add-private-media
+  - user-resources/profiles/remove-private-media
 
-  - resources/position/info
-  - resources/position/object
+  - user-resources/position/info
+  - user-resources/position/object
 
-  - resources/media/info
-  - resources/media/object
+  - user-resources/media/info
+  - user-resources/media/object
 
-  - resources/devices/info
-  - resources/devices/object
-  - resources/devices/add
-  - resources/devices/fetch
-  - resources/devices/remove
-  - resources/devices/list
+  - user-resources/devices/info
+  - user-resources/devices/object
+  - user-resources/devices/add
+  - user-resources/devices/fetch
+  - user-resources/devices/remove
+  - user-resources/devices/list
 
-  - resources/circles/info
-  - resources/circles/object
-  - resources/circles/add
-  - resources/circles/fetch
-  - resources/circles/add-media
-  - resources/circles/remove
-  - resources/circles/list
+  - user-resources/circles/info
+  - user-resources/circles/object
+  - user-resources/circles/add
+  - user-resources/circles/fetch
+  - user-resources/circles/add-media
+  - user-resources/circles/remove
+  - user-resources/circles/list
 
-  - resources/contacts/info
-  - resources/contacts/object
-  - resources/contacts/add
-  - resources/contacts/fetch
-  - resources/contacts/add-media
-  - resources/contacts/remove
-  - resources/contacts/list
+  - user-resources/contacts/info
+  - user-resources/contacts/object
+  - user-resources/contacts/add
+  - user-resources/contacts/fetch
+  - user-resources/contacts/add-media
+  - user-resources/contacts/remove
+  - user-resources/contacts/list
 
-  - resources/alerts/info
-  - resources/alerts/types
-  - resources/alerts/object
-  - resources/alerts/panic
-  - resources/alerts/media
-  - resources/alerts/position
-  - resources/alerts/fetch
-  - resources/alerts/cancel
-  - resources/alerts/list
+  - user-resources/alerts/info
+  - user-resources/alerts/types
+  - user-resources/alerts/object
+  - user-resources/alerts/panic
+  - user-resources/alerts/media
+  - user-resources/alerts/position
+  - user-resources/alerts/fetch
+  - user-resources/alerts/cancel
+  - user-resources/alerts/list
 
-  - resources/activities/info
-  - resources/activities/object
-  - resources/activities/start
-  - resources/activities/position
-  - resources/activities/media
-  - resources/activities/stop
-  - resources/activities/fetch
+  - user-resources/activities/info
+  - user-resources/activities/object
+  - user-resources/activities/start
+  - user-resources/activities/position
+  - user-resources/activities/media
+  - user-resources/activities/stop
+  - user-resources/activities/fetch
 
-  - resources/threats/info
-  - resources/threats/object
-  - resources/threats/report
-  - resources/threats/add-media
-  - resources/threats/remove-media
-  - resources/threats/fetch
-  - resources/threats/remove
-  - resources/threats/list
+  - user-resources/threats/info
+  - user-resources/threats/object
+  - user-resources/threats/report
+  - user-resources/threats/add-media
+  - user-resources/threats/remove-media
+  - user-resources/threats/fetch
+  - user-resources/threats/remove
+  - user-resources/threats/list
 
-  - resources/settings/info
-  - resources/settings/object
-  - resources/settings/fetch
-  - resources/settings/update
+  - user-resources/settings/info
+  - user-resources/settings/object
+  - user-resources/settings/fetch
+  - user-resources/settings/update
+
+
+  - divider-app-resources
+
+  - app-resources/users/info
+  - app-resources/users/create
 
 search: true
 ---

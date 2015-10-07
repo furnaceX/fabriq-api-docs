@@ -28,7 +28,18 @@ curl 'https://api.fabriq.io/profiles/public'  \
     "weight": 54.4311,
     "race": "white",
     "eye_color": "hazel",
-    "hair_color": "brown"
+    "hair_color": "brown",
+    "media": [{
+        "uid": "be2aef2302e54b9e9ff9a4cf35c756a2",
+        "url": "https://fabriq.io/files/0251/0225/0163/0012C9287B60724FEB0E7669AC49F092F313",
+        "content_type": "image/jpeg",
+        "size": 45950,
+        "latitude": null,
+        "longitude": null,
+        "floor": null,
+        "description": null,
+        "created_date": 1442341374150
+    }]
 }
 ```
 

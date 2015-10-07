@@ -42,4 +42,4 @@ address<br>*string*  | Geocoded address of the latitude and longitude
 description<br>*string*  | User provided description of the threat
 threat_date<br>*timestamp* | Timestamp when the threat occurred.  If not known this date defaults to the reported_date
 reported_date<br>*timestamp* | Timestamp when the threat was first reported
-media<br>*dictionary*  | List of media objects associated with this threat
+media<br>*array*  | List of media objects associated with this threat

@@ -32,7 +32,8 @@ curl -X PUT 'https://api.fabriq.io/profiles/public'        \
     "weight": 54.4311,
     "race": "white",
     "eye_color": "hazel",
-    "hair_color": "brown"
+    "hair_color": "brown",
+    "media": null
 }
 ```
 
