@@ -14,3 +14,7 @@ respond to this ping within a specified period of time, an automatic alert will 
 ### Watch Notification
 The user can request to have his or her contacts notified that have started and/or ended an activity.  The user will
 receive a message with a link to watch the user in real-time.
+
+### App-Defined Notification
+You can define notifications specific to your app which can be triggered manually or
+automatically on behalf of the user.

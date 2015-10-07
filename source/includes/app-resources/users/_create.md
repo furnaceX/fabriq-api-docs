@@ -3,13 +3,13 @@
 > **Definition**
 
 ```text
-POST https://api.fabriq.io/system/users
+POST https://api.fabriq.io/app/users
 ```
 
 > **Sample Request**
 
 ```shell
-curl -X POST 'https://api.fabriq.io/system/users'  \
+curl -X POST 'https://api.fabriq.io/app/users'  \
   -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'  \
   -H 'Content-Type: application/json'  \
   -d '{                                        
@@ -49,7 +49,7 @@ Please note that the argument <code>login</code> should be passed in as query pa
 </aside>
 
 <code style="display:block;text-align:center;margin-top:20px;color:#000;padding:10px;">
-POST https://api.fabriq.io/users?login=true
+POST https://api.fabriq.io/app/users?login=true
 </code>
 
 ### Returns

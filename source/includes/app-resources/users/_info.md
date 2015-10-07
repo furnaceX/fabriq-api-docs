@@ -1,3 +1,3 @@
 # Users
 
-System level API calls to manage user accounts.
+App level API calls to manage user accounts.

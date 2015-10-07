@@ -4,7 +4,7 @@
 
 ```json
 {
-    "uid": "df2ecdaa-5597-11e5-a0dd-38c98601185b",
+    "uid": "dea658b2684d11e5922038c98601185b",
     "name": "Default",
     "default": true,
     "photo_url": null

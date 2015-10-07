@@ -79,6 +79,7 @@ includes:
   - user-resources/alerts/types
   - user-resources/alerts/object
   - user-resources/alerts/panic
+  - user-resources/alerts/notification
   - user-resources/alerts/media
   - user-resources/alerts/position
   - user-resources/alerts/fetch
@@ -112,6 +113,9 @@ includes:
 
   - app-resources/users/info
   - app-resources/users/create
+
+  - app-resources/notifications/info
+  - app-resources/notifications/create
 
 search: true
 ---

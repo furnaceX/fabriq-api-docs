@@ -14,14 +14,15 @@
     "alert_date": 1442763924433,
     "acknowledged": false,
     "canceled": false,
-    "canceled_date": null
+    "canceled_date": null,
+    "circles": ["45778d285da311e5936420c9d07e7899", "039d2aa25d4e11e5a0dd38c98601185b"]
 }
 ```
 
 ATTRIBUTES||
 ---------:        | -----------
 uid<br>*string*   | Unique identifier of the alert
-type<br>*string*  | Type of the alert. Possible values `panic`, `timeout`, `ping`, `start_activity`, `end_activity`
+type<br>*string*  | Type of the alert. Possible values `panic`, `notification`, `timeout`, `ping`, `start_activity`, `end_activity`
 latitude<br>*double*  | Latitude where alert was triggered
 longitude<br>*double*  | Longitude where alert was triggered
 floor<br>*integer*  | If indoors, floor of the venue<br>*Street level (ground floor) is 0*
@@ -30,4 +31,5 @@ activity<br>*string*  | Activity uid associated with this alert
 alert_date<br>*timestamp*  | Timestamp (UTC) when alert was triggered
 acknowledged<br>*boolean*  | Alert has been acknowledged by at least one contact
 canceled<br>*boolean*  | Flag to indicate if this alert has been canceled
-canceled_date <br>*timestamp*  | Timestamp (UTC) when alert was canceled
+canceled_date<br>*timestamp*  | Timestamp (UTC) when alert was canceled
+circles<br>*array*  | List of circles that will notified if this alert is triggered
