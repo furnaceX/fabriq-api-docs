@@ -26,7 +26,7 @@ curl 'https://api.fabriq.io/settings'  \
     "alert_activity_start_message": "Hi, letting you know I'm heading out for my workout.",
     "alert_activity_end_message": "Hi, letting you know I'm back from my workout.",
     "alert_activity_timeout_message": "HELP! I went for a workout and should've been back by now!",
-    "alert_ping_timeout_message": "HELP! I haven't responded to my security checks!",
+    "alert_ping_timeout_message": "HELP! I haven't responded to my safety check-in message!",
     "alert_ping_interval": 30000,
     "alert_ping_retry_count": 2,
     "alert_ping_timeout": 60000

@@ -35,7 +35,7 @@ curl -X POST 'https://api.fabriq.io/alerts/notifications/68a6e7fe5f324e048ea2f2b
     "acknowledged": false,
     "canceled": false,
     "canceled_date": null,
-    "circles": ["dea658b2684d11e5922038c98601185b"]
+    "contacts": ["46b9f6da5da311e5936420c9d07e7899"]
 }
 ```
 
@@ -45,10 +45,10 @@ Trigger an [app-defined notification](#create-a-notification).
 
 ARGUMENTS ||
 ---------:        | -----------
-notification_uid<br>**required**, *string*  | UID of notification to trigger
-circles<br>**required**, *array*  | List of `circle_uid`'s that will be notified when this notification is triggered
-device<br>*optional*, *string*  | Device that triggered this alert
-activity<br>*optional*, *string*  | Activity associated with this alert
+notification_uid<br>**required**, *string*  | UID of notification to trigger<br>*URL parameter*
+circles<br>**required**, *array*  | List of `circle_uid`'s that will be notified when this notification is triggered<br>*The result object contains the list of contacts that were notified*
+device<br>*optional*, *string*  | `device_uid` that triggered this notification
+activity<br>*optional*, *string*  | `activity_uid` associated with this notification
 latitude<br>*optional*, *double*  | Latitude where alert was triggered
 longitude<br>*optional*, *double*  | Longitude where alert was triggered
 floor<br>*optional*, *integer*  | If indoors, floor of the venue<br>*Street level (ground floor) is 0*

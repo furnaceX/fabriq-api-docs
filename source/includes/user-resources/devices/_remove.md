@@ -24,7 +24,7 @@ curl -X DELETE 'https://api.fabriq.io/devices/7ce9d0b43d8543b2a53a3990028b4f27' 
 
 ARGUMENTS  ||
 ---------: | -----------
-device_uid<br>**required**, *string*  | UID of the device to be removed
+device_uid<br>**required**, *string*  | UID of the device to be removed<br>*URL parameter*
 
 
 ### Returns

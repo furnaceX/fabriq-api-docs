@@ -21,7 +21,6 @@ curl 'https://api.fabriq.io/threats/7ed205f519264529a86014901151dda5'  \
     "uid": "7ed205f519264529a86014901151dda5",
     "type": "wildlife",
     "level": "medium",
-    "test": false,
     "latitude": 40.00930405724701,
     "longitude": -105.2392134802841,
     "floor": null,

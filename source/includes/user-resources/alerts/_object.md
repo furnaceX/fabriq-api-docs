@@ -15,7 +15,7 @@
     "acknowledged": false,
     "canceled": false,
     "canceled_date": null,
-    "circles": ["45778d285da311e5936420c9d07e7899", "039d2aa25d4e11e5a0dd38c98601185b"]
+    "contacts": ["46b9f6da5da311e5936420c9d07e7899"]
 }
 ```
 
@@ -32,4 +32,4 @@ alert_date<br>*timestamp*  | Timestamp (UTC) when alert was triggered
 acknowledged<br>*boolean*  | Alert has been acknowledged by at least one contact
 canceled<br>*boolean*  | Flag to indicate if this alert has been canceled
 canceled_date<br>*timestamp*  | Timestamp (UTC) when alert was canceled
-circles<br>*array*  | List of circles that will notified if this alert is triggered
+contacts<br>*array*  | List of contacts notified by this alert

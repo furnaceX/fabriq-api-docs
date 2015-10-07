@@ -28,7 +28,6 @@ curl -X POST 'https://api.fabriq.io/threats'  \
     "uid": "7ed205f519264529a86014901151dda5",
     "type": "wildlife",
     "level": "medium",
-    "test": false,
     "latitude": 40.00930405724701,
     "longitude": -105.2392134802841,
     "floor": null,
@@ -49,7 +48,6 @@ floor<br>*optional*, *integer*  | If indoors, floor of the venue<br>*Street leve
 level<br>*optional*, *string*  |  Threat level.  Possible values: `low`, `medium`, `high`, `severe`.  Default is `medium`
 description<br>*optional*, *string*  |  User provided description of the threat
 activity<br>*optional*, *string*  |  If an [activity](#activity) is in progress, set its `uid`
-test<br>*optional*, *boolean*  |  Indicate this is a test report which should not be displayed to users
 anonymous<br>*optional*, *boolean*  |  Indicate that this user wishes to submit this report anonymously
 threat_date<br>*optional*, *timestamp*  |  Timestamp when the threat occurred.  Defaults to current time if not known
 

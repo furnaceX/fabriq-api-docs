@@ -38,7 +38,7 @@ ARGUMENTS ||
 ---------:        | -----------
 name<br>**required**, *string*  | Notification name
 message<br>**required**, *string*  | Default message sent to the user's contacts
-cancel_message<br>*optional*, *string*  | If set, allows this notification to be "canceled" with this message sent to the user's contacts
+cancel_message<br>*optional*, *string*  | If set, allows the notification to be "canceled" with this message sent to the user's contacts
 pin_required<br>*optional*, *boolean*  | If true, the notification can only be canceled with a PIN
 priority<br>*optional*, *integer*  | Relative priority of this notification relative to others defined by your app.<br>*Default is 10*
 description<br>*optional*, *string*  | A description for this notification

@@ -29,7 +29,8 @@ curl -X DELETE -G 'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529
     "alert_date": 1440975513777,
     "acknowledged": true,
     "canceled": true,
-    "canceled_date": 1440975513777
+    "canceled_date": 1440975513777,
+    "contacts": ["46b9f6da5da311e5936420c9d07e7899"]
 }
 ```
 

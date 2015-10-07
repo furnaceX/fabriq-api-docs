@@ -27,7 +27,8 @@ curl 'https://api.fabriq.io/alerts'  \
     "activity": null,
     "alert_date": 1440975513777,
     "acknowledged": true,
-    "canceled": false
+    "canceled": false,
+    "contacts": ["46b9f6da5da311e5936420c9d07e7899"]
 }]
 ```
 

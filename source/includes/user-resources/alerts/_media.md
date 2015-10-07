@@ -20,14 +20,6 @@ curl 'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/media'  \
 ```json
 {
     "uid": "e7302afdc5b145b5820a126d96d0885e",
-    "content_type": "audio/x-wav",
-    "size": 63128,
-    "created_date": 1442187162361,
-    "url": "https://fabriq.io/files/0007/0044/0012/005598E45DF88488D1E6E8AA7CB9A6CC2E77"
-}
-
-{
-    "uid": "e7302afdc5b145b5820a126d96d0885e",
     "url": "https://fabriq.io/files/0007/0044/0012/005598E45DF88488D1E6E8AA7CB9A6CC2E77",
     "content_type": "audio/x-wav",
     "size": 63128,

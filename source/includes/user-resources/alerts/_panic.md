@@ -33,14 +33,18 @@ curl -X POST 'https://api.fabriq.io/alerts/panic'  \
     "alert_date": 1442763924433,
     "acknowledged": false,
     "canceled": false,
-    "canceled_date": null
+    "canceled_date": null,
+    "contacts": ["46b9f6da5da311e5936420c9d07e7899"]
 }
 ```
 
+A PANIC alert is sent all of the user's contacts.
+
+
 ARGUMENTS ||
 ---------:        | -----------
-device<br>*optional*, *string*  | Device that triggered this alert
-activity<br>*optional*, *string*  | Activity associated with this alert
+device<br>*optional*, *string*  | `device_uid` that triggered this alert
+activity<br>*optional*, *string*  | `activity_uid` associated with this panic alert
 latitude<br>*optional*, *double*  | Latitude where alert was triggered
 longitude<br>*optional*, *double*  | Longitude where alert was triggered
 floor<br>*optional*, *integer*  | If indoors, floor of the venue<br>*Street level (ground floor) is 0*

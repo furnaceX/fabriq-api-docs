@@ -7,7 +7,6 @@
     "uid": "7ed205f519264529a86014901151dda5",
     "type": "wildlife",
     "level": "medium",
-    "test": false,
     "latitude": 40.00930405724701,
     "longitude": -105.2392134802841,
     "floor": null,
@@ -34,7 +33,6 @@ ATTRIBUTES||
 uid<br>*string*   | Unique identifier of the threat
 type<br>*string*  | Threat type.  Possible values: `suspicous_person`, `suspicious_object`, `accident`, `road_block`, `road_ice`, `utility`, `weather`, `flood`, `fire`, `wildlife`, `shooting`, `hazardous_material`, `other`
 level<br>*string*  | Threat level. Possible values: `low`, `medium`, `high`, `severe`
-test<br>*boolean*  | Indicates this was a test submission and should not be shown to your users
 latitude<br>*double*  | Latitude of the reported threat
 longitude<br>*double*  | Longitude of the reported threat
 floor<br>*integer*  | If indoors, floor of the venue<br>*Street level (ground floor) is 0*

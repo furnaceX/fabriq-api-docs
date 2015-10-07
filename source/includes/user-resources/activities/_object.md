@@ -10,14 +10,17 @@
 
     "start_lat": 40.00930405724701,
     "start_lng": -105.2392134802841,
+    "start_floor": null,
     "start_address": "1279 Harrison Ct, Boulder, CO 80303, USA",
 
     "end_lat": 40.01554089136423,
     "end_lng": -105.2499387414243,
+    "end_floor": null,
     "end_address": "1654 33rd St, Boulder, CO 80303, USA",
 
     "dest_lat": null,
     "dest_lng": null,
+    "dest_floor": null,
     "dest_address": null,
 
     "start_date": 1435754562000,
@@ -30,13 +33,13 @@
     "alert_settings": [{
         "type": "timeout",
         "timeout": 2400000,
-        "circle": "039d2aa25d4e11e5a0dd38c98601185b"
+        "circles": [ "039d2aa25d4e11e5a0dd38c98601185b" ]
     },{
         "type": "start_activity",
-        "circle": "039d2aa25d4e11e5a0dd38c98601185b"
+        "circles": [ "039d2aa25d4e11e5a0dd38c98601185b" ]
     },{
         "type": "end_activity",
-        "circle": "039d2aa25d4e11e5a0dd38c98601185b"
+        "circles": [ "039d2aa25d4e11e5a0dd38c98601185b" ]
     }],
 
     "alerts_triggered": [ "451bc6c0-8231-44dd-8168-d722b86f04f5" ]
@@ -70,7 +73,7 @@ alerts_triggered<br>*list*  | List of `alert_uid` triggered for this activity. R
 ATTRIBUTES||
 ---------:        | -----------
 type <br>*string*  | Alert type. Values: `start_activity`, `end_activity`, `timeout`, `ping`
-circles <br>*list*  | The list of circles that will notified if this alert is triggered
+circles <br>*list*  | The list of `circle_uid` that will notified if this alert is triggered
 timeout <br>*integer*  | [`timeout`, `ping`] Time (ms) to elapse before alert is triggered
 interval <br>*integer*  | [`ping`] Time (ms) between ping requests
 retry_count <br>*integer*  | [`ping`] Number of times to try a timed out ping before an alert is triggered

@@ -582,7 +582,143 @@ https://portal.fabriq.io/#/?access_token={ACCESS_TOKEN}
 </tr>
 </tbody></table>
 
-          <h1 class="toc-divider hidden">Resources</h1>
+          <h1 class="toc-divider hidden">Resource Objects</h1>
+
+          <h1 id="position">Position</h1>
+
+<p>The user&rsquo;s geolocation is updated during an activity or whenever an alert is triggered.</p>
+
+          <h2 id="the-position-object">The position object</h2>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.0154335191846</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2499519010123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"altitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">1606.125526428223</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"altitude_accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"heading"</span><span class="p">:</span><span class="w"> </span><span class="mf">187.03125</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"speed"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.410</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1401640196770</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ATTRIBUTES</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">latitude<br><em>double</em></td>
+<td>Position latitude</td>
+</tr>
+<tr>
+<td style="text-align: right">longitude<br><em>double</em></td>
+<td>Position longitude</td>
+</tr>
+<tr>
+<td style="text-align: right">floor<br><em>integer</em></td>
+<td>If indoors, floor of the venue<br><em>Street level (ground floor) is 0</em></td>
+</tr>
+<tr>
+<td style="text-align: right">altitude<br><em>double</em></td>
+<td>Position altitude (meters)</td>
+</tr>
+<tr>
+<td style="text-align: right">accuracy<br><em>double</em></td>
+<td>Position accuracy (if available)</td>
+</tr>
+<tr>
+<td style="text-align: right">altitude_accuracy <br><em>double</em></td>
+<td>Position altitude accuracy (if available)</td>
+</tr>
+<tr>
+<td style="text-align: right">heading<br><em>double</em></td>
+<td>Position heading (degrees clockwise from North)</td>
+</tr>
+<tr>
+<td style="text-align: right">speed<br><em>double</em></td>
+<td>Position speed (meters/second)</td>
+</tr>
+<tr>
+<td style="text-align: right">timestamp<br><em>timestamp</em></td>
+<td>Timestamp in milliseconds when location was captured</td>
+</tr>
+</tbody></table>
+
+          <h1 id="media">Media</h1>
+
+<p>A number of resources require a file to be uploaded.  These files should be uploaded by sending a request
+of type <code class="prettyprint">multipart/form-data</code>. The uploaded file should follow the specifications of
+RFC 2388 which defines file transfers for the <code class="prettyprint">multipart/form-data</code> protocol.</p>
+
+          <h2 id="the-media-object">The media object</h2>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fa4c01b994974daf83e4b121a078f428"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0218/0250/0215/00524CF105F2B817EEACE7ACE7AFFC17BA26"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374150</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ATTRIBUTES</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">uid<br><em>string</em></td>
+<td>Unique identifier of the media object</td>
+</tr>
+<tr>
+<td style="text-align: right">url<br><em>url</em></td>
+<td>URL to access the uploaded file.  Depending on the context of the upload this file may or may not be publicly accessible.</td>
+</tr>
+<tr>
+<td style="text-align: right">content_type<br><em>string</em></td>
+<td>The content-type of the uploaded file as determined by FABRIQ</td>
+</tr>
+<tr>
+<td style="text-align: right">size<br><em>integer</em></td>
+<td>Size in bytes of the uploaded file</td>
+</tr>
+<tr>
+<td style="text-align: right">latitude<br><em>double</em></td>
+<td>Latitude where media object was captured</td>
+</tr>
+<tr>
+<td style="text-align: right">longitude<br><em>double</em></td>
+<td>Longitude where media object was captured</td>
+</tr>
+<tr>
+<td style="text-align: right">floor<br><em>integer</em></td>
+<td>If indoors, floor of the venue<br><em>Street level (ground floor) is 0</em></td>
+</tr>
+<tr>
+<td style="text-align: right">description<br><em>string</em></td>
+<td>Description of the media object</td>
+</tr>
+<tr>
+<td style="text-align: right">created_date<br><em>timestamp</em></td>
+<td>Date file was uploaded</td>
+</tr>
+</tbody></table>
+
+          <h1 class="toc-divider hidden">User Resources</h1>
 
           <h1 id="users">Users</h1>
 
@@ -645,88 +781,6 @@ https://portal.fabriq.io/#/?access_token={ACCESS_TOKEN}
 <td>Array of features enabled for this user. Possible values: <code class="prettyprint">panic</code>, <code class="prettyprint">geoblast</code>, <code class="prettyprint">breadcrumbs</code>, <code class="prettyprint">ping</code>, <code class="prettyprint">911</code></td>
 </tr>
 </tbody></table>
-
-          <h2 id="create-a-user">Create a user</h2>
-
-<blockquote>
-<p><strong>Definition</strong></p>
-</blockquote>
-<pre class="highlight plaintext"><code>POST https://api.fabriq.io/users
-</code></pre>
-
-<blockquote>
-<p><strong>Sample Request</strong></p>
-</blockquote>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/users'</span>  <span class="se">\</span>
-  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>  <span class="se">\</span>
-  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
-  -d <span class="s1">'{                                        
-        "mobile_number": "+12155551111"
-      }'</span>
-</code></pre>
-
-<blockquote>
-<p><strong>Sample Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f3c84161994841c49d729ff97bd0ead0"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551112"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551112"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"has_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"is_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"grants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"geoblast"</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<table><thead>
-<tr>
-<th style="text-align: right">ARGUMENTS</th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">mobile_number <br><strong>required</strong>, <em>string</em></td>
-<td>User&rsquo;s mobile number (<a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>)<br><em>The user will receive a text message to confirm her mobile number</em></td>
-</tr>
-<tr>
-<td style="text-align: right">email <br><em>optional</em>, <em>string</em></td>
-<td>User&rsquo;s email address (must be valid and unique)<br><em>The user will receive an email to confirm her email</em></td>
-</tr>
-<tr>
-<td style="text-align: right">username <br><em>optional</em>, <em>string</em></td>
-<td>User&rsquo;s username (must be valid and available)</td>
-</tr>
-<tr>
-<td style="text-align: right">first_name <br><em>optional</em>, <em>string</em></td>
-<td>User&rsquo;s first name</td>
-</tr>
-<tr>
-<td style="text-align: right">last_name <br><em>optional</em>, <em>string</em></td>
-<td>User&rsquo;s last name</td>
-</tr>
-<tr>
-<td style="text-align: right">login <br><em>optional</em>, <em>boolean</em></td>
-<td>If true, the user will be logged in and the return object will include an access_token</td>
-</tr>
-</tbody></table>
-
-<p><br/>
-<aside class="notice">
-Please note that the argument <code>login</code> should be passed in as query parameter in the REST API.
-</aside></p>
-
-<p><code style="display:block;text-align:center;margin-top:20px;color:#000;padding:10px;">
-POST https://api.fabriq.io/users?login=true
-</code></p>
-
-<h3 id="returns">Returns</h3>
-
-<p>A user object.  If the query parameter login is set to true, then the return object will include an
-access_token.</p>
 
           <h2 id="retrieve-current-user">Retrieve current user</h2>
 
@@ -812,16 +866,20 @@ access_token.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">uid <br><strong>required</strong>, <em>string</em></td>
+<td style="text-align: right">uid<br><strong>required</strong>, <em>string</em></td>
 <td>User identifier</td>
 </tr>
 <tr>
-<td style="text-align: right">mobile_number <br><em>optional</em>, <em>string</em></td>
+<td style="text-align: right">username<br><em>optional</em>, <em>string</em></td>
+<td>New username.  Must be available and unique.</td>
+</tr>
+<tr>
+<td style="text-align: right">mobile_number<br><em>optional</em>, <em>string</em></td>
 <td>New mobile number (<a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>)<br><em>The user will receive a text message to confirm her mobile number</em></td>
 </tr>
 <tr>
-<td style="text-align: right">email <br><em>optional</em>, <em>string</em></td>
-<td>New email address<br><em>The user will receive an email to confirm her email</em></td>
+<td style="text-align: right">email<br><em>optional</em>, <em>string</em></td>
+<td>New email address. Must be valid and unique<br><em>The user will receive an email to confirm her email</em></td>
 </tr>
 </tbody></table>
 
@@ -852,7 +910,18 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
     </span><span class="nt">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mf">54.4311</span><span class="p">,</span><span class="w">
     </span><span class="nt">"race"</span><span class="p">:</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"eye_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hazel"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"hair_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brown"</span><span class="w">
+    </span><span class="nt">"hair_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brown"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be2aef2302e54b9e9ff9a4cf35c756a2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0251/0225/0163/0012C9287B60724FEB0E7669AC49F092F313"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374150</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -863,48 +932,52 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">first_name <br><em>string</em></td>
+<td style="text-align: right">first_name<br><em>string</em></td>
 <td>User&rsquo;s first name</td>
 </tr>
 <tr>
-<td style="text-align: right">last_name <br><em>string</em></td>
+<td style="text-align: right">last_name<br><em>string</em></td>
 <td>User&rsquo;s last name</td>
 </tr>
 <tr>
-<td style="text-align: right">display_name <br><em>string</em></td>
+<td style="text-align: right">display_name<br><em>string</em></td>
 <td>User&rsquo;s full name</td>
 </tr>
 <tr>
-<td style="text-align: right">photo_url <br><em>url</em></td>
+<td style="text-align: right">photo_url<br><em>url</em></td>
 <td>Link to user&rsquo;s photo</td>
 </tr>
 <tr>
-<td style="text-align: right">birth_date <br><em>date string</em></td>
+<td style="text-align: right">birth_date<br><em>date string</em></td>
 <td>User&rsquo;s birthday formatted as YYYY-MM-DD (e.g. 1980-01-04)</td>
 </tr>
 <tr>
-<td style="text-align: right">gender <br><em>string</em></td>
+<td style="text-align: right">gender<br><em>string</em></td>
 <td>User&rsquo;s gender. Values: <code class="prettyprint">male</code>, <code class="prettyprint">female</code></td>
 </tr>
 <tr>
-<td style="text-align: right">height <br><em>double</em></td>
+<td style="text-align: right">height<br><em>double</em></td>
 <td>User&rsquo;s height in centimeters</td>
 </tr>
 <tr>
-<td style="text-align: right">weight <br><em>double</em></td>
+<td style="text-align: right">weight<br><em>double</em></td>
 <td>User&rsquo;s weight in kilograms</td>
 </tr>
 <tr>
-<td style="text-align: right">race <br><em>string</em></td>
+<td style="text-align: right">race<br><em>string</em></td>
 <td>User&rsquo;s ethnicity. Values: <code class="prettyprint">white</code>, <code class="prettyprint">black</code>, <code class="prettyprint">hispanic</code>, <code class="prettyprint">asian</code>, <code class="prettyprint">native_american</code>, <code class="prettyprint">pacific_islander</code>, <code class="prettyprint">other</code>, <code class="prettyprint">unknown</code></td>
 </tr>
 <tr>
-<td style="text-align: right">eye_color <br><em>string</em></td>
+<td style="text-align: right">eye_color<br><em>string</em></td>
 <td>User&rsquo;s eye color. Values: <code class="prettyprint">brown</code>, <code class="prettyprint">green</code>, <code class="prettyprint">blue</code>, <code class="prettyprint">hazel</code></td>
 </tr>
 <tr>
-<td style="text-align: right">hair_color <br><em>string</em></td>
+<td style="text-align: right">hair_color<br><em>string</em></td>
 <td>User&rsquo;s hair color. Values: <code class="prettyprint">black</code>, <code class="prettyprint">brown</code>, <code class="prettyprint">blonde</code>, <code class="prettyprint">red</code>, <code class="prettyprint">gray</code>, <code class="prettyprint">white</code>, <code class="prettyprint">bald</code></td>
+</tr>
+<tr>
+<td style="text-align: right">media<br><em>array</em></td>
+<td>List of public media objects associated with this profile</td>
 </tr>
 </tbody></table>
 
@@ -938,80 +1011,24 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
     </span><span class="nt">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mf">54.4311</span><span class="p">,</span><span class="w">
     </span><span class="nt">"race"</span><span class="p">:</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"eye_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hazel"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"hair_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brown"</span><span class="w">
+    </span><span class="nt">"hair_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brown"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be2aef2302e54b9e9ff9a4cf35c756a2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0251/0225/0163/0012C9287B60724FEB0E7669AC49F092F313"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374150</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <h3 id="returns">Returns</h3>
 
 <p>The user&rsquo;s pubic profile object.</p>
-
-          <h2 id="upload-public-media">Upload public media</h2>
-
-<blockquote>
-<p><strong>Definition</strong></p>
-</blockquote>
-<pre class="highlight plaintext"><code>POST https://api.fabriq.io/profiles/public/media
-</code></pre>
-
-<blockquote>
-<p><strong>Sample Request</strong></p>
-</blockquote>
-<pre class="highlight shell"><code>curl https://api.fabriq.io/profiles/public/media  <span class="se">\</span>
-  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>  <span class="se">\</span>
-  -F <span class="nv">primary_photo</span><span class="o">=</span><span class="nb">true</span>  <span class="se">\</span>
-  -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
-
-</code></pre>
-
-<blockquote>
-<p><strong>Sample Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be2aef2302e54b9e9ff9a4cf35c756a2"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442455556000</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0251/0225/0163/0012C9287B60724FEB0E7669AC49F092F313"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Upload media files by sending a request of type <code class="prettyprint">multipart/form-data</code>.</p>
-
-<p><br></p>
-
-<table><thead>
-<tr>
-<th style="text-align: right">ARGUMENTS</th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">file <br><strong>required</strong>, <em>media file</em></td>
-<td>The file to upload.  Currently, only image files are supported</td>
-</tr>
-<tr>
-<td style="text-align: right">primary_photo <br><em>optional</em>, <em>boolean</em></td>
-<td>Set to true to make this image the user&rsquo;s primary photo</td>
-</tr>
-<tr>
-<td style="text-align: right">latitude <br><em>optional</em>, <em>double</em></td>
-<td>Latitude where media was captured</td>
-</tr>
-<tr>
-<td style="text-align: right">longitude <br><em>optional</em>, <em>double</em></td>
-<td>Longitude where media was captured</td>
-</tr>
-<tr>
-<td style="text-align: right">description <br><em>optional</em> <em>string</em></td>
-<td>User provided description of the media</td>
-</tr>
-</tbody></table>
-
-<h3 id="returns">Returns</h3>
-
-<p>This method returns a <a href="#media">media</a> object with details of the file uploaded.</p>
 
           <h2 id="update-public-profile">Update public profile</h2>
 
@@ -1047,7 +1064,8 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
     </span><span class="nt">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mf">54.4311</span><span class="p">,</span><span class="w">
     </span><span class="nt">"race"</span><span class="p">:</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"eye_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hazel"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"hair_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brown"</span><span class="w">
+    </span><span class="nt">"hair_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brown"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1099,6 +1117,121 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 
 <p>Return the updated profile object.</p>
 
+          <h2 id="add-public-media">Add public media</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/profiles/public/media
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.fabriq.io/profiles/public/media  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>  <span class="se">\</span>
+  -F <span class="nv">primary_photo</span><span class="o">=</span><span class="nb">true</span>  <span class="se">\</span>
+  -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
+
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be2aef2302e54b9e9ff9a4cf35c756a2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0251/0225/0163/0012C9287B60724FEB0E7669AC49F092F313"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374150</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Upload media files by sending a request of type <code class="prettyprint">multipart/form-data</code>.</p>
+
+<p><br></p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">file <br><strong>required</strong>, <em>media file</em></td>
+<td>The file to upload.  Currently, only image files are supported</td>
+</tr>
+<tr>
+<td style="text-align: right">primary_photo <br><em>optional</em>, <em>boolean</em></td>
+<td>Set to true to make this image the user&rsquo;s primary photo</td>
+</tr>
+<tr>
+<td style="text-align: right">latitude <br><em>optional</em>, <em>double</em></td>
+<td>Latitude where media was captured</td>
+</tr>
+<tr>
+<td style="text-align: right">longitude <br><em>optional</em>, <em>double</em></td>
+<td>Longitude where media was captured</td>
+</tr>
+<tr>
+<td style="text-align: right">floor<br><em>optional</em>, <em>integer</em></td>
+<td>If indoors, floor of the venue<br><em>Street level (ground floor) is 0</em></td>
+</tr>
+<tr>
+<td style="text-align: right">description <br><em>optional</em> <em>string</em></td>
+<td>User provided description of the media</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>This method returns a <a href="#media">media</a> object with details of the file uploaded.</p>
+
+          <h2 id="remove-public-media">Remove public media</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/profiles/public/media/{MEDIA_UID}
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/profiles/public/media/be2aef2302e54b9e9ff9a4cf35c756a2'</span> <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be2aef2302e54b9e9ff9a4cf35c756a2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">media_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of the public media object to be removed</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>The uid of the media object that was removed.</p>
+
           <h2 id="private-profile">Private profile</h2>
 
 <blockquote>
@@ -1131,7 +1264,18 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
     </span><span class="nt">"medical_conditions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gluten, penicillin"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medications"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"emergency_instructions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nt">"emergency_instructions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90eeaf15a65c4038b1043cbffab8f7ce"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0251/0225/0163/0012C9287B60724FEB0E7669AC49F092F313"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374150</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1142,112 +1286,116 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">email <br><em>string</em></td>
+<td style="text-align: right">email<br><em>string</em></td>
 <td>User&rsquo;s email address</td>
 </tr>
 <tr>
-<td style="text-align: right">mobile_number <br><em>string</em></td>
+<td style="text-align: right">mobile_number<br><em>string</em></td>
 <td>User&rsquo;s mobile number</td>
 </tr>
 <tr>
-<td style="text-align: right">twitter_url <br><em>string</em></td>
+<td style="text-align: right">twitter_url<br><em>string</em></td>
 <td>Link to user&rsquo;s twitter account</td>
 </tr>
 <tr>
-<td style="text-align: right">facebook_url <br><em>string</em></td>
+<td style="text-align: right">facebook_url<br><em>string</em></td>
 <td>Link to user&rsquo;s facebook account</td>
 </tr>
 <tr>
-<td style="text-align: right">linkedin_url <br><em>string</em></td>
+<td style="text-align: right">linkedin_url<br><em>string</em></td>
 <td>Link to user&rsquo;s linkedin account</td>
 </tr>
 <tr>
-<td style="text-align: right">instagram_url <br><em>string</em></td>
+<td style="text-align: right">instagram_url<br><em>string</em></td>
 <td>Link to user&rsquo;s instagram account</td>
 </tr>
 <tr>
-<td style="text-align: right">driver_license <br><em>string</em></td>
+<td style="text-align: right">driver_license<br><em>string</em></td>
 <td>Driver&rsquo;s license number (should include country/state)</td>
 </tr>
 <tr>
-<td style="text-align: right">license_plate <br><em>string</em></td>
+<td style="text-align: right">license_plate<br><em>string</em></td>
 <td>License plate number (should include country/state)</td>
 </tr>
 <tr>
-<td style="text-align: right">employer_name <br><em>string</em></td>
+<td style="text-align: right">employer_name<br><em>string</em></td>
 <td>Name of user&rsquo;s school or employer</td>
 </tr>
 <tr>
-<td style="text-align: right">employer_address <br><em>string</em></td>
+<td style="text-align: right">employer_address<br><em>string</em></td>
 <td>Address of user&rsquo; school or employer</td>
 </tr>
 <tr>
-<td style="text-align: right">employer_phone_number <br><em>string</em></td>
+<td style="text-align: right">employer_phone_number<br><em>string</em></td>
 <td>Phone number of user&rsquo;s school or employer</td>
 </tr>
 <tr>
-<td style="text-align: right">residence1_address <br><em>string</em></td>
+<td style="text-align: right">residence1_address<br><em>string</em></td>
 <td>User&rsquo;s primary address</td>
 </tr>
 <tr>
-<td style="text-align: right">residence2_address <br><em>string</em></td>
+<td style="text-align: right">residence2_address<br><em>string</em></td>
 <td>User&rsquo;s second address</td>
 </tr>
 <tr>
-<td style="text-align: right">residence3_address <br><em>string</em></td>
+<td style="text-align: right">residence3_address<br><em>string</em></td>
 <td>User&rsquo;s third address</td>
 </tr>
 <tr>
-<td style="text-align: right">residence4_address <br><em>string</em></td>
+<td style="text-align: right">residence4_address<br><em>string</em></td>
 <td>User&rsquo;s fourth address</td>
 </tr>
 <tr>
-<td style="text-align: right">doctor_name <br><em>string</em></td>
+<td style="text-align: right">doctor_name<br><em>string</em></td>
 <td>Primary physician&rsquo;s name</td>
 </tr>
 <tr>
-<td style="text-align: right">doctor_address <br><em>string</em></td>
+<td style="text-align: right">doctor_address<br><em>string</em></td>
 <td>Primary physician&rsquo;s address</td>
 </tr>
 <tr>
-<td style="text-align: right">doctor_phone_number <br><em>string</em></td>
+<td style="text-align: right">doctor_phone_number<br><em>string</em></td>
 <td>Primary physician&rsquo;s phone number</td>
 </tr>
 <tr>
-<td style="text-align: right">dentist_name <br><em>string</em></td>
+<td style="text-align: right">dentist_name<br><em>string</em></td>
 <td>Dentist&rsquo;s name</td>
 </tr>
 <tr>
-<td style="text-align: right">dentist_address <br><em>string</em></td>
+<td style="text-align: right">dentist_address<br><em>string</em></td>
 <td>Dentist&rsquo;s address</td>
 </tr>
 <tr>
-<td style="text-align: right">doctor_phone_number <br><em>string</em></td>
+<td style="text-align: right">doctor_phone_number<br><em>string</em></td>
 <td>Dentist&rsquo;s phone number</td>
 </tr>
 <tr>
-<td style="text-align: right">emergency_contacts <br><em>string</em></td>
+<td style="text-align: right">emergency_contacts<br><em>string</em></td>
 <td>Additional emergency contacts</td>
 </tr>
 <tr>
-<td style="text-align: right">personal_identifiers <br><em>string</em></td>
+<td style="text-align: right">personal_identifiers<br><em>string</em></td>
 <td>Any identifying marks such as scars, tatoos, etc.</td>
 </tr>
 <tr>
-<td style="text-align: right">medical_conditions <br><em>string</em></td>
+<td style="text-align: right">medical_conditions<br><em>string</em></td>
 <td>List of all known medical conditions</td>
 </tr>
 <tr>
-<td style="text-align: right">allergies <br><em>string</em></td>
+<td style="text-align: right">allergies<br><em>string</em></td>
 <td>List of all known allergies</td>
 </tr>
 <tr>
-<td style="text-align: right">medications <br><em>string</em></td>
+<td style="text-align: right">medications<br><em>string</em></td>
 <td>List of medications user is currently taking</td>
 </tr>
 <tr>
-<td style="text-align: right">emergency_instructions <br><em>string</em></td>
+<td style="text-align: right">emergency_instructions<br><em>string</em></td>
 <td>Instructions for specific emergencies</td>
+</tr>
+<tr>
+<td style="text-align: right">media<br><em>array</em></td>
+<td>List of private media objects associated with this profile</td>
 </tr>
 </tbody></table>
 
@@ -1297,75 +1445,24 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
     </span><span class="nt">"medical_conditions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gluten, penicillin"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medications"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"emergency_instructions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nt">"emergency_instructions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90eeaf15a65c4038b1043cbffab8f7ce"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0251/0225/0163/0012C9287B60724FEB0E7669AC49F092F313"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374150</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <h3 id="returns">Returns</h3>
 
 <p>The user&rsquo;s private profile object.</p>
-
-          <h2 id="upload-private-media">Upload private media</h2>
-
-<blockquote>
-<p><strong>Definition</strong></p>
-</blockquote>
-<pre class="highlight plaintext"><code>POST https://api.fabriq.io/profiles/private/media
-</code></pre>
-
-<blockquote>
-<p><strong>Sample Request</strong></p>
-</blockquote>
-<pre class="highlight shell"><code>curl https://api.fabriq.io/profiles/private/media  <span class="se">\</span>
-  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>  <span class="se">\</span>
-  -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
-
-</code></pre>
-
-<blockquote>
-<p><strong>Sample Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"be2aef2302e54b9e9ff9a4cf35c756a2"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442455556000</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0251/0225/0163/0012C9287B60724FEB0E7669AC49F092F313"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Upload media files by sending a request of type <code class="prettyprint">multipart/form-data</code>.</p>
-
-<p><br></p>
-
-<table><thead>
-<tr>
-<th style="text-align: right">ARGUMENTS</th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">file <br><strong>required</strong>, <em>media file</em></td>
-<td>The file to upload.  Currently, only image files are supported</td>
-</tr>
-<tr>
-<td style="text-align: right">latitude <br><em>optional</em>, <em>double</em></td>
-<td>Latitude where media was captured</td>
-</tr>
-<tr>
-<td style="text-align: right">longitude <br><em>optional</em>, <em>double</em></td>
-<td>Longitude where media was captured</td>
-</tr>
-<tr>
-<td style="text-align: right">description <br><em>optional</em> <em>string</em></td>
-<td>User provided description of the media</td>
-</tr>
-</tbody></table>
-
-<h3 id="returns">Returns</h3>
-
-<p>This method returns a <a href="#media">media</a> object with details of the file uploaded.</p>
 
           <h2 id="update-private-profile">Update private profile</h2>
 
@@ -1416,7 +1513,8 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
     </span><span class="nt">"medical_conditions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gluten, penicillin"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medications"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"emergency_instructions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nt">"emergency_instructions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1536,84 +1634,147 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 
 <p>Return the updated private profile object.</p>
 
-          <h1 id="position">Position</h1>
+          <h2 id="add-private-media">Add private media</h2>
 
-<p>The user&rsquo;s geolocation is updated during an activity or whenever an alert is triggered.</p>
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/profiles/private/media
+</code></pre>
 
-          <h2 id="the-position-object">The position object</h2>
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.fabriq.io/profiles/private/media  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>  <span class="se">\</span>
+  -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
+
+</code></pre>
 
 <blockquote>
 <p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.0154335191846</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2499519010123</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1401640196770</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"altitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">1606.125526428223</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"altitude_accuracy"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"heading"</span><span class="p">:</span><span class="w"> </span><span class="mf">187.03125</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"speed"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.410</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90eeaf15a65c4038b1043cbffab8f7ce"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0251/0225/0163/0012C9287B60724FEB0E7669AC49F092F313"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374150</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Upload media files by sending a request of type <code class="prettyprint">multipart/form-data</code>.</p>
+
+<p><br></p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">file<br><strong>required</strong>, <em>media file</em></td>
+<td>The file to upload.  Currently, only image files are supported</td>
+</tr>
+<tr>
+<td style="text-align: right">latitude<br><em>optional</em>, <em>double</em></td>
+<td>Latitude where media was captured</td>
+</tr>
+<tr>
+<td style="text-align: right">longitude<br><em>optional</em>, <em>double</em></td>
+<td>Longitude where media was captured</td>
+</tr>
+<tr>
+<td style="text-align: right">floor<br><em>optional</em>, <em>integer</em></td>
+<td>If indoors, floor of the venue<br><em>Street level (ground floor) is 0</em></td>
+</tr>
+<tr>
+<td style="text-align: right">description<br><em>optional</em> <em>string</em></td>
+<td>User provided description of the media</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>This method returns a <a href="#media">media</a> object with details of the file uploaded.</p>
+
+          <h2 id="remove-private-media">Remove private media</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/profiles/private/media/{MEDIA_UID}
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/profiles/private/media/90eeaf15a65c4038b1043cbffab8f7ce'</span> <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90eeaf15a65c4038b1043cbffab8f7ce"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <table><thead>
 <tr>
-<th style="text-align: right">ATTRIBUTES</th>
+<th style="text-align: right">ARGUMENTS</th>
 <th></th>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">latitude <br><em>double</em></td>
-<td>Position latitude</td>
-</tr>
-<tr>
-<td style="text-align: right">longitude <br><em>double</em></td>
-<td>Position longitude</td>
-</tr>
-<tr>
-<td style="text-align: right">timestamp <br><em>timestamp</em></td>
-<td>Timestamp in milliseconds when location was captured</td>
-</tr>
-<tr>
-<td style="text-align: right">altitude <br><em>double</em></td>
-<td>Position altitude (meters)</td>
-</tr>
-<tr>
-<td style="text-align: right">accuracy <br><em>double</em></td>
-<td>Position accuracy (if available)</td>
-</tr>
-<tr>
-<td style="text-align: right">altitude_accuracy <br><em>double</em></td>
-<td>Position altitude accuracy (if available)</td>
-</tr>
-<tr>
-<td style="text-align: right">heading <br><em>double</em></td>
-<td>Position heading (degrees clockwise from North)</td>
-</tr>
-<tr>
-<td style="text-align: right">speed <br><em>double</em></td>
-<td>Position speed (meters/second)</td>
+<td style="text-align: right">media_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of the private media object to be removed</td>
 </tr>
 </tbody></table>
 
-          <h1 id="media">Media</h1>
+<h3 id="returns">Returns</h3>
 
-<p>A number of resources require a file to be uploaded.  These files should be uploaded by sending a request
-of type <code class="prettyprint">multipart/form-data</code>. The uploaded file should follow the specifications of
-RFC 2388 which defines file transfers for the <code class="prettyprint">multipart/form-data</code> protocol.</p>
+<p>The uid of the media object that was removed.</p>
 
-          <h2 id="the-media-object">The media object</h2>
+          <h1 id="devices">Devices</h1>
+
+<p>A user can add multiple hardware devices associated with her account.  These devices may be standalone units with their
+own network connectivity (e.g. a satellite-based hardware PANIC button) or tethered to another device such as the
+user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth_low_energy">BLE</a> heart rate monitor.)</p>
+
+<p>Alerts may be automatically triggered by a device depending on its level of sophistication.</p>
+
+          <h2 id="the-device-object">The device object</h2>
 
 <blockquote>
 <p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fa4c01b994974daf83e4b121a078f428"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374150</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0218/0250/0215/00524CF105F2B817EEACE7ACE7AFFC17BA26"</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ble_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:FF:D0:FF:D1:C0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lan_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pnp_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"model_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"serial_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hardware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"firmware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"software_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"capabilities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ble"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1625,25 +1786,276 @@ RFC 2388 which defines file transfers for the <code class="prettyprint">multipar
 </thead><tbody>
 <tr>
 <td style="text-align: right">uid<br><em>string</em></td>
-<td>Unique identifier of the media object</td>
+<td>Unique identifier of the device</td>
 </tr>
 <tr>
-<td style="text-align: right">content_type<br><em>string</em></td>
-<td>The content-type of the uploaded file as determined by FABRIQ</td>
+<td style="text-align: right">user<br><em>string</em></td>
+<td>Uid of the user this device is assigned to.  This may or may not be the current user.<br><em>For example, a mom (the current user) could purchase this device (e.g. a BLE tracker) for her child in which case, the uid will be that of her child.</em></td>
 </tr>
 <tr>
-<td style="text-align: right">size<br><em>integer</em></td>
-<td>Size in bytes of the uploaded file</td>
+<td style="text-align: right">parent<br><em>string</em></td>
+<td>If this device is part of a larger system, then this field references the uid of that larger system.<br><em>For example, a home security system that has multiple sensors</em></td>
 </tr>
 <tr>
-<td style="text-align: right">created_date<br><em>timestamp</em></td>
-<td>Date file was uploaded</td>
+<td style="text-align: right">paried<br><em>string</em></td>
+<td>If this device is currently paired with another device, then this field references the uid of the other device</td>
 </tr>
 <tr>
-<td style="text-align: right">url<br><em>url</em></td>
-<td>URL to access the uploaded file.  Depending on the context of the upload this file may or may not be publicly accessible.</td>
+<td style="text-align: right">name<br><em>string</em></td>
+<td>Name of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">description<br><em>string</em></td>
+<td>Description of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">ble_mac_address<br><em>string</em></td>
+<td><a href="https://en.wikipedia.org/wiki/Bluetooth_low_energy">BLE</a> MAC address, if this is a bluetooth-enabled device</td>
+</tr>
+<tr>
+<td style="text-align: right">lan_mac_address<br><em>string</em></td>
+<td>Network MAC address, if this is a network-enabled device</td>
+</tr>
+<tr>
+<td style="text-align: right">pnp_id<br><em>string</em></td>
+<td>PNP ID of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">vendor<br><em>string</em></td>
+<td>Vendor of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">manufacturer<br><em>string</em></td>
+<td>Manufacturer of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">model_no<br><em>string</em></td>
+<td>Model number of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">serial_no<br><em>string</em></td>
+<td>Serial number of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">hardware_version<br><em>string</em></td>
+<td>Hardware version of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">firmware_version<br><em>string</em></td>
+<td>Firmware version of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">software_version<br><em>string</em></td>
+<td>Software version of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">capabilities<br><em>array</em></td>
+<td>List of features the device supports. Possible values <code class="prettyprint">ble</code>, <code class="prettyprint">rfid</code>, <code class="prettyprint">wifi</code>, <code class="prettyprint">cellular</code>, <code class="prettyprint">gps</code>, <code class="prettyprint">camera</code>, <code class="prettyprint">audio</code>, <code class="prettyprint">microphone</code>, <code class="prettyprint">accelerometer</code>, <code class="prettyprint">gyroscope</code></td>
 </tr>
 </tbody></table>
+
+          <h2 id="add-a-device">Add a device</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/devices
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/devices'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
+  -d <span class="s1">'{                                        
+         "name": "Teddy Tag",                   
+         "user": "9ff6178e851942cbb5a5ddc71f82588d",                   
+         "ble_mac_address": "20:FF:D0:FF:D1:C0",                   
+         "capabilities": ["ble"]                   
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ble_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:FF:D0:FF:D1:C0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lan_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pnp_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"model_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"serial_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hardware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"firmware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"software_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"capabilities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ble"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">name<br><strong>required</strong>, <em>string</em></td>
+<td>Name of the device<br><em>Unique across all devices owned by the current user</em></td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>A device object.</p>
+
+          <h2 id="retrieve-a-device">Retrieve a device</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/devices/{DEVICE_UID}
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/devices/7ce9d0b43d8543b2a53a3990028b4f27'</span> <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ble_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:FF:D0:FF:D1:C0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lan_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pnp_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"model_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"serial_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hardware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"firmware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"software_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"capabilities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ble"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">device_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of the device to be retrieved<br><em>URL parameter</em></td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>A device object.</p>
+
+          <h2 id="remove-a-device">Remove a device</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/devices/{DEVICE_UID}
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/devices/7ce9d0b43d8543b2a53a3990028b4f27'</span> <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">device_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of the device to be removed<br><em>URL parameter</em></td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>The uid of the device that was removed.</p>
+
+          <h2 id="list-all-devices">List all devices</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/devices
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/devices'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ble_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:FF:D0:FF:D1:C0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lan_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pnp_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"model_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"serial_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hardware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"firmware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"software_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"capabilities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ble"</span><span class="p">]</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<h3 id="returns">Returns</h3>
+
+<p>An array of devices.</p>
 
           <h1 id="circles">Circles</h1>
 
@@ -1658,7 +2070,7 @@ can choose which circles(s) receive the notifications.</p>
 <p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df2ecdaa-5597-11e5-a0dd-38c98601185b"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dea658b2684d11e5922038c98601185b"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
@@ -1736,18 +2148,61 @@ can choose which circles(s) receive the notifications.</p>
 
 <p>A circle object.</p>
 
-          <h2 id="upload-photo">Upload photo</h2>
+          <h2 id="retrieve-a-circle">Retrieve a circle</h2>
 
 <blockquote>
 <p><strong>Definition</strong></p>
 </blockquote>
-<pre class="highlight plaintext"><code>POST https://api.fabriq.io/circles/{CIRCLE_UID}/photos
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/circles/{CIRCLE_UID}
 </code></pre>
 
 <blockquote>
 <p><strong>Sample Request</strong></p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/circles/039d2aa25d4e11e5a0dd38c98601185b/photos'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/circles/dea658b2684d11e5922038c98601185b'</span> <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dea658b2684d11e5922038c98601185b"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">circle_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of the circle to be retrieved</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>A circle object.</p>
+
+          <h2 id="add-a-logo">Add a logo</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/circles/{CIRCLE_UID}/media
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/circles/039d2aa25d4e11e5a0dd38c98601185b/media'</span>  <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
@@ -1765,7 +2220,7 @@ can choose which circles(s) receive the notifications.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Upload media files by sending a request of type <code class="prettyprint">multipart/form-data</code>.</p>
+<p>Upload a logo or photo to represent this circle.</p>
 
 <p><br></p>
 
@@ -1784,6 +2239,57 @@ can choose which circles(s) receive the notifications.</p>
 <h3 id="returns">Returns</h3>
 
 <p>This method returns a <a href="#media">media</a> object with details of the file uploaded.</p>
+
+          <h2 id="remove-a-circle">Remove a circle</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/circles/{CIRCLE_UID}
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/circles/df363590684d11e5922038c98601185b'</span> <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df363590684d11e5922038c98601185b"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">circle_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of the circle to be removed</td>
+</tr>
+</tbody></table>
+
+<p><br/>
+<aside class="warning">
+The user&rsquo;s default circle cannot be removed.
+</aside></p>
+
+<p><br/>
+<aside class="info">
+Any contacts associated with this circle will be moved to the user&rsquo;s default circle
+before this circle is removed.
+</aside></p>
+
+<h3 id="returns">Returns</h3>
+
+<p>The uid of the circle that was removed.</p>
 
           <h2 id="list-all-circles">List all circles</h2>
 
@@ -1997,20 +2503,76 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 
 <p>A contact object.</p>
 
-          <h2 id="upload-photo">Upload photo</h2>
+          <h2 id="retrieve-a-contact">Retrieve a contact</h2>
 
 <blockquote>
 <p><strong>Definition</strong></p>
 </blockquote>
-<pre class="highlight plaintext"><code>POST https://api.fabriq.io/contacts/{CONTACT_UID}/photos
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/contacts/{CONTACT_UID}
 </code></pre>
 
 <blockquote>
 <p><strong>Sample Request</strong></p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/contacts/46b9f6da5da311e5936420c9d07e7899/photos'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/contacts/46b9f6da5da311e5936420c9d07e7899'</span> <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46b9f6da5da311e5936420c9d07e7899"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551212"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sms_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"push_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"circles"</span><span class="p">:[{</span><span class="w">
+        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45778d285da311e5936420c9d07e7899"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">contact_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of the contact to be retrieved</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>A contact object.</p>
+
+          <h2 id="upload-media">Upload media</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/contacts/{CONTACT_UID}/media
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/contacts/46b9f6da5da311e5936420c9d07e7899/media'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span> <span class="se">\</span>
   -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
 </code></pre>
 
@@ -2045,6 +2607,46 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 <h3 id="returns">Returns</h3>
 
 <p>This method returns a <a href="#media">media</a> object with details of the file uploaded.</p>
+
+          <h2 id="remove-a-contact">Remove a contact</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/contacts/{CONTACT_UID}
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/contacts/38f074edb16241b7a662021425fe7f68'</span> <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38f074edb16241b7a662021425fe7f68"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">contact_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of the contact to be removed</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>The uid of the contact that was removed.</p>
 
           <h2 id="list-all-contacts">List all contacts</h2>
 
@@ -2119,6 +2721,11 @@ respond to this ping within a specified period of time, an automatic alert will 
 <p>The user can request to have his or her contacts notified that have started and/or ended an activity.  The user will
 receive a message with a link to watch the user in real-time.</p>
 
+<h3 id="app-defined-notification">App-Defined Notification</h3>
+
+<p>You can define notifications specific to your app which can be triggered manually or
+automatically on behalf of the user.</p>
+
           <h2 id="the-alert-object">The alert object</h2>
 
 <blockquote>
@@ -2129,11 +2736,14 @@ receive a message with a link to watch the user in real-time.</p>
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"activity_uid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"activity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442763924433</span><span class="p">,</span><span class="w">
     </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"46b9f6da5da311e5936420c9d07e7899"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2144,40 +2754,52 @@ receive a message with a link to watch the user in real-time.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">uid <br><em>string</em></td>
+<td style="text-align: right">uid<br><em>string</em></td>
 <td>Unique identifier of the alert</td>
 </tr>
 <tr>
-<td style="text-align: right">type <br><em>string</em></td>
-<td>Type of the alert. Possible values <code class="prettyprint">panic</code>, <code class="prettyprint">timeout</code>, <code class="prettyprint">ping</code>, <code class="prettyprint">start_activity</code>, <code class="prettyprint">end_activity</code></td>
+<td style="text-align: right">type<br><em>string</em></td>
+<td>Type of the alert. Possible values <code class="prettyprint">panic</code>, <code class="prettyprint">notification</code>, <code class="prettyprint">timeout</code>, <code class="prettyprint">ping</code>, <code class="prettyprint">start_activity</code>, <code class="prettyprint">end_activity</code></td>
 </tr>
 <tr>
-<td style="text-align: right">latitude <br><em>double</em></td>
+<td style="text-align: right">latitude<br><em>double</em></td>
 <td>Latitude where alert was triggered</td>
 </tr>
 <tr>
-<td style="text-align: right">longitude <br><em>double</em></td>
+<td style="text-align: right">longitude<br><em>double</em></td>
 <td>Longitude where alert was triggered</td>
 </tr>
 <tr>
-<td style="text-align: right">activity_uid <br><em>string</em></td>
-<td>Activity associated with this alert</td>
+<td style="text-align: right">floor<br><em>integer</em></td>
+<td>If indoors, floor of the venue<br><em>Street level (ground floor) is 0</em></td>
 </tr>
 <tr>
-<td style="text-align: right">alert_date <br><em>timestamp</em></td>
+<td style="text-align: right">device<br><em>string</em></td>
+<td>Device uid associated with this alert</td>
+</tr>
+<tr>
+<td style="text-align: right">activity<br><em>string</em></td>
+<td>Activity uid associated with this alert</td>
+</tr>
+<tr>
+<td style="text-align: right">alert_date<br><em>timestamp</em></td>
 <td>Timestamp (UTC) when alert was triggered</td>
 </tr>
 <tr>
-<td style="text-align: right">acknowledged <br><em>boolean</em></td>
+<td style="text-align: right">acknowledged<br><em>boolean</em></td>
 <td>Alert has been acknowledged by at least one contact</td>
 </tr>
 <tr>
-<td style="text-align: right">canceled <br><em>boolean</em></td>
+<td style="text-align: right">canceled<br><em>boolean</em></td>
 <td>Flag to indicate if this alert has been canceled</td>
 </tr>
 <tr>
-<td style="text-align: right">canceled_date <br><em>timestamp</em></td>
+<td style="text-align: right">canceled_date<br><em>timestamp</em></td>
 <td>Timestamp (UTC) when alert was canceled</td>
+</tr>
+<tr>
+<td style="text-align: right">contacts<br><em>array</em></td>
+<td>List of contacts notified by this alert</td>
 </tr>
 </tbody></table>
 
@@ -2210,13 +2832,18 @@ receive a message with a link to watch the user in real-time.</p>
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"activity_uid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"activity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442763924433</span><span class="p">,</span><span class="w">
     </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"46b9f6da5da311e5936420c9d07e7899"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<p>A PANIC alert is sent all of the user&rsquo;s contacts.</p>
 
 <table><thead>
 <tr>
@@ -2225,8 +2852,12 @@ receive a message with a link to watch the user in real-time.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">activity_uid<br><em>optional</em>, <em>string</em></td>
-<td>Activity associated with this alert</td>
+<td style="text-align: right">device<br><em>optional</em>, <em>string</em></td>
+<td><code class="prettyprint">device_uid</code> that triggered this alert</td>
+</tr>
+<tr>
+<td style="text-align: right">activity<br><em>optional</em>, <em>string</em></td>
+<td><code class="prettyprint">activity_uid</code> associated with this panic alert</td>
 </tr>
 <tr>
 <td style="text-align: right">latitude<br><em>optional</em>, <em>double</em></td>
@@ -2235,6 +2866,95 @@ receive a message with a link to watch the user in real-time.</p>
 <tr>
 <td style="text-align: right">longitude<br><em>optional</em>, <em>double</em></td>
 <td>Longitude where alert was triggered</td>
+</tr>
+<tr>
+<td style="text-align: right">floor<br><em>optional</em>, <em>integer</em></td>
+<td>If indoors, floor of the venue<br><em>Street level (ground floor) is 0</em></td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>An alert object if messages were successfully sent to the user&rsquo;s contact(s).</p>
+
+          <h2 id="trigger-a-notification">Trigger a Notification</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/alerts/notifications/{NOTIFICATION_UID}
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/alerts/notifications/68a6e7fe5f324e048ea2f2b29271f895'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
+  -d <span class="s1">'{                                        
+        "latitude": 40.01592844038895,                    
+        "longitude": -105.2487217142231,
+        "circles": ["dea658b2684d11e5922038c98601185b"]
+       }'</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c2e0f1b0ce94b7ea75104a2ef022529"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notification"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"activity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442763924433</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"46b9f6da5da311e5936420c9d07e7899"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Trigger an <a href="#create-a-notification">app-defined notification</a>.</p>
+
+<p><br></p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">notification_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of notification to trigger<br><em>URL parameter</em></td>
+</tr>
+<tr>
+<td style="text-align: right">circles<br><strong>required</strong>, <em>array</em></td>
+<td>List of <code class="prettyprint">circle_uid</code>&rsquo;s that will be notified when this notification is triggered<br><em>The result object contains the list of contacts that were notified</em></td>
+</tr>
+<tr>
+<td style="text-align: right">device<br><em>optional</em>, <em>string</em></td>
+<td><code class="prettyprint">device_uid</code> that triggered this notification</td>
+</tr>
+<tr>
+<td style="text-align: right">activity<br><em>optional</em>, <em>string</em></td>
+<td><code class="prettyprint">activity_uid</code> associated with this notification</td>
+</tr>
+<tr>
+<td style="text-align: right">latitude<br><em>optional</em>, <em>double</em></td>
+<td>Latitude where alert was triggered</td>
+</tr>
+<tr>
+<td style="text-align: right">longitude<br><em>optional</em>, <em>double</em></td>
+<td>Longitude where alert was triggered</td>
+</tr>
+<tr>
+<td style="text-align: right">floor<br><em>optional</em>, <em>integer</em></td>
+<td>If indoors, floor of the venue<br><em>Street level (ground floor) is 0</em></td>
 </tr>
 </tbody></table>
 
@@ -2264,10 +2984,14 @@ receive a message with a link to watch the user in real-time.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e7302afdc5b145b5820a126d96d0885e"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0007/0044/0012/005598E45DF88488D1E6E8AA7CB9A6CC2E77"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"audio/x-wav"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">63128</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442187162361</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0007/0044/0012/005598E45DF88488D1E6E8AA7CB9A6CC2E77"</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442187162361</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2285,6 +3009,22 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <tr>
 <td style="text-align: right">file<br><strong>required</strong>, <em>file</em></td>
 <td>The file to upload.  Currently only <a href="https://en.wikipedia.org/wiki/WAV">WAV</a> and <a href="https://en.wikipedia.org/wiki/Adaptive_Multi-Rate_audio_codec">AMR</a> audio files are supported.</td>
+</tr>
+<tr>
+<td style="text-align: right">latitude<br><em>optional</em>, <em>double</em></td>
+<td>Latitude where media was captured</td>
+</tr>
+<tr>
+<td style="text-align: right">longitude<br><em>optional</em>, <em>double</em></td>
+<td>Longitude where media was captured</td>
+</tr>
+<tr>
+<td style="text-align: right">floor<br><em>optional</em>, <em>integer</em></td>
+<td>If indoors, floor of the venue<br><em>Street level (ground floor) is 0</em></td>
+</tr>
+<tr>
+<td style="text-align: right">description<br><em>optional</em>, <em>string</em></td>
+<td>Description of the media</td>
 </tr>
 </tbody></table>
 
@@ -2366,11 +3106,14 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"activity_uid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"activity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442763924000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"46b9f6da5da311e5936420c9d07e7899"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2415,11 +3158,14 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"activity_uid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"activity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="p">,</span><span class="w">
     </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="w">
+    </span><span class="nt">"canceled_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"46b9f6da5da311e5936420c9d07e7899"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2481,10 +3227,13 @@ an error message.</p>
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01592844038895</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2487217142231</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"activity_uid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"activity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1440975513777</span><span class="p">,</span><span class="w">
     </span><span class="nt">"acknowledged"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"46b9f6da5da311e5936420c9d07e7899"</span><span class="p">]</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre>
 
@@ -2508,14 +3257,17 @@ an error message.</p>
 
     </span><span class="nt">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1279 Harrison Ct, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
 
     </span><span class="nt">"end_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01554089136423</span><span class="p">,</span><span class="w">
     </span><span class="nt">"end_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2499387414243</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"end_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1654 33rd St, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
 
     </span><span class="nt">"dest_lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"dest_lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"dest_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 
     </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1435754562000</span><span class="p">,</span><span class="w">
@@ -2528,13 +3280,13 @@ an error message.</p>
     </span><span class="nt">"alert_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timeout"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400000</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w"> </span><span class="p">]</span><span class="w">
     </span><span class="p">},{</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"start_activity"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w"> </span><span class="p">]</span><span class="w">
     </span><span class="p">},{</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"end_activity"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w"> </span><span class="p">]</span><span class="w">
     </span><span class="p">}],</span><span class="w">
 
     </span><span class="nt">"alerts_triggered"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"451bc6c0-8231-44dd-8168-d722b86f04f5"</span><span class="w"> </span><span class="p">]</span><span class="w">
@@ -2635,7 +3387,7 @@ an error message.</p>
 </tr>
 <tr>
 <td style="text-align: right">circles <br><em>list</em></td>
-<td>The list of circles that will notified if this alert is triggered</td>
+<td>The list of <code class="prettyprint">circle_uid</code> that will notified if this alert is triggered</td>
 </tr>
 <tr>
 <td style="text-align: right">timeout <br><em>integer</em></td>
@@ -2687,14 +3439,17 @@ an error message.</p>
 
     </span><span class="nt">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1279 Harrison Ct, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
 
     </span><span class="nt">"end_lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"end_lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"end_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 
     </span><span class="nt">"dest_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01554089136423</span><span class="p">,</span><span class="w">
     </span><span class="nt">"dest_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2499387414243</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"dest_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1654 33rd St, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
 
     </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1435754562000</span><span class="p">,</span><span class="w">
@@ -2707,10 +3462,10 @@ an error message.</p>
     </span><span class="nt">"alert_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timeout"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400000</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w"> </span><span class="p">]</span><span class="w">
     </span><span class="p">},{</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"start_activity"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w"> </span><span class="p">]</span><span class="w">
     </span><span class="p">}],</span><span class="w">
 
     </span><span class="nt">"alerts_triggered"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
@@ -2846,11 +3601,15 @@ an error message.</p>
 <p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"990610ab5b2d437cab3205523dcb83a5"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442289154770</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0200/0220/0224/024983F11F0912BA570C8D6CB1E345E770C0"</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"990610ab5b2d437cab3205523dcb83a5"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0200/0220/0224/024983F11F0912BA570C8D6CB1E345E770C0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01547488387676</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2499169484761</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442289154770</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2875,6 +3634,10 @@ an error message.</p>
 <tr>
 <td style="text-align: right">longitude<br><em>optional</em>, <em>double</em></td>
 <td>Longitude where media was captured</td>
+</tr>
+<tr>
+<td style="text-align: right">floor<br><em>optional</em>, <em>integer</em></td>
+<td>If indoors, floor of the venue<br><em>Street level (ground floor) is 0</em></td>
 </tr>
 <tr>
 <td style="text-align: right">description<br><em>optional</em>, <em>string</em></td>
@@ -2914,14 +3677,17 @@ an error message.</p>
 
     </span><span class="nt">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1279 Harrison Ct, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
 
     </span><span class="nt">"end_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01554089136423</span><span class="p">,</span><span class="w">
     </span><span class="nt">"end_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2499387414243</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"end_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1654 33rd St, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
 
     </span><span class="nt">"dest_lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"dest_lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"dest_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 
     </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1435754562000</span><span class="p">,</span><span class="w">
@@ -2934,13 +3700,13 @@ an error message.</p>
     </span><span class="nt">"alert_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timeout"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400000</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w"> </span><span class="p">]</span><span class="w">
     </span><span class="p">},{</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"start_activity"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w"> </span><span class="p">]</span><span class="w">
     </span><span class="p">},{</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"end_activity"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w"> </span><span class="p">]</span><span class="w">
     </span><span class="p">}],</span><span class="w">
 
     </span><span class="nt">"alerts_triggered"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
@@ -3002,14 +3768,17 @@ Please note that the arguments are passed in the HTTP DELETE method as query par
 
     </span><span class="nt">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1279 Harrison Ct, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
 
     </span><span class="nt">"end_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01554089136423</span><span class="p">,</span><span class="w">
     </span><span class="nt">"end_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2499387414243</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"end_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1654 33rd St, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
 
     </span><span class="nt">"dest_lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"dest_lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"dest_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 
     </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1435754562000</span><span class="p">,</span><span class="w">
@@ -3022,13 +3791,13 @@ Please note that the arguments are passed in the HTTP DELETE method as query par
     </span><span class="nt">"alert_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timeout"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400000</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="p">]</span><span class="w">
     </span><span class="p">},{</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"start_activity"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="p">]</span><span class="w">
     </span><span class="p">},{</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"end_activity"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"circle_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="p">]</span><span class="w">
     </span><span class="p">}],</span><span class="w">
 
     </span><span class="nt">"alerts_triggered"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
@@ -3066,19 +3835,23 @@ an external source (e.g. a police report).</p>
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ed205f519264529a86014901151dda5"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wildlife"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1279 Harrison Ct, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"threat_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341176000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"reported_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341176000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"media"</span><span class="p">:[{</span><span class="w">
         </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fa4c01b994974daf83e4b121a078f428"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0218/0250/0215/00524CF105F2B817EEACE7ACE7AFFC17BA26"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374000</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0218/0250/0215/00524CF105F2B817EEACE7ACE7AFFC17BA26"</span><span class="w">
+        </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374000</span><span class="w">
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3090,47 +3863,47 @@ an external source (e.g. a police report).</p>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">uid <br><em>string</em></td>
+<td style="text-align: right">uid<br><em>string</em></td>
 <td>Unique identifier of the threat</td>
 </tr>
 <tr>
-<td style="text-align: right">type <br><em>string</em></td>
+<td style="text-align: right">type<br><em>string</em></td>
 <td>Threat type.  Possible values: <code class="prettyprint">suspicous_person</code>, <code class="prettyprint">suspicious_object</code>, <code class="prettyprint">accident</code>, <code class="prettyprint">road_block</code>, <code class="prettyprint">road_ice</code>, <code class="prettyprint">utility</code>, <code class="prettyprint">weather</code>, <code class="prettyprint">flood</code>, <code class="prettyprint">fire</code>, <code class="prettyprint">wildlife</code>, <code class="prettyprint">shooting</code>, <code class="prettyprint">hazardous_material</code>, <code class="prettyprint">other</code></td>
 </tr>
 <tr>
-<td style="text-align: right">level <br><em>string</em></td>
+<td style="text-align: right">level<br><em>string</em></td>
 <td>Threat level. Possible values: <code class="prettyprint">low</code>, <code class="prettyprint">medium</code>, <code class="prettyprint">high</code>, <code class="prettyprint">severe</code></td>
 </tr>
 <tr>
-<td style="text-align: right">test <br><em>boolean</em></td>
-<td>Indicates this was a test submission and should not be shown to your users</td>
-</tr>
-<tr>
-<td style="text-align: right">latitude <br><em>double</em></td>
+<td style="text-align: right">latitude<br><em>double</em></td>
 <td>Latitude of the reported threat</td>
 </tr>
 <tr>
-<td style="text-align: right">longitude <br><em>double</em></td>
+<td style="text-align: right">longitude<br><em>double</em></td>
 <td>Longitude of the reported threat</td>
 </tr>
 <tr>
-<td style="text-align: right">address <br><em>string</em></td>
+<td style="text-align: right">floor<br><em>integer</em></td>
+<td>If indoors, floor of the venue<br><em>Street level (ground floor) is 0</em></td>
+</tr>
+<tr>
+<td style="text-align: right">address<br><em>string</em></td>
 <td>Geocoded address of the latitude and longitude</td>
 </tr>
 <tr>
-<td style="text-align: right">description <br><em>string</em></td>
+<td style="text-align: right">description<br><em>string</em></td>
 <td>User provided description of the threat</td>
 </tr>
 <tr>
-<td style="text-align: right">threat_date <br><em>timestamp</em></td>
+<td style="text-align: right">threat_date<br><em>timestamp</em></td>
 <td>Timestamp when the threat occurred.  If not known this date defaults to the reported_date</td>
 </tr>
 <tr>
-<td style="text-align: right">reported_date <br><em>timestamp</em></td>
+<td style="text-align: right">reported_date<br><em>timestamp</em></td>
 <td>Timestamp when the threat was first reported</td>
 </tr>
 <tr>
-<td style="text-align: right">media <br><em>dictionary</em></td>
+<td style="text-align: right">media<br><em>array</em></td>
 <td>List of media objects associated with this threat</td>
 </tr>
 </tbody></table>
@@ -3165,9 +3938,9 @@ an external source (e.g. a police report).</p>
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ed205f519264529a86014901151dda5"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wildlife"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1279 Harrison Ct, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rattlesnake on the path"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"threat_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341176384</span><span class="p">,</span><span class="w">
@@ -3183,39 +3956,39 @@ an external source (e.g. a police report).</p>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">type <br><strong>required</strong>, <em>string</em></td>
+<td style="text-align: right">type<br><strong>required</strong>, <em>string</em></td>
 <td>Threat type.  Possible values: <code class="prettyprint">suspicous_person</code>, <code class="prettyprint">suspicious_object</code>, <code class="prettyprint">accident</code>, <code class="prettyprint">road_block</code>, <code class="prettyprint">road_ice</code>, <code class="prettyprint">utility</code>, <code class="prettyprint">weather</code>, <code class="prettyprint">flood</code>, <code class="prettyprint">fire</code>, <code class="prettyprint">wildlife</code>, <code class="prettyprint">shooting</code>, <code class="prettyprint">hazardous_material</code>, <code class="prettyprint">other</code></td>
 </tr>
 <tr>
-<td style="text-align: right">latitude <br><strong>required</strong>, <em>double</em></td>
+<td style="text-align: right">latitude<br><strong>required</strong>, <em>double</em></td>
 <td>Latitude of the reported threat</td>
 </tr>
 <tr>
-<td style="text-align: right">longitude <br><strong>required</strong>, <em>double</em></td>
+<td style="text-align: right">longitude<br><strong>required</strong>, <em>double</em></td>
 <td>Longitude of the reported threat</td>
 </tr>
 <tr>
-<td style="text-align: right">level <br><em>optional</em>, <em>string</em></td>
+<td style="text-align: right">floor<br><em>optional</em>, <em>integer</em></td>
+<td>If indoors, floor of the venue<br><em>Street level (ground floor) is 0</em></td>
+</tr>
+<tr>
+<td style="text-align: right">level<br><em>optional</em>, <em>string</em></td>
 <td>Threat level.  Possible values: <code class="prettyprint">low</code>, <code class="prettyprint">medium</code>, <code class="prettyprint">high</code>, <code class="prettyprint">severe</code>.  Default is <code class="prettyprint">medium</code></td>
 </tr>
 <tr>
-<td style="text-align: right">description <br><em>optional</em>, <em>string</em></td>
+<td style="text-align: right">description<br><em>optional</em>, <em>string</em></td>
 <td>User provided description of the threat</td>
 </tr>
 <tr>
-<td style="text-align: right">activity_uid <br><em>optional</em>, <em>string</em></td>
+<td style="text-align: right">activity<br><em>optional</em>, <em>string</em></td>
 <td>If an <a href="#activity">activity</a> is in progress, set its <code class="prettyprint">uid</code></td>
 </tr>
 <tr>
-<td style="text-align: right">test <br><em>optional</em>, <em>boolean</em></td>
-<td>Indicate this is a test report which should not be displayed to users</td>
-</tr>
-<tr>
-<td style="text-align: right">anonymous <br><em>optional</em>, <em>boolean</em></td>
+<td style="text-align: right">anonymous<br><em>optional</em>, <em>boolean</em></td>
 <td>Indicate that this user wishes to submit this report anonymously</td>
 </tr>
 <tr>
-<td style="text-align: right">threat_date <br><em>optional</em>, <em>timestamp</em></td>
+<td style="text-align: right">threat_date<br><em>optional</em>, <em>timestamp</em></td>
 <td>Timestamp when the threat occurred.  Defaults to current time if not known</td>
 </tr>
 </tbody></table>
@@ -3224,7 +3997,7 @@ an external source (e.g. a police report).</p>
 
 <p>A threat object.</p>
 
-          <h2 id="upload-media">Upload media</h2>
+          <h2 id="add-media">Add media</h2>
 
 <blockquote>
 <p><strong>Definition</strong></p>
@@ -3248,10 +4021,14 @@ an external source (e.g. a police report).</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fa4c01b994974daf83e4b121a078f428"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0218/0250/0215/00524CF105F2B817EEACE7ACE7AFFC17BA26"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374150</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0218/0250/0215/00524CF105F2B817EEACE7ACE7AFFC17BA26"</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01547488387676</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2499169484761</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374150</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -3267,19 +4044,23 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">file <br><strong>required</strong></td>
+<td style="text-align: right">file<br><strong>required</strong></td>
 <td>The file to upload.  Currently, only image files are supported.</td>
 </tr>
 <tr>
-<td style="text-align: right">latitude <br><em>optional</em></td>
+<td style="text-align: right">latitude<br><em>optional</em></td>
 <td>Latitude where media was captured</td>
 </tr>
 <tr>
-<td style="text-align: right">longitude <br><em>optional</em></td>
+<td style="text-align: right">longitude<br><em>optional</em></td>
 <td>Longitude where media was captured</td>
 </tr>
 <tr>
-<td style="text-align: right">description <br><em>optional</em></td>
+<td style="text-align: right">floor<br><em>optional</em>, <em>integer</em></td>
+<td>If indoors, floor of the venue<br><em>Street level (ground floor) is 0</em></td>
+</tr>
+<tr>
+<td style="text-align: right">description<br><em>optional</em></td>
 <td>User provided description of the media</td>
 </tr>
 </tbody></table>
@@ -3287,6 +4068,46 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <h3 id="returns">Returns</h3>
 
 <p>This method returns a media object with details of the file uploaded.</p>
+
+          <h2 id="remove-media">Remove media</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/threats/{THREAT_UID}/media/{MEDIA_UID}
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/threats/7ed205f519264529a86014901151dda5/media/fa4c01b994974daf83e4b121a078f428'</span> <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fa4c01b994974daf83e4b121a078f428"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">media_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of the media object to be removed</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>The uid of the media object that was removed.</p>
 
           <h2 id="retrieve-a-threat">Retrieve a threat</h2>
 
@@ -3311,19 +4132,23 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ed205f519264529a86014901151dda5"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wildlife"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1279 Harrison Ct, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"threat_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341176000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"reported_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341176000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"media"</span><span class="p">:[{</span><span class="w">
         </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fa4c01b994974daf83e4b121a078f428"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0218/0250/0215/00524CF105F2B817EEACE7ACE7AFFC17BA26"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374000</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0218/0250/0215/00524CF105F2B817EEACE7ACE7AFFC17BA26"</span><span class="w">
+        </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374000</span><span class="w">
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3364,7 +4189,6 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"775a91b7390d4108ba650003143f8487"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3414,19 +4238,23 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ed205f519264529a86014901151dda5"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wildlife"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
     </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1279 Harrison Ct, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"threat_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341176000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"reported_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341176000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"media"</span><span class="p">:[{</span><span class="w">
         </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fa4c01b994974daf83e4b121a078f428"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0218/0250/0215/00524CF105F2B817EEACE7ACE7AFFC17BA26"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45950</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374000</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://fabriq.io/files/0218/0250/0215/00524CF105F2B817EEACE7ACE7AFFC17BA26"</span><span class="w">
+        </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442341374000</span><span class="w">
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre>
@@ -3448,10 +4276,6 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <tr>
 <td style="text-align: right">radius <br><strong>required</strong>, <em>double</em></td>
 <td>Radius (in meters) of reported threats</td>
-</tr>
-<tr>
-<td style="text-align: right">test <br><em>optional</em>, <em>boolean</em></td>
-<td>Include reports flagged as <code class="prettyprint">test</code>. Default is false</td>
 </tr>
 <tr>
 <td style="text-align: right">max_age <br><em>optional</em>, <em>integer</em></td>
@@ -3489,7 +4313,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
     </span><span class="nt">"alert_activity_start_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, letting you know I'm heading out for my workout."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_activity_end_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, letting you know I'm back from my workout."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_activity_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I went for a workout and should've been back by now!"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I haven't responded to my security checks!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I haven't responded to my safety check-in message!"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_ping_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">30000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_ping_retry_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_ping_timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">60000</span><span class="w">
@@ -3580,7 +4404,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
     </span><span class="nt">"alert_activity_start_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, letting you know I'm heading out for my workout."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_activity_end_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, letting you know I'm back from my workout."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_activity_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I went for a workout and should've been back by now!"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I haven't responded to my security checks!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_timeout_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELP! I haven't responded to my safety check-in message!"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_ping_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">30000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_ping_retry_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_ping_timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">60000</span><span class="w">
@@ -3623,7 +4447,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
     </span><span class="nt">"alert_activity_start_message"</span><span class="p">:</span><span class="s2">"Hi, letting you know I'm heading out for my workout."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_activity_end_message"</span><span class="p">:</span><span class="s2">"Hi, letting you know I'm back from my workout."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_activity_timeout_message"</span><span class="p">:</span><span class="s2">"HELP! I went for a workout and should've been back by now!"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"alert_ping_timeout_message"</span><span class="p">:</span><span class="s2">"HELP! I haven't responded to my security checks!"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"alert_ping_timeout_message"</span><span class="p">:</span><span class="s2">"HELP! I haven't responded to my safety check-in message!"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_ping_interval"</span><span class="p">:</span><span class="mi">30000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_ping_retry_count"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_ping_timeout"</span><span class="p">:</span><span class="mi">60000</span><span class="w">
@@ -3689,6 +4513,335 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <h3 id="returns">Returns</h3>
 
 <p>Return the updated settings object.</p>
+
+          <h1 class="toc-divider hidden">App Resources</h1>
+
+          <h1 id="users">Users</h1>
+
+<p>App level API calls to manage user accounts.</p>
+
+          <h2 id="create-a-user">Create a user</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/app/users
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/app/users'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>  <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
+  -d <span class="s1">'{                                        
+        "mobile_number": "+12155551111"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f3c84161994841c49d729ff97bd0ead0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551112"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551112"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"has_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"is_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"grants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"panic"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"geoblast"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">mobile_number <br><strong>required</strong>, <em>string</em></td>
+<td>User&rsquo;s mobile number (<a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>)<br><em>The user will receive a text message to confirm her mobile number</em></td>
+</tr>
+<tr>
+<td style="text-align: right">email <br><em>optional</em>, <em>string</em></td>
+<td>User&rsquo;s email address (must be valid and unique)<br><em>The user will receive an email to confirm her email</em></td>
+</tr>
+<tr>
+<td style="text-align: right">username <br><em>optional</em>, <em>string</em></td>
+<td>User&rsquo;s username (must be valid and available)</td>
+</tr>
+<tr>
+<td style="text-align: right">first_name <br><em>optional</em>, <em>string</em></td>
+<td>User&rsquo;s first name</td>
+</tr>
+<tr>
+<td style="text-align: right">last_name <br><em>optional</em>, <em>string</em></td>
+<td>User&rsquo;s last name</td>
+</tr>
+<tr>
+<td style="text-align: right">login <br><em>optional</em>, <em>boolean</em></td>
+<td>If true, the user will be logged in and the return object will include an access_token</td>
+</tr>
+</tbody></table>
+
+<p><br/>
+<aside class="notice">
+Please note that the argument <code>login</code> should be passed in as query parameter in the REST API.
+</aside></p>
+
+<p><code style="display:block;text-align:center;margin-top:20px;color:#000;padding:10px;">
+POST https://api.fabriq.io/app/users?login=true
+</code></p>
+
+<h3 id="returns">Returns</h3>
+
+<p>A user object.  If the query parameter login is set to true, then the return object will include an
+access_token.</p>
+
+          <h1 id="notifications">Notifications</h1>
+
+<p>Create app-specific notifications that can be triggered by the user.</p>
+
+          <h2 id="the-notification-object">The notification object</h2>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68a6e7fe5f324e048ea2f2b29271f895"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campus Escort"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Requesting an escort to walk home."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cancel_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Escort no longer needed. Thank you."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pin_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ATTRIBUTES</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">name<br><em>string</em></td>
+<td>Notification name</td>
+</tr>
+<tr>
+<td style="text-align: right">message<br><em>string</em></td>
+<td>Default message sent to the user&rsquo;s contacts</td>
+</tr>
+<tr>
+<td style="text-align: right">cancel_message<br><em>string</em></td>
+<td>If set, allows the notification to be &ldquo;canceled&rdquo; with this message sent to the user&rsquo;s contacts</td>
+</tr>
+<tr>
+<td style="text-align: right">pin_required<br><em>boolean</em></td>
+<td>If true, the notification can only be canceled with a PIN</td>
+</tr>
+<tr>
+<td style="text-align: right">priority<br><em>integer</em></td>
+<td>Relative priority of this notification relative to others defined by your app.<br><em>Default is 10</em></td>
+</tr>
+<tr>
+<td style="text-align: right">description<br><em>string</em></td>
+<td>A description for this notification</td>
+</tr>
+</tbody></table>
+
+          <h2 id="create-a-notification">Create a notification</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/app/notifications
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/app/notifications'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>  <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
+  -d <span class="s1">'{                                        
+        "name": "Campus Escort",
+        "message": "Requesting an escort to walk home.",
+        "cancel_message": "Escort no longer needed. Thank you.",
+        "pin_required": true
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68a6e7fe5f324e048ea2f2b29271f895"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campus Escort"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Requesting an escort to walk home."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cancel_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Escort no longer needed. Thank you."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pin_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">name<br><strong>required</strong>, <em>string</em></td>
+<td>Notification name</td>
+</tr>
+<tr>
+<td style="text-align: right">message<br><strong>required</strong>, <em>string</em></td>
+<td>Default message sent to the user&rsquo;s contacts</td>
+</tr>
+<tr>
+<td style="text-align: right">cancel_message<br><em>optional</em>, <em>string</em></td>
+<td>If set, allows the notification to be &ldquo;canceled&rdquo; with this message sent to the user&rsquo;s contacts</td>
+</tr>
+<tr>
+<td style="text-align: right">pin_required<br><em>optional</em>, <em>boolean</em></td>
+<td>If true, the notification can only be canceled with a PIN</td>
+</tr>
+<tr>
+<td style="text-align: right">priority<br><em>optional</em>, <em>integer</em></td>
+<td>Relative priority of this notification relative to others defined by your app.<br><em>Default is 10</em></td>
+</tr>
+<tr>
+<td style="text-align: right">description<br><em>optional</em>, <em>string</em></td>
+<td>A description for this notification</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>A notification object.  Use the returned <code class="prettyprint">uid</code> to <a href="#trigger-a-notification">trigger the notification</a>.</p>
+
+          <h2 id="retrieve-a-notification">Retrieve a notification</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/app/notifications/{NOTIFICATION_UID}
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/app/notifications/68a6e7fe5f324e048ea2f2b29271f895'</span> <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68a6e7fe5f324e048ea2f2b29271f895"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campus Escort"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Requesting an escort to walk home."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cancel_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Escort no longer needed. Thank you."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pin_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">notification_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of the notification to be retrieved<br><em>URL parameter</em></td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>A device object.</p>
+
+          <h2 id="remove-a-notification">Remove a notification</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/app/notifications/{NOTIFICATION_UID}
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/notifications/68a6e7fe5f324e048ea2f2b29271f895'</span> <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68a6e7fe5f324e048ea2f2b29271f895"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">notification_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of the notification to be removed<br><em>URL parameter</em></td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>The uid of the notification that was removed.</p>
+
+          <h2 id="list-all-notifications">List all notifications</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/app/notifications
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/app/notifications'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68a6e7fe5f324e048ea2f2b29271f895"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campus Escort"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Requesting an escort to walk home."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cancel_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Escort no longer needed. Thank you."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pin_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<h3 id="returns">Returns</h3>
+
+<p>An array of notifications.</p>
 
       </div>
       <div class="dark-box">

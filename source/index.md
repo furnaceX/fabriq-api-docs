@@ -26,6 +26,16 @@ includes:
 
   - inapp-browser
 
+
+  - divider-resource-objects
+
+  - resource-objects/position/info
+  - resource-objects/position/object
+
+  - resource-objects/media/info
+  - resource-objects/media/object
+
+  
   - divider-user-resources
 
   - user-resources/users/info
@@ -46,11 +56,7 @@ includes:
   - user-resources/profiles/add-private-media
   - user-resources/profiles/remove-private-media
 
-  - user-resources/position/info
-  - user-resources/position/object
 
-  - user-resources/media/info
-  - user-resources/media/object
 
   - user-resources/devices/info
   - user-resources/devices/object
@@ -115,7 +121,11 @@ includes:
   - app-resources/users/create
 
   - app-resources/notifications/info
+  - app-resources/notifications/object
   - app-resources/notifications/create
+  - app-resources/notifications/fetch
+  - app-resources/notifications/remove
+  - app-resources/notifications/list
 
 search: true
 ---
