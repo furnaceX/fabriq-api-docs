@@ -25,6 +25,7 @@ under the License.
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
 
+
 html, body {
   color: $main-text;
   padding: 0;
@@ -517,7 +518,9 @@ html, body {
     background-color: rgba(0,0,0,0.05);
     padding: $code-padding;
     border-radius: 3px;
-    @extend %break-words;
+    /*SJA */
+    overflow-x:scroll;
+    //@extend %break-words;
     @extend %code-font;
   }
 
