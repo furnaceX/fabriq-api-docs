@@ -3,7 +3,7 @@
 > **Definition**
 
 ```text
-https://portal.fabriq.io/#/?access_token={ACCESS_TOKEN}
+https://portal.fabriq.io/#/?client_id={CLIENT_ID}&access_token={ACCESS_TOKEN}
 ```
 
 To simplify the experience of a user configuring his or her FABRIQ account, you can launch
@@ -16,11 +16,12 @@ changes made to their account.
 The in-app browser should be directed to the following URL:
 
 <code style="display:block;text-align:center;margin-top:20px;color:#000;padding:10px;">
-https://portal.fabriq.io/#/?access_token={ACCESS_TOKEN}
+https://portal.fabriq.io/#/?client_id={CLIENT_ID}&access_token={ACCESS_TOKEN}
 </code>
 
 <br/>
 
 ARGUMENTS ||
 ---------:        | -----------
-access_token <br>**required**  | The user's access_token
+client_id<br>**required**  | Your app `client_id`<br>*URL parameter*
+access_token<br>**required**  | The user's `access_token`<br>*URL parameter*
