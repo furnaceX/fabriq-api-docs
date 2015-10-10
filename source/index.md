@@ -24,7 +24,6 @@ includes:
 
   - versioning
 
-  - inapp-browser
 
 
   - divider-resource-objects
@@ -35,7 +34,7 @@ includes:
   - resource-objects/media/info
   - resource-objects/media/object
 
-  
+
   - divider-user-resources
 
   - user-resources/users/info

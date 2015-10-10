@@ -36,12 +36,12 @@ curl -X POST 'https://api.fabriq.io/app/users'  \
 
 ARGUMENTS ||
 ---------:        | -----------
-mobile_number <br>**required**, *string*  | User's mobile number ([E.164 format](https://en.wikipedia.org/wiki/E.164))<br>*The user will receive a text message to confirm her mobile number*
-email <br>*optional*, *string*  | User's email address (must be valid and unique)<br>*The user will receive an email to confirm her email*
-username <br>*optional*, *string*  | User's username (must be valid and available)
-first_name <br>*optional*, *string*  | User's first name
-last_name <br>*optional*, *string*  | User's last name
-login <br>*optional*, *boolean*  | If true, the user will be logged in and the return object will include an access_token
+mobile_number<br>**required**, *string*  | User's mobile number ([E.164 format](https://en.wikipedia.org/wiki/E.164))<br>*The user will receive a text message to confirm her mobile number*
+email<br>*optional*, *string*  | User's email address (must be valid and unique)<br>*The user will receive an email to confirm her email*
+username<br>*optional*, *string*  | User's username (must be valid and available)
+first_name<br>*optional*, *string*  | User's first name
+last_name<br>*optional*, *string*  | User's last name
+login<br>*optional*, *boolean*  | If true, the user will be logged in and the return object will include an access_token<br>*URL parameter*
 
 <br/>
 <aside class="notice">
