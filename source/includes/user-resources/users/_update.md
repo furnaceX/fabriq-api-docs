@@ -42,6 +42,9 @@ uid<br>**required**, *string*  | User identifier
 username<br>*optional*, *string*  | New username.  Must be available and unique.
 mobile_number<br>*optional*, *string*  | New mobile number ([E.164 format](https://en.wikipedia.org/wiki/E.164))<br>*The user will receive a text message to confirm her mobile number*
 email<br>*optional*, *string*  | New email address. Must be valid and unique<br>*The user will receive an email to confirm her email*
+latitude<br>*optional*, *double*  | User's current latitude
+longitude<br>*optional*, *double*  | User's current longitude
+floor<br>*optional*, *double*  | User's current floor<br>*Street level (ground floor) is 0*
 
 
 ### Returns
