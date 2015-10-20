@@ -846,6 +846,18 @@ RFC 2388 which defines file transfers for the <code class="prettyprint">multipar
 <td style="text-align: right">email<br><em>optional</em>, <em>string</em></td>
 <td>New email address. Must be valid and unique<br><em>The user will receive an email to confirm her email</em></td>
 </tr>
+<tr>
+<td style="text-align: right">latitude<br><em>optional</em>, <em>double</em></td>
+<td>User&rsquo;s current latitude</td>
+</tr>
+<tr>
+<td style="text-align: right">longitude<br><em>optional</em>, <em>double</em></td>
+<td>User&rsquo;s current longitude</td>
+</tr>
+<tr>
+<td style="text-align: right">floor<br><em>optional</em>, <em>double</em></td>
+<td>User&rsquo;s current floor<br><em>Street level (ground floor) is 0</em></td>
+</tr>
 </tbody></table>
 
 <h3 id="returns">Returns</h3>
@@ -2847,13 +2859,13 @@ automatically on behalf of the user.</p>
 <blockquote>
 <p><strong>Definition</strong></p>
 </blockquote>
-<pre class="highlight plaintext"><code>POST https://api.fabriq.io/alerts/notifications/{NOTIFICATION_UID}
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/alerts/{NOTIFICATION_UID}
 </code></pre>
 
 <blockquote>
 <p><strong>Sample Request</strong></p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/alerts/notifications/68a6e7fe5f324e048ea2f2b29271f895'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/alerts/68a6e7fe5f324e048ea2f2b29271f895'</span>  <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
@@ -3270,7 +3282,7 @@ an error message.</p>
 </tr>
 <tr>
 <td style="text-align: right">type<br><em>string</em></td>
-<td>Activity type. Values: <code class="prettyprint">run</code>, <code class="prettyprint">walk</code>, <code class="prettyprint">bike</code>, <code class="prettyprint">social</code>, <code class="prettyprint">travel</code>, <code class="prettyprint">other</code><br><em>Additional activities will be added in future updates.</em></td>
+<td>Activity type. Values: <code class="prettyprint">fitness</code>, <code class="prettyprint">social</code>, <code class="prettyprint">dating</code>, <code class="prettyprint">travel</code>, <code class="prettyprint">shopping</code>, <code class="prettyprint">work</code>, <code class="prettyprint">other</code><br><em>Additional activities will be added in future updates.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">start_lat<br><em>double</em></td>
@@ -3445,7 +3457,7 @@ an error message.</p>
 </thead><tbody>
 <tr>
 <td style="text-align: right">type<br><strong>required</strong>, <em>string</em></td>
-<td>Activity type. Values: <code class="prettyprint">run</code>, <code class="prettyprint">walk</code>, <code class="prettyprint">bike</code>, <code class="prettyprint">social</code>, <code class="prettyprint">travel</code>, <code class="prettyprint">other</code><br><em>Additional activities will be added in future updates.</em></td>
+<td>Activity type. Values: <code class="prettyprint">fitness</code>, <code class="prettyprint">social</code>, <code class="prettyprint">dating</code>, <code class="prettyprint">travel</code>, <code class="prettyprint">shopping</code>, <code class="prettyprint">work</code>, <code class="prettyprint">other</code><br><em>Additional activities will be added in future updates.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">start_lat<br><strong>required</strong>, <em>double</em></td>

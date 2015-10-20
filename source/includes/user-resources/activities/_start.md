@@ -69,7 +69,7 @@ curl -X POST 'https://api.fabriq.io/activities'  \
 
 ARGUMENTS ||
 ---------:        | -----------
-type<br>**required**, *string* | Activity type. Values: `run`, `walk`, `bike`, `social`, `travel`, `other`<br>*Additional activities will be added in future updates.*
+type<br>**required**, *string* | Activity type. Values: `fitness`, `social`, `dating`, `travel`, `shopping`, `work`, `other`<br>*Additional activities will be added in future updates.*
 start_lat<br>**required**, *double* | Latitude where activity started
 start_lng<br>**required**, *double* | Longitude where activity started
 name<br>*optional*, *string*| Name of this activity.  Defaults to local date and time.

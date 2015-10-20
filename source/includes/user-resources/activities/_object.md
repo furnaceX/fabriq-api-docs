@@ -49,7 +49,7 @@
 ATTRIBUTES||
 ---------:        | -----------
 uid<br>*string*   | Unique identifier of the activity
-type<br>*string*  | Activity type. Values: `run`, `walk`, `bike`, `social`, `travel`, `other`<br>*Additional activities will be added in future updates.*
+type<br>*string*  | Activity type. Values: `fitness`, `social`, `dating`, `travel`, `shopping`, `work`, `other`<br>*Additional activities will be added in future updates.*
 start_lat<br>*double*  | Latitude where activity started
 start_lng<br>*double*  | Longitude where activity started
 start_address<br>*string*  | Geocoded start address
