@@ -15,6 +15,7 @@ curl -X POST 'https://api.fabriq.io/devices'  \
   -H 'Content-Type: application/json'  \
   -d '{                                        
          "name": "Teddy Tag",                   
+         "type": "wearable",                   
          "user": "9ff6178e851942cbb5a5ddc71f82588d",                   
          "ble_mac_address": "20:FF:D0:FF:D1:C0",                   
          "capabilities": ["ble"]                   
@@ -25,6 +26,7 @@ curl -X POST 'https://api.fabriq.io/devices'  \
 
 ```json
 {
+    "type": "wearable",
     "uid": "7ce9d0b43d8543b2a53a3990028b4f27",
     "user": "9ff6178e851942cbb5a5ddc71f82588d",
     "parent": null,
@@ -48,6 +50,7 @@ curl -X POST 'https://api.fabriq.io/devices'  \
 ARGUMENTS ||
 ---------:        | -----------
 name<br>**required**, *string*  | Name of the device<br>*Unique across all devices owned by the current user*
+type<br>**required**, *string*  | Device type. Possible values: `phone`, `tablet`, `wearable`, `sensor`, `other`
 
 
 ### Returns

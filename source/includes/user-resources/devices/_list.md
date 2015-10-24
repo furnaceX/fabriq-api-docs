@@ -18,6 +18,7 @@ curl 'https://api.fabriq.io/devices'  \
 
 ```json
 [{
+    "type": "wearable",
     "uid": "7ce9d0b43d8543b2a53a3990028b4f27",
     "user": "9ff6178e851942cbb5a5ddc71f82588d",
     "parent": null,
