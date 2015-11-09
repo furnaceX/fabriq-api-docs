@@ -14,7 +14,7 @@ https://api.fabriq.io/oauth/authorize
   ?response_type=code
   &client_id=sb_c21c592ee4454a799b048179cd861144
   &redirect_uri=https%3A%2F%2Fexample.com%2Foauth_callback
-  &scope=public_profile,private_profile,contacts,alerts
+  &scope=public_profile%20private_profile%20contacts%20alerts
 ```
 
 
@@ -45,4 +45,4 @@ ARGUMENTS||
 response_type<br>**required**, *string*   | Set to `code`
 client_id<br>**required**, *string*   | Your application key
 redirect_uri<br>**required**, *url*   | After the user approves or denies the authorization request, FABRIQ will redirect to this URL with either an authorization code or an error message appended as a query parameter.  The URL included here must match the one specified in your application details page.
-scope<br>**required**, *string*   | Comma separated list of permissions your application requires. Possible values are `public_profile`, `private_profile`, `contacts`, `alerts`, `activities`
+scope<br>**required**, *string*   | Space separated list of permissions your application requires. Possible values are `public_profile`, `private_profile`, `contacts`, `alerts`, `activities`

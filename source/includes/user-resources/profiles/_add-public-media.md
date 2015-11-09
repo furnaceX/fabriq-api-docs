@@ -44,7 +44,7 @@ primary_photo <br>*optional*, *boolean*  | Set to true to make this image the us
 latitude <br>*optional*, *double*  | Latitude where media was captured
 longitude <br>*optional*, *double*  | Longitude where media was captured
 floor<br>*optional*, *integer*  | If indoors, floor of the venue<br>*Street level (ground floor) is 0*
-description <br>*optional* *string*  | User provided description of the media
+description <br>*optional*, *string*  | User provided description of the media
 
 
 ### Returns

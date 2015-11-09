@@ -52,7 +52,7 @@ ATTRIBUTES ||
 ---------:        | -----------
 access_token<br>*string*   | Access token with permissions enabled for the requested scopes
 refresh_token<br>*string*   | Use the refresh token to update the current access token
-scope<br>*string*   | List of scopes authorized by the user
+scope<br>*string*   | Space separated list of scopes authorized by the user
 expires_in<br>*integer*   | Number of seconds until this token expires.  
 token_type<br>*string*   | Always set to `bearer`
 
