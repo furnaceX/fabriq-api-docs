@@ -56,11 +56,11 @@ includes:
   - user-resources/profiles/remove-private-media
 
 
-
   - user-resources/devices/info
   - user-resources/devices/object
   - user-resources/devices/add
   - user-resources/devices/fetch
+  - user-resources/devices/update
   - user-resources/devices/remove
   - user-resources/devices/list
 
@@ -69,6 +69,7 @@ includes:
   - user-resources/circles/add
   - user-resources/circles/fetch
   - user-resources/circles/add-media
+  - user-resources/circles/update
   - user-resources/circles/remove
   - user-resources/circles/list
 
@@ -77,6 +78,7 @@ includes:
   - user-resources/contacts/add
   - user-resources/contacts/fetch
   - user-resources/contacts/add-media
+  - user-resources/contacts/update
   - user-resources/contacts/remove
   - user-resources/contacts/list
 

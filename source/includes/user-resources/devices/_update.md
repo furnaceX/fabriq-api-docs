@@ -1,25 +1,22 @@
-## Add a device
+## Update device
 
 > **Definition**
 
 ```text
-POST https://api.fabriq.io/devices
+PUT https://api.fabriq.io/devices
 ```
 
 > **Sample Request**
 
 ```shell
-curl -X POST 'https://api.fabriq.io/devices'  \
+curl -X PUT 'https://api.fabriq.io/devices'  \
   -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
   -H 'Content-Type: application/json'  \
   -d '{                                        
-         "name": "Teddy Tag",                   
-         "type": "wearable",                   
-         "user": "9ff6178e851942cbb5a5ddc71f82588d",                   
-         "ble_mac_address": "20:FF:D0:FF:D1:C0",                   
-         "capabilities": ["ble"]                   
-      }'
+      "uid": "7ce9d0b43d8543b2a53a3990028b4f27",
+      "capabilities": ["ble", "gps", "wifi"]
+     }'
 ```
 
 > **Sample Response**
@@ -45,16 +42,18 @@ curl -X POST 'https://api.fabriq.io/devices'  \
     "hardware_version": null,
     "firmware_version": null,
     "software_version": null,
-    "capabilities": ["ble"]
+    "capabilities": ["ble", "gps", "wifi"]
 }
 ```
 
+
 ARGUMENTS ||
 ---------:        | -----------
-name<br>**required**, *string*  | Name of the device<br>*Unique across all devices owned by the current user*
-type<br>**required**, *string*  | Device type. Possible values: `phone`, `tablet`, `wearable`, `sensor`, `other`
+uid<br>**required**, *string* | Devices's unique identifier
+name<br>*optional*, *string*  | Name of the device<br>*Unique across all devices owned by the current user*
+type<br>*optional*, *string*  | Device type. Possible values: `phone`, `tablet`, `wearable`, `sensor`, `other`
 platform<br>*optional*, *string*   | Platform type. Possible values: `firmware`, `ios`, `os-x`, `watch-os`, `tv-os`, `android`, `linux`, `windows`, `windows-phone`, `unknown`, `other`.<br>*Defaults to `unknown` if not set*
-user<br>*optional, *string*  | Uid of the user this device is assigned to.
+user<br>*optional, *string*  | UID of the user this device is assigned to.
 parent<br>*optional*, *string*  | If this device is part of a larger system, then this field references the uid of that larger system.
 paried<br>*optional*, *string*  | If this device is currently paired with another device, then this field references the uid of the other device
 description<br>*optional*, *string*  | Description of the device
@@ -71,6 +70,5 @@ firmware_version<br>*optional*, *string*  | Firmware version of the device
 software_version<br>*optional*, *string*  | Software version of the device
 capabilities<br>*optional*, *array*  | List of features the device supports. Possible values `ble`, `rfid`, `wifi`, `cellular`, `gps`, `camera`, `audio`, `microphone`, `accelerometer`, `gyroscope`
 
-
 ### Returns
-A device object.
+Return the updated circle object.
