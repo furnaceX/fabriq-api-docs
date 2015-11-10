@@ -22,6 +22,8 @@ curl 'https://api.fabriq.io/contacts'  \
     "first_name": "John",
     "last_name": "Doe",
     "display_name": "John Doe",
+    "nickname": "Jack",
+    "relationship": "Husband",
     "photo_url":null,
     "email": "jdoe@example.com",
     "mobile_number": "+12125551212",

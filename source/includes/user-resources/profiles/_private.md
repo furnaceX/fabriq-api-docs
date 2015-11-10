@@ -26,6 +26,7 @@
     "dentist_address": "123 Main St., New York, NY 12345",
     "dentist_phone_number": "+12125551212",
     "emergency_contacts": null,
+    "next_of_kin": null,
     "personal_identifiers": "birth mark right calf",
     "medical_conditions": null,
     "allergies": "gluten, penicillin",
@@ -67,8 +68,9 @@ doctor_address<br>*string*  | Primary physician's address
 doctor_phone_number<br>*string*  | Primary physician's phone number
 dentist_name<br>*string*  | Dentist's name
 dentist_address<br>*string*  | Dentist's address
-doctor_phone_number<br>*string*  | Dentist's phone number
+dentist_phone_number<br>*string*  | Dentist's phone number
 emergency_contacts<br>*string*  | Additional emergency contacts
+next_of_kin<br>*string*  | User's closest living blood relative or relatives
 personal_identifiers<br>*string*  | Any identifying marks such as scars, tatoos, etc.
 medical_conditions<br>*string*  | List of all known medical conditions
 allergies<br>*string*  | List of all known allergies

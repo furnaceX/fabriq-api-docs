@@ -18,7 +18,7 @@ curl -X POST 'https://api.fabriq.io/contacts'  \
          "last_name": "Doe",                    
          "email": "jane@example.com",                    
          "mobile_number": "+12125551313",
-         "circles": ["d4826772-542f-11e5-9364-20c9d07e7899"]
+         "circles": ["039d2aa25d4e11e5a0dd38c98601185b"]
 
       }'
 ```
@@ -27,10 +27,12 @@ curl -X POST 'https://api.fabriq.io/contacts'  \
 
 ```json
 {
-    "uid": "761d4f1a-a121-40f8-a8d3-2993ba5861d9",
+    "uid": "836bba12589e46d5b2c690c749e2e230",
     "first_name": "Jane",
     "last_name": "Doe",
     "display_name": "Jane doe",
+    "nickname": null,
+    "relationship": null,
     "photo_url": null,
     "email": " jane@example.com",
     "mobile_number": "+12125551313",
@@ -40,7 +42,7 @@ curl -X POST 'https://api.fabriq.io/contacts'  \
     "email_verified": false,
     "mobile_verified": false,
     "circles":[{
-        "uid": "d4826772-542f-11e5-9364-20c9d07e7899",
+        "uid": "039d2aa25d4e11e5a0dd38c98601185b",
         "photo_url": null,
         "display_name": "Default"
     }]
@@ -52,6 +54,8 @@ ARGUMENTS ||
 first_name<br>**required**, *string* | Contact's first name
 last_name<br>**required**, *string*  | Contact's last name
 mobile_number<br>**required**, *string*  | Contact's mobile number  ([E.164 format](https://en.wikipedia.org/wiki/E.164))
+nickname<br>*optional*, *string*  | Contact's nickname
+relationship<br>*optional*, *string*  | Contact's relationship to the user
 email<br>*optional*, *string*  | Contact's email address
 circles<br>*optional*, *array*  | Array of `circle_uid`'s to which this contact should belong. If not specified, contact will be added to the user's default circle.
 

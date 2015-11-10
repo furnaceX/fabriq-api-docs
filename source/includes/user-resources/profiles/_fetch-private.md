@@ -40,6 +40,7 @@ curl 'https://api.fabriq.io/profiles/private'  \
     "dentist_address": "123 Main St., New York, NY 12345",
     "dentist_phone_number": "+12125551212",
     "emergency_contacts": null,
+    "next_of_kine": null,
     "personal_identifiers": "birth mark right calf",
     "medical_conditions": null,
     "allergies": "gluten, penicillin",

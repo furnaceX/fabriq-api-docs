@@ -43,6 +43,8 @@ curl -X PUT 'https://api.fabriq.io/profiles/private'        \
     "dentist_name": "Dr. John Doe",
     "dentist_address": "123 Main St., New York, NY 12345",
     "dentist_phone_number": "+12125551212",
+    "emergency_contacts": null,
+    "next_of_kin": null,
     "personal_identifiers": "birth mark right calf",
     "medical_conditions": null,
     "allergies": "gluten, penicillin",
@@ -76,7 +78,7 @@ doctor_address <br>*optional*, *string*  | Primary physician's address
 doctor_phone_number <br>*optional*, *string*  | Primary physician's phone number
 dentist_name <br>*optional*, *string*  | Dentist's name
 dentist_address <br>*optional*, *string*  | Dentist's address
-doctor_phone_number <br>*optional*, *string*  | Dentist's phone number
+dentist_phone_number <br>*optional*, *string*  | Dentist's phone number
 emergency_contacts <br>*optional*, *string*  | Additional emergency contacts
 personal_identifiers <br>*optional*, *string*  | Any identifying marks such as scars, tatoos, etc.
 medical_conditions <br>*optional*, *string*  | List of all known medical conditions
