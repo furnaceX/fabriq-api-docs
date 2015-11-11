@@ -20,6 +20,8 @@ curl 'https://api.fabriq.io/settings'  \
 {
     "panic_delay": 5000,
     "panic_silent": true,
+    "pin_ok": "1234",
+    "pin_duress": "5678",
     "metric_units": false,
     "alert_panic_message": "PANIC! HELP, I'm in danger!",
     "alert_panic_cancel_message": "This panic alert has been canceled.",

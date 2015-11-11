@@ -26,7 +26,8 @@ curl -X PUT 'https://api.fabriq.io/circles'  \
     "uid": "039d2aa25d4e11e5a0dd38c98601185b",
     "name": "Friends",
     "default": false,
-    "photo_url": null
+    "photo_url": null,
+    "contacts": []
 }
 ```
 

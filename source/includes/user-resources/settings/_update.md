@@ -24,6 +24,8 @@ curl -X PUT 'https://api.fabriq.io/settings'  \
 {
     "panic_delay":7000,
     "panic_silent":true,
+    "pin_ok": "1234",
+    "pin_duress": "5678",
     "metric_units":false,
     "alert_panic_message":"PANIC! HELP, I'm in danger!",
     "alert_panic_cancel_message":"This panic alert has been canceled.",
@@ -42,6 +44,8 @@ ARGUMENTS ||
 ---------:        | -----------
 panic_delay <br>*optional*, *integer* |  Milliseconds to wait before a PANIC alert is triggered
 panic_silent <br>*optional*, *boolean*  |  Flag to indicate if the device should sound an alarm and flash as strobe by default
+pin_ok<br>*optional*, *string*  | PIN used to cancel an alert.  This PIN will cancel the alert and send a notification to the user's contacts
+pin_duress<br>*optional*, *string*  | In a situation where a user is forced to turn off the alert, this PIN is used to disable the  UI but keep the alert active
 metric_units <br>*optional*, *boolean* |  Flag to indicate user's preference in displaying measurements (e.g height and weight)
 alert_panic_message <br>*optional*, *string*  |  Message sent when panic is triggered
 alert_panic_cancel_message <br>*optional*, *string*  |  Message sent when active alert is canceled

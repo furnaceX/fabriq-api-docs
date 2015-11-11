@@ -11,10 +11,10 @@ This alert is triggered when the user does not end an activity within a specifie
 The user can request to have FABRIQ send him or her a periodic message (called a ping).  If the user does not
 respond to this ping within a specified period of time, an automatic alert will be triggered.
 
-### Watch Notification
-The user can request to have his or her contacts notified that have started and/or ended an activity.  The user will
-receive a message with a link to watch the user in real-time.
+### Watch Alert
+Send an alert to a user's contacts when he or she has started and/or stopped an activity.  Each contact will
+receive a message with a link to watch over the user in real-time.
 
-### App-Defined Notification
-You can define notifications specific to your app which can be triggered manually or
+### App-Defined Alert
+You can define alerts specific to your app which can be triggered manually or
 automatically on behalf of the user.

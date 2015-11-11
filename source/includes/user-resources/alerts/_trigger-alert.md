@@ -1,9 +1,9 @@
-## Trigger a Notification
+## Trigger an app alert
 
 > **Definition**
 
 ```text
-POST https://api.fabriq.io/alerts/{NOTIFICATION_UID}
+POST https://api.fabriq.io/alerts/{ALERT_UID}
 ```
 
 > **Sample Request**
@@ -39,16 +39,16 @@ curl -X POST 'https://api.fabriq.io/alerts/68a6e7fe5f324e048ea2f2b29271f895'  \
 }
 ```
 
-Trigger an [app-defined notification](#create-a-notification).
+Trigger an [app-defined alert](#create-an-alert).
 
 <br>
 
 ARGUMENTS ||
 ---------:        | -----------
-notification_uid<br>**required**, *string*  | UID of notification to trigger<br>*URL parameter*
-circles<br>**required**, *array*  | List of `circle_uid`'s that will be notified when this notification is triggered<br>*The result object contains the list of contacts that were notified*
-device<br>*optional*, *string*  | `device_uid` that triggered this notification
-activity<br>*optional*, *string*  | `activity_uid` associated with this notification
+alert_uid<br>**required**, *string*  | UID of alert to trigger<br>*URL parameter*
+circles<br>**required**, *array*  | List of `circle_uid`'s that will be notified when this alert is triggered<br>*The result object contains the list of contacts that were notified*
+device<br>*optional*, *string*  | `device_uid` that triggered this alert
+activity<br>*optional*, *string*  | `activity_uid` associated with this alert
 latitude<br>*optional*, *double*  | Latitude where alert was triggered
 longitude<br>*optional*, *double*  | Longitude where alert was triggered
 floor<br>*optional*, *integer*  | If indoors, floor of the venue<br>*Street level (ground floor) is 0*

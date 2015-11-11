@@ -86,7 +86,7 @@ includes:
   - user-resources/alerts/types
   - user-resources/alerts/object
   - user-resources/alerts/panic
-  - user-resources/alerts/notification
+  - user-resources/alerts/trigger-alert
   - user-resources/alerts/media
   - user-resources/alerts/position
   - user-resources/alerts/fetch
@@ -121,12 +121,13 @@ includes:
   - app-resources/users/info
   - app-resources/users/create
 
-  - app-resources/notifications/info
-  - app-resources/notifications/object
-  - app-resources/notifications/create
-  - app-resources/notifications/fetch
-  - app-resources/notifications/remove
-  - app-resources/notifications/list
+  - app-resources/alerts/info
+  - app-resources/alerts/object
+  - app-resources/alerts/create
+  - app-resources/alerts/fetch
+  - app-resources/alerts/update
+  - app-resources/alerts/remove
+  - app-resources/alerts/list
 
 search: true
 ---
