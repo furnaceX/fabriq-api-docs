@@ -3,13 +3,13 @@
 > **Definition**
 
 ```text
-POST https://api.fabriq.io/activities/{ACTIVITY_UID}/position
+POST https://api.fabriq.io/activities/{ACTIVITY_UID}/positions
 ```
 
 > **Sample Request**
 
 ```shell
-curl -X POST 'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391/position'  \
+curl -X POST 'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391/positions'  \
   -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
   -H 'Content-Type: application/json'         \

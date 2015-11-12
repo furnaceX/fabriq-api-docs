@@ -3,13 +3,13 @@
 > **Definition**
 
 ```text
-POST https://api.fabriq.io/alerts/{ALERT_UID}/position
+POST https://api.fabriq.io/alerts/{ALERT_UID}/positions
 ```
 
 > **Sample Request**
 
 ```shell
-curl -X POST 'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/position'  \
+curl -X POST 'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/positions'  \
   -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'   \
   -H 'Content-Type: application/json'         \

@@ -230,7 +230,7 @@ which the user already has.</p>
   ?response_type<span class="o">=</span>code
   &amp;client_id<span class="o">=</span>sb_c21c592ee4454a799b048179cd861144
   &amp;redirect_uri<span class="o">=</span>https%3A%2F%2Fexample.com%2Foauth_callback
-  &amp;scope<span class="o">=</span>public_profile,private_profile,contacts,alerts
+  &amp;scope<span class="o">=</span>public_profile%20private_profile%20contacts%20alerts
 </code></pre>
 
 <blockquote>
@@ -274,7 +274,7 @@ or deny permissions to your application (<code class="prettyprint">redirect_uri<
 </tr>
 <tr>
 <td style="text-align: right">scope<br><strong>required</strong>, <em>string</em></td>
-<td>Comma separated list of permissions your application requires. Possible values are <code class="prettyprint">public_profile</code>, <code class="prettyprint">private_profile</code>, <code class="prettyprint">contacts</code>, <code class="prettyprint">alerts</code>, <code class="prettyprint">activities</code></td>
+<td>Space separated list of permissions your application requires. Possible values are <code class="prettyprint">public_profile</code>, <code class="prettyprint">private_profile</code>, <code class="prettyprint">contacts</code>, <code class="prettyprint">alerts</code>, <code class="prettyprint">activities</code></td>
 </tr>
 </tbody></table>
 
@@ -358,7 +358,7 @@ or deny permissions to your application (<code class="prettyprint">redirect_uri<
 </tr>
 <tr>
 <td style="text-align: right">scope<br><em>string</em></td>
-<td>List of scopes authorized by the user</td>
+<td>Space separated list of scopes authorized by the user</td>
 </tr>
 <tr>
 <td style="text-align: right">expires_in<br><em>integer</em></td>
@@ -1160,7 +1160,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 <td>If indoors, floor of the venue<br><em>Street level (ground floor) is 0</em></td>
 </tr>
 <tr>
-<td style="text-align: right">description <br><em>optional</em> <em>string</em></td>
+<td style="text-align: right">description <br><em>optional</em>, <em>string</em></td>
 <td>User provided description of the media</td>
 </tr>
 </tbody></table>
@@ -1237,6 +1237,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
     </span><span class="nt">"dentist_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St., New York, NY 12345"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"dentist_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551212"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"emergency_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"next_of_kin"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"personal_identifiers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"birth mark right calf"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medical_conditions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gluten, penicillin"</span><span class="p">,</span><span class="w">
@@ -1343,12 +1344,16 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 <td>Dentist&rsquo;s address</td>
 </tr>
 <tr>
-<td style="text-align: right">doctor_phone_number<br><em>string</em></td>
+<td style="text-align: right">dentist_phone_number<br><em>string</em></td>
 <td>Dentist&rsquo;s phone number</td>
 </tr>
 <tr>
 <td style="text-align: right">emergency_contacts<br><em>string</em></td>
 <td>Additional emergency contacts</td>
+</tr>
+<tr>
+<td style="text-align: right">next_of_kin<br><em>string</em></td>
+<td>User&rsquo;s closest living blood relative or relatives</td>
 </tr>
 <tr>
 <td style="text-align: right">personal_identifiers<br><em>string</em></td>
@@ -1418,6 +1423,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
     </span><span class="nt">"dentist_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St., New York, NY 12345"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"dentist_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551212"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"emergency_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"next_of_kine"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"personal_identifiers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"birth mark right calf"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medical_conditions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gluten, penicillin"</span><span class="p">,</span><span class="w">
@@ -1486,6 +1492,8 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
     </span><span class="nt">"dentist_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dr. John Doe"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"dentist_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St., New York, NY 12345"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"dentist_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551212"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"emergency_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"next_of_kin"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"personal_identifiers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"birth mark right calf"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"medical_conditions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gluten, penicillin"</span><span class="p">,</span><span class="w">
@@ -1578,7 +1586,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 <td>Dentist&rsquo;s address</td>
 </tr>
 <tr>
-<td style="text-align: right">doctor_phone_number <br><em>optional</em>, <em>string</em></td>
+<td style="text-align: right">dentist_phone_number <br><em>optional</em>, <em>string</em></td>
 <td>Dentist&rsquo;s phone number</td>
 </tr>
 <tr>
@@ -1736,6 +1744,8 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wearable"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1748,6 +1758,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"model_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"serial_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"device_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"hardware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"firmware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"software_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1764,6 +1775,14 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 <tr>
 <td style="text-align: right">uid<br><em>string</em></td>
 <td>Unique identifier of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">type<br><em>string</em></td>
+<td>Device type. Possible values: <code class="prettyprint">phone</code>, <code class="prettyprint">tablet</code>, <code class="prettyprint">wearable</code>, <code class="prettyprint">sensor</code>, <code class="prettyprint">other</code></td>
+</tr>
+<tr>
+<td style="text-align: right">platform<br><em>string</em></td>
+<td>Platform type. Possible values: <code class="prettyprint">firmware</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">os-x</code>, <code class="prettyprint">watch-os</code>, <code class="prettyprint">tv-os</code>, <code class="prettyprint">android</code>, <code class="prettyprint">linux</code>, <code class="prettyprint">windows</code>, <code class="prettyprint">windows-phone</code>, <code class="prettyprint">unknown</code>, <code class="prettyprint">other</code></td>
 </tr>
 <tr>
 <td style="text-align: right">user<br><em>string</em></td>
@@ -1814,6 +1833,10 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 <td>Serial number of the device</td>
 </tr>
 <tr>
+<td style="text-align: right">device_uuid<br><em>string</em></td>
+<td>Manufacturer assigned UUID of the device</td>
+</tr>
+<tr>
 <td style="text-align: right">hardware_version<br><em>string</em></td>
 <td>Hardware version of the device</td>
 </tr>
@@ -1848,6 +1871,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
   -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
   -d <span class="s1">'{                                        
          "name": "Teddy Tag",                   
+         "type": "wearable",                   
          "user": "9ff6178e851942cbb5a5ddc71f82588d",                   
          "ble_mac_address": "20:FF:D0:FF:D1:C0",                   
          "capabilities": ["ble"]                   
@@ -1859,6 +1883,8 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wearable"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1871,6 +1897,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"model_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"serial_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"device_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"hardware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"firmware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"software_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1887,6 +1914,78 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 <tr>
 <td style="text-align: right">name<br><strong>required</strong>, <em>string</em></td>
 <td>Name of the device<br><em>Unique across all devices owned by the current user</em></td>
+</tr>
+<tr>
+<td style="text-align: right">type<br><strong>required</strong>, <em>string</em></td>
+<td>Device type. Possible values: <code class="prettyprint">phone</code>, <code class="prettyprint">tablet</code>, <code class="prettyprint">wearable</code>, <code class="prettyprint">sensor</code>, <code class="prettyprint">other</code></td>
+</tr>
+<tr>
+<td style="text-align: right">platform<br><em>optional</em>, <em>string</em></td>
+<td>Platform type. Possible values: <code class="prettyprint">firmware</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">os-x</code>, <code class="prettyprint">watch-os</code>, <code class="prettyprint">tv-os</code>, <code class="prettyprint">android</code>, <code class="prettyprint">linux</code>, <code class="prettyprint">windows</code>, <code class="prettyprint">windows-phone</code>, <code class="prettyprint">unknown</code>, <code class="prettyprint">other</code>.<br><em>Defaults to <code class="prettyprint">unknown</code> if not set</em></td>
+</tr>
+<tr>
+<td style="text-align: right">user<br><em>optional, *string</em></td>
+<td>Uid of the user this device is assigned to.</td>
+</tr>
+<tr>
+<td style="text-align: right">parent<br><em>optional</em>, <em>string</em></td>
+<td>If this device is part of a larger system, then this field references the uid of that larger system.</td>
+</tr>
+<tr>
+<td style="text-align: right">paried<br><em>optional</em>, <em>string</em></td>
+<td>If this device is currently paired with another device, then this field references the uid of the other device</td>
+</tr>
+<tr>
+<td style="text-align: right">description<br><em>optional</em>, <em>string</em></td>
+<td>Description of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">ble_mac_address<br><em>optional</em>, <em>string</em></td>
+<td><a href="https://en.wikipedia.org/wiki/Bluetooth_low_energy">BLE</a> MAC address, if this is a bluetooth-enabled device</td>
+</tr>
+<tr>
+<td style="text-align: right">lan_mac_address<br><em>optional</em>, <em>string</em></td>
+<td>Network MAC address, if this is a network-enabled device</td>
+</tr>
+<tr>
+<td style="text-align: right">pnp_id<br><em>optional</em>, <em>string</em></td>
+<td>PNP ID of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">vendor<br><em>optional</em>, <em>string</em></td>
+<td>Vendor of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">manufacturer<br><em>optional</em>, <em>string</em></td>
+<td>Manufacturer of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">model_no<br><em>optional</em>, <em>string</em></td>
+<td>Model number of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">serial_no<br><em>optional</em>, <em>string</em></td>
+<td>Serial number of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">device_uuid<br><em>optional</em>, <em>string</em></td>
+<td>Manufacturer assigned UUID of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">hardware_version<br><em>optional</em>, <em>string</em></td>
+<td>Hardware version of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">firmware_version<br><em>optional</em>, <em>string</em></td>
+<td>Firmware version of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">software_version<br><em>optional</em>, <em>string</em></td>
+<td>Software version of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">capabilities<br><em>optional</em>, <em>array</em></td>
+<td>List of features the device supports. Possible values <code class="prettyprint">ble</code>, <code class="prettyprint">rfid</code>, <code class="prettyprint">wifi</code>, <code class="prettyprint">cellular</code>, <code class="prettyprint">gps</code>, <code class="prettyprint">camera</code>, <code class="prettyprint">audio</code>, <code class="prettyprint">microphone</code>, <code class="prettyprint">accelerometer</code>, <code class="prettyprint">gyroscope</code></td>
 </tr>
 </tbody></table>
 
@@ -1915,6 +2014,8 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wearable"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1927,6 +2028,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"model_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"serial_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"device_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"hardware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"firmware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"software_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1949,6 +2051,146 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 <h3 id="returns">Returns</h3>
 
 <p>A device object.</p>
+
+          <h2 id="update-device">Update device</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.fabriq.io/devices
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://api.fabriq.io/devices'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
+  -d <span class="s1">'{                                        
+      "uid": "7ce9d0b43d8543b2a53a3990028b4f27",
+      "capabilities": ["ble", "gps", "wifi"]
+     }'</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wearable"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ble_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:FF:D0:FF:D1:C0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lan_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pnp_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"model_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"serial_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"device_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hardware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"firmware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"software_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"capabilities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ble"</span><span class="p">,</span><span class="w"> </span><span class="s2">"gps"</span><span class="p">,</span><span class="w"> </span><span class="s2">"wifi"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">uid<br><strong>required</strong>, <em>string</em></td>
+<td>Devices&rsquo;s unique identifier</td>
+</tr>
+<tr>
+<td style="text-align: right">name<br><em>optional</em>, <em>string</em></td>
+<td>Name of the device<br><em>Unique across all devices owned by the current user</em></td>
+</tr>
+<tr>
+<td style="text-align: right">type<br><em>optional</em>, <em>string</em></td>
+<td>Device type. Possible values: <code class="prettyprint">phone</code>, <code class="prettyprint">tablet</code>, <code class="prettyprint">wearable</code>, <code class="prettyprint">sensor</code>, <code class="prettyprint">other</code></td>
+</tr>
+<tr>
+<td style="text-align: right">platform<br><em>optional</em>, <em>string</em></td>
+<td>Platform type. Possible values: <code class="prettyprint">firmware</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">os-x</code>, <code class="prettyprint">watch-os</code>, <code class="prettyprint">tv-os</code>, <code class="prettyprint">android</code>, <code class="prettyprint">linux</code>, <code class="prettyprint">windows</code>, <code class="prettyprint">windows-phone</code>, <code class="prettyprint">unknown</code>, <code class="prettyprint">other</code>.<br><em>Defaults to <code class="prettyprint">unknown</code> if not set</em></td>
+</tr>
+<tr>
+<td style="text-align: right">user<br><em>optional, *string</em></td>
+<td>UID of the user this device is assigned to.</td>
+</tr>
+<tr>
+<td style="text-align: right">parent<br><em>optional</em>, <em>string</em></td>
+<td>If this device is part of a larger system, then this field references the uid of that larger system.</td>
+</tr>
+<tr>
+<td style="text-align: right">paried<br><em>optional</em>, <em>string</em></td>
+<td>If this device is currently paired with another device, then this field references the uid of the other device</td>
+</tr>
+<tr>
+<td style="text-align: right">description<br><em>optional</em>, <em>string</em></td>
+<td>Description of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">ble_mac_address<br><em>optional</em>, <em>string</em></td>
+<td><a href="https://en.wikipedia.org/wiki/Bluetooth_low_energy">BLE</a> MAC address, if this is a bluetooth-enabled device</td>
+</tr>
+<tr>
+<td style="text-align: right">lan_mac_address<br><em>optional</em>, <em>string</em></td>
+<td>Network MAC address, if this is a network-enabled device</td>
+</tr>
+<tr>
+<td style="text-align: right">pnp_id<br><em>optional</em>, <em>string</em></td>
+<td>PNP ID of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">vendor<br><em>optional</em>, <em>string</em></td>
+<td>Vendor of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">manufacturer<br><em>optional</em>, <em>string</em></td>
+<td>Manufacturer of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">model_no<br><em>optional</em>, <em>string</em></td>
+<td>Model number of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">serial_no<br><em>optional</em>, <em>string</em></td>
+<td>Serial number of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">device_uuid<br><em>optional</em>, <em>string</em></td>
+<td>Manufacturer assigned UUID of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">hardware_version<br><em>optional</em>, <em>string</em></td>
+<td>Hardware version of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">firmware_version<br><em>optional</em>, <em>string</em></td>
+<td>Firmware version of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">software_version<br><em>optional</em>, <em>string</em></td>
+<td>Software version of the device</td>
+</tr>
+<tr>
+<td style="text-align: right">capabilities<br><em>optional</em>, <em>array</em></td>
+<td>List of features the device supports. Possible values <code class="prettyprint">ble</code>, <code class="prettyprint">rfid</code>, <code class="prettyprint">wifi</code>, <code class="prettyprint">cellular</code>, <code class="prettyprint">gps</code>, <code class="prettyprint">camera</code>, <code class="prettyprint">audio</code>, <code class="prettyprint">microphone</code>, <code class="prettyprint">accelerometer</code>, <code class="prettyprint">gyroscope</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Return the updated circle object.</p>
 
           <h2 id="remove-a-device">Remove a device</h2>
 
@@ -2011,6 +2253,8 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 </blockquote>
 <pre class="highlight json"><code><span class="p">[{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wearable"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -2023,6 +2267,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"model_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"serial_no"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"device_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"hardware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"firmware_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"software_version"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -2050,7 +2295,8 @@ can choose which circles(s) receive the notifications.</p>
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dea658b2684d11e5922038c98601185b"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"2f3771ec87fe11e5ad0738c98601185b"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2075,6 +2321,10 @@ can choose which circles(s) receive the notifications.</p>
 <tr>
 <td style="text-align: right">photo_url<br><em>url</em></td>
 <td>Link to circle&rsquo;s icon or photo</td>
+</tr>
+<tr>
+<td style="text-align: right">contacts<br><em>array</em></td>
+<td>List of contact UIDs included in this circle</td>
 </tr>
 </tbody></table>
 
@@ -2105,7 +2355,8 @@ can choose which circles(s) receive the notifications.</p>
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Family"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2148,7 +2399,8 @@ can choose which circles(s) receive the notifications.</p>
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dea658b2684d11e5922038c98601185b"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"2f3771ec87fe11e5ad0738c98601185b"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2216,6 +2468,59 @@ can choose which circles(s) receive the notifications.</p>
 <h3 id="returns">Returns</h3>
 
 <p>This method returns a <a href="#media">media</a> object with details of the file uploaded.</p>
+
+          <h2 id="update-circle">Update circle</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.fabriq.io/circles
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://api.fabriq.io/circles'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
+  -d <span class="s1">'{                                        
+      "uid": "039d2aa25d4e11e5a0dd38c98601185b",
+      "name": "Friends"
+     }'</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friends"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">uid<br><strong>required</strong>, <em>string</em></td>
+<td>Circles&rsquo;s uid</td>
+</tr>
+<tr>
+<td style="text-align: right">name<br><strong>required</strong>, <em>string</em></td>
+<td>New circle name</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Return the updated circle object.</p>
 
           <h2 id="remove-a-circle">Remove a circle</h2>
 
@@ -2291,13 +2596,15 @@ before this circle is removed.
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45778d285da311e5936420c9d07e7899"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"2f3771ec87fe11e5ad0738c98601185b"</span><span class="p">]</span><span class="w">
 </span><span class="p">},</span><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Family"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
  </span><span class="p">}]</span><span class="w">
 </span></code></pre>
 
@@ -2323,6 +2630,8 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
     </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"relationship"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Husband"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@example.com"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551212"</span><span class="p">,</span><span class="w">
@@ -2346,55 +2655,63 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">uid <br><em>string</em></td>
+<td style="text-align: right">uid<br><em>string</em></td>
 <td>Unique identifier of the contact</td>
 </tr>
 <tr>
-<td style="text-align: right">first_name <br><em>string</em></td>
+<td style="text-align: right">first_name<br><em>string</em></td>
 <td>Contact&rsquo;s first name</td>
 </tr>
 <tr>
-<td style="text-align: right">last_name <br><em>string</em></td>
+<td style="text-align: right">last_name<br><em>string</em></td>
 <td>Contact&rsquo;s last name</td>
 </tr>
 <tr>
-<td style="text-align: right">display_name <br><em>string</em></td>
+<td style="text-align: right">display_name<br><em>string</em></td>
 <td>Contact&rsquo;s full name</td>
 </tr>
 <tr>
-<td style="text-align: right">photo_url <br><em>url</em></td>
+<td style="text-align: right">nickname<br><em>string</em></td>
+<td>Contact&rsquo;s nickname</td>
+</tr>
+<tr>
+<td style="text-align: right">relationship<br><em>string</em></td>
+<td>Contact&rsquo;s relationship to user</td>
+</tr>
+<tr>
+<td style="text-align: right">photo_url<br><em>url</em></td>
 <td>Link to contact&rsquo;s photo</td>
 </tr>
 <tr>
-<td style="text-align: right">email <br><em>string</em></td>
+<td style="text-align: right">email<br><em>string</em></td>
 <td>Contact&rsquo;s email address</td>
 </tr>
 <tr>
-<td style="text-align: right">mobile_number <br><em>string</em></td>
+<td style="text-align: right">mobile_number<br><em>string</em></td>
 <td>Contact&rsquo;s mobile number  (<a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>)</td>
 </tr>
 <tr>
-<td style="text-align: right">email_alert <br><em>boolean</em></td>
+<td style="text-align: right">email_alert<br><em>boolean</em></td>
 <td>True if contact has opted to receive email alerts</td>
 </tr>
 <tr>
-<td style="text-align: right">sms_alert <br><em>boolean</em></td>
+<td style="text-align: right">sms_alert<br><em>boolean</em></td>
 <td>True if contact has opted to receive text alerts</td>
 </tr>
 <tr>
-<td style="text-align: right">push_alert <br><em>boolean</em></td>
+<td style="text-align: right">push_alert<br><em>boolean</em></td>
 <td>True if contact has opted to receive push alerts</td>
 </tr>
 <tr>
-<td style="text-align: right">email_verified <br><em>boolean</em></td>
+<td style="text-align: right">email_verified<br><em>boolean</em></td>
 <td>True if FABRIQ has verified contact&rsquo;s email address</td>
 </tr>
 <tr>
-<td style="text-align: right">mobile_verified <br><em>boolean</em></td>
+<td style="text-align: right">mobile_verified<br><em>boolean</em></td>
 <td>True if FABRIQ has verified contact&rsquo;s mobile number</td>
 </tr>
 <tr>
-<td style="text-align: right">circles <br><em>array</em></td>
+<td style="text-align: right">circles<br><em>array</em></td>
 <td>List of circles to which this contact has been added</td>
 </tr>
 </tbody></table>
@@ -2419,7 +2736,7 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
          "last_name": "Doe",                    
          "email": "jane@example.com",                    
          "mobile_number": "+12125551313",
-         "circles": ["d4826772-542f-11e5-9364-20c9d07e7899"]
+         "circles": ["039d2aa25d4e11e5a0dd38c98601185b"]
 
       }'</span>
 </code></pre>
@@ -2428,10 +2745,12 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 <p><strong>Sample Response</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"761d4f1a-a121-40f8-a8d3-2993ba5861d9"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"836bba12589e46d5b2c690c749e2e230"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"relationship"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">" jane@example.com"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551313"</span><span class="p">,</span><span class="w">
@@ -2441,7 +2760,7 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
     </span><span class="nt">"email_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"mobile_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"circles"</span><span class="p">:[{</span><span class="w">
-        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d4826772-542f-11e5-9364-20c9d07e7899"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="w">
     </span><span class="p">}]</span><span class="w">
@@ -2465,6 +2784,14 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 <tr>
 <td style="text-align: right">mobile_number<br><strong>required</strong>, <em>string</em></td>
 <td>Contact&rsquo;s mobile number  (<a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>)</td>
+</tr>
+<tr>
+<td style="text-align: right">nickname<br><em>optional</em>, <em>string</em></td>
+<td>Contact&rsquo;s nickname</td>
+</tr>
+<tr>
+<td style="text-align: right">relationship<br><em>optional</em>, <em>string</em></td>
+<td>Contact&rsquo;s relationship to the user</td>
 </tr>
 <tr>
 <td style="text-align: right">email<br><em>optional</em>, <em>string</em></td>
@@ -2504,6 +2831,8 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
     </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"relationship"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Husband"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@example.com"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551212"</span><span class="p">,</span><span class="w">
@@ -2585,6 +2914,99 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 
 <p>This method returns a <a href="#media">media</a> object with details of the file uploaded.</p>
 
+          <h2 id="update-contact">Update contact</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.fabriq.io/contacts
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://api.fabriq.io/contacts'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
+  -d <span class="s1">'{                                        
+      "uid": "836bba12589e46d5b2c690c749e2e230",
+      "nickname": "Jane",                    
+      "relationship": "Wife",                    
+      "circles": ["039d2aa25d4e11e5a0dd38c98601185b"]      
+     }'</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"836bba12589e46d5b2c690c749e2e230"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"relationship"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wife"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">" jane@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551313"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sms_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"push_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"circles"</span><span class="p">:[{</span><span class="w">
+        </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">uid<br><strong>required</strong>, <em>string</em></td>
+<td>Contact&rsquo;s uid</td>
+</tr>
+<tr>
+<td style="text-align: right">first_name<br><em>optional</em>, <em>string</em></td>
+<td>Contact&rsquo;s first name</td>
+</tr>
+<tr>
+<td style="text-align: right">last_name<br><em>optional</em>, <em>string</em></td>
+<td>Contact&rsquo;s last name</td>
+</tr>
+<tr>
+<td style="text-align: right">nickname<br><em>optional</em>, <em>string</em></td>
+<td>Contact&rsquo;s nickname</td>
+</tr>
+<tr>
+<td style="text-align: right">relationship<br><em>optional</em>, <em>string</em></td>
+<td>Contact&rsquo;s relationship to the user</td>
+</tr>
+<tr>
+<td style="text-align: right">mobile_number<br><em>optional</em>, <em>string</em></td>
+<td>Contact&rsquo;s mobile number  (<a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>)<br><em>A verification text message will be sent to the new mobile number.</em></td>
+</tr>
+<tr>
+<td style="text-align: right">email<br><em>optional</em>, <em>string</em></td>
+<td>Contact&rsquo;s email address<br><em>A verification email will be sent to the new email address</em></td>
+</tr>
+<tr>
+<td style="text-align: right">circles<br><em>optional</em>, <em>array</em></td>
+<td>Array of <code class="prettyprint">circle_uid</code>&rsquo;s to which this contact should belong.</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Return the updated contact object.</p>
+
           <h2 id="remove-a-contact">Remove a contact</h2>
 
 <blockquote>
@@ -2649,6 +3071,8 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
     </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"relationship"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Husband"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdoe@example.com"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12125551212"</span><span class="p">,</span><span class="w">
@@ -2693,14 +3117,14 @@ of time.</p>
 <p>The user can request to have FABRIQ send him or her a periodic message (called a ping).  If the user does not
 respond to this ping within a specified period of time, an automatic alert will be triggered.</p>
 
-<h3 id="watch-notification">Watch Notification</h3>
+<h3 id="watch-alert">Watch Alert</h3>
 
-<p>The user can request to have his or her contacts notified that have started and/or ended an activity.  The user will
-receive a message with a link to watch the user in real-time.</p>
+<p>Send an alert to a user&rsquo;s contacts when he or she has started and/or stopped an activity.  Each contact will
+receive a message with a link to watch over the user in real-time.</p>
 
-<h3 id="app-defined-notification">App-Defined Notification</h3>
+<h3 id="app-defined-alert">App-Defined Alert</h3>
 
-<p>You can define notifications specific to your app which can be triggered manually or
+<p>You can define alerts specific to your app which can be triggered manually or
 automatically on behalf of the user.</p>
 
           <h2 id="the-alert-object">The alert object</h2>
@@ -2854,12 +3278,12 @@ automatically on behalf of the user.</p>
 
 <p>An alert object if messages were successfully sent to the user&rsquo;s contact(s).</p>
 
-          <h2 id="trigger-a-notification">Trigger a Notification</h2>
+          <h2 id="trigger-an-app-alert">Trigger an app alert</h2>
 
 <blockquote>
 <p><strong>Definition</strong></p>
 </blockquote>
-<pre class="highlight plaintext"><code>POST https://api.fabriq.io/alerts/{NOTIFICATION_UID}
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/alerts/{ALERT_UID}
 </code></pre>
 
 <blockquote>
@@ -2895,7 +3319,7 @@ automatically on behalf of the user.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Trigger an <a href="#create-a-notification">app-defined notification</a>.</p>
+<p>Trigger an <a href="#create-an-alert">app-defined alert</a>.</p>
 
 <p><br></p>
 
@@ -2906,20 +3330,20 @@ automatically on behalf of the user.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">notification_uid<br><strong>required</strong>, <em>string</em></td>
-<td>UID of notification to trigger<br><em>URL parameter</em></td>
+<td style="text-align: right">alert_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of alert to trigger<br><em>URL parameter</em></td>
 </tr>
 <tr>
 <td style="text-align: right">circles<br><strong>required</strong>, <em>array</em></td>
-<td>List of <code class="prettyprint">circle_uid</code>&rsquo;s that will be notified when this notification is triggered<br><em>The result object contains the list of contacts that were notified</em></td>
+<td>List of <code class="prettyprint">circle_uid</code>&rsquo;s that will be notified when this alert is triggered<br><em>The result object contains the list of contacts that were notified</em></td>
 </tr>
 <tr>
 <td style="text-align: right">device<br><em>optional</em>, <em>string</em></td>
-<td><code class="prettyprint">device_uid</code> that triggered this notification</td>
+<td><code class="prettyprint">device_uid</code> that triggered this alert</td>
 </tr>
 <tr>
 <td style="text-align: right">activity<br><em>optional</em>, <em>string</em></td>
-<td><code class="prettyprint">activity_uid</code> associated with this notification</td>
+<td><code class="prettyprint">activity_uid</code> associated with this alert</td>
 </tr>
 <tr>
 <td style="text-align: right">latitude<br><em>optional</em>, <em>double</em></td>
@@ -3014,13 +3438,13 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <blockquote>
 <p><strong>Definition</strong></p>
 </blockquote>
-<pre class="highlight plaintext"><code>POST https://api.fabriq.io/alerts/{ALERT_UID}/position
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/alerts/{ALERT_UID}/positions
 </code></pre>
 
 <blockquote>
 <p><strong>Sample Request</strong></p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/position'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/positions'</span>  <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>         <span class="se">\</span>
@@ -3510,13 +3934,13 @@ an error message.</p>
 <blockquote>
 <p><strong>Definition</strong></p>
 </blockquote>
-<pre class="highlight plaintext"><code>POST https://api.fabriq.io/activities/{ACTIVITY_UID}/position
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/activities/{ACTIVITY_UID}/positions
 </code></pre>
 
 <blockquote>
 <p><strong>Sample Request</strong></p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391/position'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391/positions'</span>  <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>         <span class="se">\</span>
@@ -4284,6 +4708,8 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"panic_delay"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"panic_silent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pin_ok"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pin_duress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5678"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"metric_units"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_panic_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PANIC! HELP, I'm in danger!"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_panic_cancel_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This panic alert has been canceled."</span><span class="p">,</span><span class="w">
@@ -4304,51 +4730,59 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">panic_delay <br><em>integer</em></td>
+<td style="text-align: right">panic_delay<br><em>integer</em></td>
 <td>[UI] Time in milliseconds to wait before the PANIC alert is triggered.  The user should be able to cancel the alert during this window.</td>
 </tr>
 <tr>
-<td style="text-align: right">panic_silent <br><em>boolean</em></td>
+<td style="text-align: right">panic_silent<br><em>boolean</em></td>
 <td>[UI] Flag to indicate a PANIC alert should be triggered silently.</td>
 </tr>
 <tr>
-<td style="text-align: right">metric_units <br><em>boolean</em></td>
+<td style="text-align: right">pin_ok<br><em>string</em></td>
+<td>PIN used to cancel an alert.  This PIN will cancel the alert and send a notification to the user&rsquo;s contacts</td>
+</tr>
+<tr>
+<td style="text-align: right">pin_duress<br><em>string</em></td>
+<td>In a situation where a user is forced to turn off the alert, this PIN is used to disable the  UI but keep the alert active</td>
+</tr>
+<tr>
+<td style="text-align: right">metric_units<br><em>boolean</em></td>
 <td>[UI] User preference to view/update his or her profile data</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_panic_message <br><em>string</em></td>
+<td style="text-align: right">alert_panic_message<br><em>string</em></td>
 <td>Message sent when panic is triggered</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_panic_cancel_message <br><em>string</em></td>
+<td style="text-align: right">alert_panic_cancel_message<br><em>string</em></td>
 <td>Message sent when active alert is canceled</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_activity_start_message <br><em>string</em></td>
+<td style="text-align: right">alert_activity_start_message<br><em>string</em></td>
 <td>Message sent when activity is started</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_activity_end_message <br><em>string</em></td>
+<td style="text-align: right">alert_activity_end_message<br><em>string</em></td>
 <td>Message sent when activity is ended</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_activity_timeout_message <br><em>string</em></td>
+<td style="text-align: right">alert_activity_timeout_message<br><em>string</em></td>
 <td>Message sent when activity times out</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_timeout_message <br><em>string</em></td>
+<td style="text-align: right">alert_ping_timeout_message<br><em>string</em></td>
 <td>Message sent when user fails to respond to &lsquo;ping_me&rsquo; after the specified number of retries</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_interval <br><em>integer</em></td>
+<td style="text-align: right">alert_ping_interval<br><em>integer</em></td>
 <td>Milliseconds between sending a <code class="prettyprint">ping</code> message to the user</td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_timeout <br><em>integer</em></td>
+<td style="text-align: right">alert_ping_timeout<br><em>integer</em></td>
 <td>Milliseconds to wait for a user to respond to a <code class="prettyprint">ping</code></td>
 </tr>
 <tr>
-<td style="text-align: right">alert_ping_retry_count <br><em>integer</em></td>
+<td style="text-align: right">alert_ping_retry_count<br><em>integer</em></td>
 <td>Number of times to try a <code class="prettyprint">ping</code> after a timeout before triggering an alert</td>
 </tr>
 </tbody></table>
@@ -4375,6 +4809,8 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"panic_delay"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"panic_silent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pin_ok"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pin_duress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5678"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"metric_units"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_panic_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PANIC! HELP, I'm in danger!"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_panic_cancel_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This panic alert has been canceled."</span><span class="p">,</span><span class="w">
@@ -4418,6 +4854,8 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"panic_delay"</span><span class="p">:</span><span class="mi">7000</span><span class="p">,</span><span class="w">
     </span><span class="nt">"panic_silent"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pin_ok"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pin_duress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5678"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"metric_units"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_panic_message"</span><span class="p">:</span><span class="s2">"PANIC! HELP, I'm in danger!"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"alert_panic_cancel_message"</span><span class="p">:</span><span class="s2">"This panic alert has been canceled."</span><span class="p">,</span><span class="w">
@@ -4444,6 +4882,14 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 <tr>
 <td style="text-align: right">panic_silent <br><em>optional</em>, <em>boolean</em></td>
 <td>Flag to indicate if the device should sound an alarm and flash as strobe by default</td>
+</tr>
+<tr>
+<td style="text-align: right">pin_ok<br><em>optional</em>, <em>string</em></td>
+<td>PIN used to cancel an alert.  This PIN will cancel the alert and send a notification to the user&rsquo;s contacts</td>
+</tr>
+<tr>
+<td style="text-align: right">pin_duress<br><em>optional</em>, <em>string</em></td>
+<td>In a situation where a user is forced to turn off the alert, this PIN is used to disable the  UI but keep the alert active</td>
 </tr>
 <tr>
 <td style="text-align: right">metric_units <br><em>optional</em>, <em>boolean</em></td>
@@ -4579,11 +5025,11 @@ POST https://api.fabriq.io/app/users?login=true
 <p>A user object.  If the query parameter login is set to true, then the return object will include an
 access_token.</p>
 
-          <h1 id="notifications">Notifications</h1>
+          <h1 id="alerts">Alerts</h1>
 
-<p>Create app-specific notifications that can be triggered by the user.</p>
+<p>Create app-specific alerts that can be triggered by the user.</p>
 
-          <h2 id="the-notification-object">The notification object</h2>
+          <h2 id="the-alert-object">The alert object</h2>
 
 <blockquote>
 <p><strong>Sample Response</strong></p>
@@ -4593,6 +5039,7 @@ access_token.</p>
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campus Escort"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Requesting an escort to walk home."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"cancel_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Escort no longer needed. Thank you."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cancellable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"pin_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
@@ -4614,41 +5061,46 @@ access_token.</p>
 <td>Default message sent to the user&rsquo;s contacts</td>
 </tr>
 <tr>
-<td style="text-align: right">cancel_message<br><em>string</em></td>
-<td>If set, allows the notification to be &ldquo;canceled&rdquo; with this message sent to the user&rsquo;s contacts</td>
+<td style="text-align: right">cancel_message<br><em>optional</em>, <em>string</em></td>
+<td>Default cancel message sent to the user&rsquo;s contacts</td>
+</tr>
+<tr>
+<td style="text-align: right">cancellable<br><em>optional</em>, <em>boolean</em></td>
+<td>If set to true, allows the alert to be &ldquo;canceled&rdquo;</td>
 </tr>
 <tr>
 <td style="text-align: right">pin_required<br><em>boolean</em></td>
-<td>If true, the notification can only be canceled with a PIN</td>
+<td>If true, the alert can only be canceled with a PIN</td>
 </tr>
 <tr>
 <td style="text-align: right">priority<br><em>integer</em></td>
-<td>Relative priority of this notification relative to others defined by your app.<br><em>Default is 10</em></td>
+<td>Relative priority of this alert relative to others defined by your app.<br><em>Default is 10</em></td>
 </tr>
 <tr>
 <td style="text-align: right">description<br><em>string</em></td>
-<td>A description for this notification</td>
+<td>A description for this alert</td>
 </tr>
 </tbody></table>
 
-          <h2 id="create-a-notification">Create a notification</h2>
+          <h2 id="create-an-alert">Create an alert</h2>
 
 <blockquote>
 <p><strong>Definition</strong></p>
 </blockquote>
-<pre class="highlight plaintext"><code>POST https://api.fabriq.io/app/notifications
+<pre class="highlight plaintext"><code>POST https://api.fabriq.io/app/alerts
 </code></pre>
 
 <blockquote>
 <p><strong>Sample Request</strong></p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/app/notifications'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/app/alerts'</span>  <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>  <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
   -d <span class="s1">'{                                        
         "name": "Campus Escort",
         "message": "Requesting an escort to walk home.",
         "cancel_message": "Escort no longer needed. Thank you.",
+        "cancellable": true,
         "pin_required": true
       }'</span>
 </code></pre>
@@ -4661,6 +5113,7 @@ access_token.</p>
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campus Escort"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Requesting an escort to walk home."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"cancel_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Escort no longer needed. Thank you."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cancellable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"pin_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
@@ -4683,38 +5136,42 @@ access_token.</p>
 </tr>
 <tr>
 <td style="text-align: right">cancel_message<br><em>optional</em>, <em>string</em></td>
-<td>If set, allows the notification to be &ldquo;canceled&rdquo; with this message sent to the user&rsquo;s contacts</td>
+<td>Default cancel message sent to the user&rsquo;s contacts</td>
+</tr>
+<tr>
+<td style="text-align: right">cancellable<br><em>optional</em>, <em>boolean</em></td>
+<td>If set to true, allows the alert to be &ldquo;canceled&rdquo;</td>
 </tr>
 <tr>
 <td style="text-align: right">pin_required<br><em>optional</em>, <em>boolean</em></td>
-<td>If true, the notification can only be canceled with a PIN</td>
+<td>If true, the alert can only be canceled with a PIN</td>
 </tr>
 <tr>
 <td style="text-align: right">priority<br><em>optional</em>, <em>integer</em></td>
-<td>Relative priority of this notification relative to others defined by your app.<br><em>Default is 10</em></td>
+<td>Relative priority of this alert relative to others defined by your app.<br><em>Default is 10</em></td>
 </tr>
 <tr>
 <td style="text-align: right">description<br><em>optional</em>, <em>string</em></td>
-<td>A description for this notification</td>
+<td>A description for this alert</td>
 </tr>
 </tbody></table>
 
 <h3 id="returns">Returns</h3>
 
-<p>A notification object.  Use the returned <code class="prettyprint">uid</code> to <a href="#trigger-a-notification">trigger the notification</a>.</p>
+<p>An alert object.  Use the returned <code class="prettyprint">uid</code> to <a href="#trigger-an-app-alert">trigger the alert</a>.</p>
 
-          <h2 id="retrieve-a-notification">Retrieve a notification</h2>
+          <h2 id="retrieve-an-alert">Retrieve an alert</h2>
 
 <blockquote>
 <p><strong>Definition</strong></p>
 </blockquote>
-<pre class="highlight plaintext"><code>GET https://api.fabriq.io/app/notifications/{NOTIFICATION_UID}
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/app/alerts/{ALERT_UID}
 </code></pre>
 
 <blockquote>
 <p><strong>Sample Request</strong></p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/app/notifications/68a6e7fe5f324e048ea2f2b29271f895'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/app/alerts/68a6e7fe5f324e048ea2f2b29271f895'</span> <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>
 </code></pre>
 
@@ -4726,6 +5183,7 @@ access_token.</p>
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campus Escort"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Requesting an escort to walk home."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"cancel_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Escort no longer needed. Thank you."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cancellable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"pin_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
@@ -4739,8 +5197,8 @@ access_token.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">notification_uid<br><strong>required</strong>, <em>string</em></td>
-<td>UID of the notification to be retrieved<br><em>URL parameter</em></td>
+<td style="text-align: right">alert_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of the alert to be retrieved<br><em>URL parameter</em></td>
 </tr>
 </tbody></table>
 
@@ -4748,18 +5206,99 @@ access_token.</p>
 
 <p>A device object.</p>
 
-          <h2 id="remove-a-notification">Remove a notification</h2>
+          <h2 id="update-an-alert">Update an alert</h2>
 
 <blockquote>
 <p><strong>Definition</strong></p>
 </blockquote>
-<pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/app/notifications/{NOTIFICATION_UID}
+<pre class="highlight plaintext"><code>PUT https://api.fabriq.io/app/alerts
 </code></pre>
 
 <blockquote>
 <p><strong>Sample Request</strong></p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/notifications/68a6e7fe5f324e048ea2f2b29271f895'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.fabriq.io/app/alerts'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>  <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
+  -d <span class="s1">'{                                        
+        "uid": "68a6e7fe5f324e048ea2f2b29271f895",
+        "name": "Campus Ride",
+        "message": "Requesting a ride to go home.",
+        "cancel_message": "Ride no longer needed. Thank you."
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68a6e7fe5f324e048ea2f2b29271f895"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campus Ride"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Requesting a ride to go home."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cancel_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ride no longer needed. Thank you."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cancellable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pin_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">alert_uid<br><strong>required</strong>, <em>string</em></td>
+<td>Alert UID</td>
+</tr>
+<tr>
+<td style="text-align: right">name<br><em>optional</em>, <em>string</em></td>
+<td>Alert name</td>
+</tr>
+<tr>
+<td style="text-align: right">message<br><em>optional</em>, <em>string</em></td>
+<td>Default message sent to the user&rsquo;s contacts</td>
+</tr>
+<tr>
+<td style="text-align: right">cancel_message<br><em>optional</em>, <em>string</em></td>
+<td>Default cancel message sent to the user&rsquo;s contacts</td>
+</tr>
+<tr>
+<td style="text-align: right">cancellable<br><em>optional</em>, <em>boolean</em></td>
+<td>If set to true, allows the alert to be &ldquo;canceled&rdquo;</td>
+</tr>
+<tr>
+<td style="text-align: right">pin_required<br><em>optional</em>, <em>boolean</em></td>
+<td>If true, the alert can only be canceled with a PIN</td>
+</tr>
+<tr>
+<td style="text-align: right">priority<br><em>optional</em>, <em>integer</em></td>
+<td>Relative priority of this alert relative to others defined by your app.<br><em>Default is 10</em></td>
+</tr>
+<tr>
+<td style="text-align: right">description<br><em>optional</em>, <em>string</em></td>
+<td>A description for this alert</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>Return the updated alert object.</p>
+
+          <h2 id="remove-an-alert">Remove an alert</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.fabriq.io/app/alerts/{NOTIFICATION_UID}
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/alerts/68a6e7fe5f324e048ea2f2b29271f895'</span> <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>
 </code></pre>
 
@@ -4778,27 +5317,27 @@ access_token.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">notification_uid<br><strong>required</strong>, <em>string</em></td>
-<td>UID of the notification to be removed<br><em>URL parameter</em></td>
+<td style="text-align: right">alert_uid<br><strong>required</strong>, <em>string</em></td>
+<td>UID of the alert to be removed<br><em>URL parameter</em></td>
 </tr>
 </tbody></table>
 
 <h3 id="returns">Returns</h3>
 
-<p>The uid of the notification that was removed.</p>
+<p>The uid of the alert that was removed.</p>
 
-          <h2 id="list-all-notifications">List all notifications</h2>
+          <h2 id="list-all-alerts">List all alerts</h2>
 
 <blockquote>
 <p><strong>Definition</strong></p>
 </blockquote>
-<pre class="highlight plaintext"><code>GET https://api.fabriq.io/app/notifications
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/app/alerts
 </code></pre>
 
 <blockquote>
 <p><strong>Sample Request</strong></p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/app/notifications'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/app/alerts'</span>  <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span>
 </code></pre>
 
@@ -4810,11 +5349,14 @@ access_token.</p>
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campus Escort"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Requesting an escort to walk home."</span><span class="p">,</span><span class="w">
     </span><span class="nt">"cancel_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Escort no longer needed. Thank you."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cancellable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"pin_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre>
+
+<p>List all alerts defined by your app.</p>
 
 <h3 id="returns">Returns</h3>
 
