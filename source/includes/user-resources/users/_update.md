@@ -38,7 +38,6 @@ curl -X PUT 'https://api.fabriq.io/me'  \
 
 ARGUMENTS ||
 ---------:        | -----------
-uid<br>**required**, *string*  | User identifier
 username<br>*optional*, *string*  | New username.  Must be available and unique.
 mobile_number<br>*optional*, *string*  | New mobile number ([E.164 format](https://en.wikipedia.org/wiki/E.164))<br>*The user will receive a text message to confirm her mobile number*
 email<br>*optional*, *string*  | New email address. Must be valid and unique<br>*The user will receive an email to confirm her email*
@@ -48,5 +47,5 @@ floor<br>*optional*, *double*  | User's current floor<br>*Street level (ground f
 
 
 ### Returns
-Return the updated user object. Please note that an update will require
-the user to verify his or her email and/or mobile number.
+Return the updated user object. Please note that updating email or mobile number will require
+the user to verify those changes.

@@ -3,18 +3,17 @@
 > **Definition**
 
 ```text
-PUT https://api.fabriq.io/devices
+PUT https://api.fabriq.io/devices/{DEVICE_UID}
 ```
 
 > **Sample Request**
 
 ```shell
-curl -X PUT 'https://api.fabriq.io/devices'  \
+curl -X PUT 'https://api.fabriq.io/devices/7ce9d0b43d8543b2a53a3990028b4f27'  \
   -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
   -H 'Content-Type: application/json'  \
   -d '{                                        
-      "uid": "7ce9d0b43d8543b2a53a3990028b4f27",
       "capabilities": ["ble", "gps", "wifi"]
      }'
 ```
@@ -49,7 +48,7 @@ curl -X PUT 'https://api.fabriq.io/devices'  \
 
 ARGUMENTS ||
 ---------:        | -----------
-uid<br>**required**, *string* | Devices's unique identifier
+device_uid<br>**required**, *string* | UID of the device to be updated<br>*URL parameter*
 name<br>*optional*, *string*  | Name of the device<br>*Unique across all devices owned by the current user*
 type<br>*optional*, *string*  | Device type. Possible values: `phone`, `tablet`, `wearable`, `sensor`, `other`
 platform<br>*optional*, *string*   | Platform type. Possible values: `firmware`, `ios`, `os-x`, `watch-os`, `tv-os`, `android`, `linux`, `windows`, `windows-phone`, `unknown`, `other`.<br>*Defaults to `unknown` if not set*

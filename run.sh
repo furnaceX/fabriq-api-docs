@@ -6,3 +6,7 @@
 # bundle install
 #
 bundle exec middleman server
+
+
+# to build
+# rake build

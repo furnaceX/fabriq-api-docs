@@ -3,18 +3,17 @@
 > **Definition**
 
 ```text
-PUT https://api.fabriq.io/contacts
+PUT https://api.fabriq.io/contacts/{CONTACT_UID}
 ```
 
 > **Sample Request**
 
 ```shell
-curl -X PUT 'https://api.fabriq.io/contacts'  \
+curl -X PUT 'https://api.fabriq.io/contacts/836bba12589e46d5b2c690c749e2e230'  \
   -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}' \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
   -H 'Content-Type: application/json'  \
   -d '{                                        
-      "uid": "836bba12589e46d5b2c690c749e2e230",
       "nickname": "Jane",                    
       "relationship": "Wife",                    
       "circles": ["039d2aa25d4e11e5a0dd38c98601185b"]      
@@ -50,7 +49,7 @@ curl -X PUT 'https://api.fabriq.io/contacts'  \
 
 ARGUMENTS ||
 ---------:        | -----------
-uid<br>**required**, *string* | Contact's uid
+contact_uid<br>**required**, *string* | UID of the contact to be updated<br>*URL parameter*
 first_name<br>*optional*, *string* | Contact's first name
 last_name<br>*optional*, *string*  | Contact's last name
 nickname<br>*optional*, *string*  | Contact's nickname

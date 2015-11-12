@@ -3,17 +3,16 @@
 > **Definition**
 
 ```text
-PUT https://api.fabriq.io/app/alerts
+PUT https://api.fabriq.io/app/alerts/{ALERT_UID}
 ```
 
 > **Sample Request**
 
 ```shell
-curl -X POST 'https://api.fabriq.io/app/alerts'  \
+curl -X POST 'https://api.fabriq.io/app/alerts/68a6e7fe5f324e048ea2f2b29271f895'  \
   -H 'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'  \
   -H 'Content-Type: application/json'  \
   -d '{                                        
-        "uid": "68a6e7fe5f324e048ea2f2b29271f895",
         "name": "Campus Ride",
         "message": "Requesting a ride to go home.",
         "cancel_message": "Ride no longer needed. Thank you."
@@ -37,7 +36,7 @@ curl -X POST 'https://api.fabriq.io/app/alerts'  \
 
 ARGUMENTS ||
 ---------:        | -----------
-alert_uid<br>**required**, *string*  | Alert UID
+alert_uid<br>**required**, *string* | UID of the alert to be updated<br>*URL parameter*
 name<br>*optional*, *string*  | Alert name
 message<br>*optional*, *string*  | Default message sent to the user's contacts
 cancel_message<br>*optional*, *string*  | Default cancel message sent to the user's contacts
