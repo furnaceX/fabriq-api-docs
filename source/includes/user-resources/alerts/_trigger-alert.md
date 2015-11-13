@@ -46,7 +46,8 @@ Trigger an [app-defined alert](#create-an-alert).
 ARGUMENTS ||
 ---------:        | -----------
 alert_uid<br>**required**, *string*  | UID of alert to trigger<br>*URL parameter*
-circles<br>**required**, *array*  | List of `circle_uid`'s that will be notified when this alert is triggered<br>*The result object contains the list of contacts that were notified*
+circles<br>**conditional**, *array*  | List of `circle_uid`'s that will be notified when this alert is triggered<br>*REQUIRED if `contacts` argument is null*
+contacts<br>**conditional**, *array*  | List of `contact_uid`'s that will be notified when this alert is triggered<br>*REQUIRED if `circles` argument is null*
 device<br>*optional*, *string*  | `device_uid` that triggered this alert
 activity<br>*optional*, *string*  | `activity_uid` associated with this alert
 latitude<br>*optional*, *double*  | Latitude where alert was triggered

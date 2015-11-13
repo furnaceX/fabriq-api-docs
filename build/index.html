@@ -3327,8 +3327,12 @@ automatically on behalf of the user.</p>
 <td>UID of alert to trigger<br><em>URL parameter</em></td>
 </tr>
 <tr>
-<td style="text-align: right">circles<br><strong>required</strong>, <em>array</em></td>
-<td>List of <code class="prettyprint">circle_uid</code>&rsquo;s that will be notified when this alert is triggered<br><em>The result object contains the list of contacts that were notified</em></td>
+<td style="text-align: right">circles<br><strong>conditional</strong>, <em>array</em></td>
+<td>List of <code class="prettyprint">circle_uid</code>&rsquo;s that will be notified when this alert is triggered<br><em>REQUIRED if <code class="prettyprint">contacts</code> argument is null</em></td>
+</tr>
+<tr>
+<td style="text-align: right">contacts<br><strong>conditional</strong>, <em>array</em></td>
+<td>List of <code class="prettyprint">contact_uid</code>&rsquo;s that will be notified when this alert is triggered<br><em>REQUIRED if <code class="prettyprint">circles</code> argument is null</em></td>
 </tr>
 <tr>
 <td style="text-align: right">device<br><em>optional</em>, <em>string</em></td>
