@@ -51,14 +51,15 @@ curl -X POST 'https://api.fabriq.io/contacts'  \
 
 ARGUMENTS ||
 ---------:        | -----------
-first_name<br>**required**, *string* | Contact's first name
-last_name<br>**required**, *string*  | Contact's last name
-mobile_number<br>**required**, *string*  | Contact's mobile number  ([E.164 format](https://en.wikipedia.org/wiki/E.164))
+user_uid<br>**conditional**, *string* | UID of existing FABRIQ user<br>*REQUIRED if no other fields are specified*
+first_name<br>**conditional**, *string* | Contact's first name<br>*REQUIRED if `user_uid` is not specified*
+last_name<br>**conditional**, *string*  | Contact's last name<br>*REQUIRED if `user_uid` is not specified*
+mobile_number<br>**conditional**, *string*  | Contact's mobile number  ([E.164 format](https://en.wikipedia.org/wiki/E.164))<br>*REQUIRED if `user_uid` is not specified*
 nickname<br>*optional*, *string*  | Contact's nickname
 relationship<br>*optional*, *string*  | Contact's relationship to the user
 email<br>*optional*, *string*  | Contact's email address
-circles<br>*optional*, *array*  | Array of `circle_uid`'s to which this contact should belong. If not specified, contact will be added to the user's default circle.
+circles<br>*optional*, *array*  | Array of `circle_uid`'s to which this contact should belong. If not specified, contact will be added to the user's account but will not receive any alerts until added to a circle.
 
 
 ### Returns
-A contact object.
+A contact object.  Note the returned object contains a UID for the contact that is independent of `user_uid` if it was specified.

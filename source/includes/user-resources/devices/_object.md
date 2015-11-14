@@ -7,7 +7,7 @@
     "uid": "7ce9d0b43d8543b2a53a3990028b4f27",
     "type": "wearable",
     "platform": "firmware",
-    "user": "9ff6178e851942cbb5a5ddc71f82588d",
+    "assigned_user": "9ff6178e851942cbb5a5ddc71f82588d",
     "parent": null,
     "paired": null,
     "name": "Teddy Tag",
@@ -32,7 +32,7 @@ ATTRIBUTES||
 uid<br>*string*   | Unique identifier of the device
 type<br>*string*   | Device type. Possible values: `phone`, `tablet`, `wearable`, `sensor`, `other`
 platform<br>*string*   | Platform type. Possible values: `firmware`, `ios`, `os-x`, `watch-os`, `tv-os`, `android`, `linux`, `windows`, `windows-phone`, `unknown`, `other`
-user<br>*string*  | Uid of the user this device is assigned to.  This may or may not be the current user.<br>*For example, a mom (the current user) could purchase this device (e.g. a BLE tracker) for her child in which case, the uid will be that of her child.*
+assigned_user<br>*string*  | Uid of the user this device is assigned to.  This may or may not be the current user.<br>*For example, a mom (the current user) could purchase this device (e.g. a BLE tracker) for her child in which case, the uid will be that of her child.*
 parent<br>*string*  | If this device is part of a larger system, then this field references the uid of that larger system.<br>*For example, a home security system that has multiple sensors*
 paried<br>*string*  | If this device is currently paired with another device, then this field references the uid of the other device
 name<br>*string*  | Name of the device

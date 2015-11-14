@@ -25,7 +25,7 @@ curl -X PUT 'https://api.fabriq.io/devices/7ce9d0b43d8543b2a53a3990028b4f27'  \
     "uid": "7ce9d0b43d8543b2a53a3990028b4f27",
     "type": "wearable",
     "platform": "firmware",
-    "user": "9ff6178e851942cbb5a5ddc71f82588d",
+    "assigned_user": "9ff6178e851942cbb5a5ddc71f82588d",
     "parent": null,
     "paired": null,
     "name": "Teddy Tag",
@@ -52,7 +52,7 @@ device_uid<br>**required**, *string* | UID of the device to be updated<br>*URL p
 name<br>*optional*, *string*  | Name of the device<br>*Unique across all devices owned by the current user*
 type<br>*optional*, *string*  | Device type. Possible values: `phone`, `tablet`, `wearable`, `sensor`, `other`
 platform<br>*optional*, *string*   | Platform type. Possible values: `firmware`, `ios`, `os-x`, `watch-os`, `tv-os`, `android`, `linux`, `windows`, `windows-phone`, `unknown`, `other`.<br>*Defaults to `unknown` if not set*
-user<br>*optional, *string*  | UID of the user this device is assigned to.
+assigned_user<br>*optional, *string*  | UID of the user this device is assigned to.
 parent<br>*optional*, *string*  | If this device is part of a larger system, then this field references the uid of that larger system.
 paried<br>*optional*, *string*  | If this device is currently paired with another device, then this field references the uid of the other device
 description<br>*optional*, *string*  | Description of the device

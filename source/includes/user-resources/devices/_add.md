@@ -16,7 +16,7 @@ curl -X POST 'https://api.fabriq.io/devices'  \
   -d '{                                        
          "name": "Teddy Tag",                   
          "type": "wearable",                   
-         "user": "9ff6178e851942cbb5a5ddc71f82588d",                   
+         "assigned_user": "9ff6178e851942cbb5a5ddc71f82588d",                   
          "ble_mac_address": "20:FF:D0:FF:D1:C0",                   
          "capabilities": ["ble"]                   
       }'
@@ -29,7 +29,7 @@ curl -X POST 'https://api.fabriq.io/devices'  \
     "uid": "7ce9d0b43d8543b2a53a3990028b4f27",
     "type": "wearable",
     "platform": "firmware",
-    "user": "9ff6178e851942cbb5a5ddc71f82588d",
+    "assigned_user": "9ff6178e851942cbb5a5ddc71f82588d",
     "parent": null,
     "paired": null,
     "name": "Teddy Tag",
@@ -54,7 +54,7 @@ ARGUMENTS ||
 name<br>**required**, *string*  | Name of the device<br>*Unique across all devices owned by the current user*
 type<br>**required**, *string*  | Device type. Possible values: `phone`, `tablet`, `wearable`, `sensor`, `other`
 platform<br>*optional*, *string*   | Platform type. Possible values: `firmware`, `ios`, `os-x`, `watch-os`, `tv-os`, `android`, `linux`, `windows`, `windows-phone`, `unknown`, `other`.<br>*Defaults to `unknown` if not set*
-user<br>*optional, *string*  | Uid of the user this device is assigned to.
+assigned_user<br>*optional, *string*  | Uid of the user this device is assigned to.
 parent<br>*optional*, *string*  | If this device is part of a larger system, then this field references the uid of that larger system.
 paried<br>*optional*, *string*  | If this device is currently paired with another device, then this field references the uid of the other device
 description<br>*optional*, *string*  | Description of the device

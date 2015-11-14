@@ -21,7 +21,7 @@ curl 'https://api.fabriq.io/devices/7ce9d0b43d8543b2a53a3990028b4f27' \
     "uid": "7ce9d0b43d8543b2a53a3990028b4f27",
     "type": "wearable",
     "platform": "firmware",
-    "user": "9ff6178e851942cbb5a5ddc71f82588d",
+    "assigned_user": "9ff6178e851942cbb5a5ddc71f82588d",
     "parent": null,
     "paired": null,
     "name": "Teddy Tag",
