@@ -5,7 +5,7 @@
 ```json
 {
     "uid": "9ff6178e851942cbb5a5ddc71f82588d",
-    "username": "+12155551111",
+    "username": "johndoe1234",
     "email": "test@example.com",
     "mobile_number": "+12155551111",
     "has_contacts": true,

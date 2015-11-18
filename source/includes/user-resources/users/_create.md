@@ -22,7 +22,7 @@ curl -X POST 'https://api.fabriq.io/users'  \
 ```json
 {
     "uid": "f3c84161994841c49d729ff97bd0ead0",
-    "username": "+12155551112",
+    "username": "f3c84161994841c49d729ff97bd0ead0",
     "email": null,
     "mobile_number": "+12155551112",
     "has_contacts": false,

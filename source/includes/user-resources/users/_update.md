@@ -14,6 +14,7 @@ curl -X PUT 'https://api.fabriq.io/me'  \
   -H 'Authorization: Bearer {ACCESS_TOKEN}'  \
   -H 'Content-Type: application/json'  \
   -d '{                                        
+        "username": "johndoe1234",
         "mobile_number": "+12155551112"
       }'
 ```
@@ -23,7 +24,7 @@ curl -X PUT 'https://api.fabriq.io/me'  \
 ```json
 {
     "uid": "f3c84161994841c49d729ff97bd0ead0",
-    "username": "+12155551112",
+    "username": "johndoe1234",
     "email": null,
     "mobile_number": "+12155551112",
     "has_contacts": false,

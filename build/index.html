@@ -696,7 +696,7 @@ RFC 2388 which defines file transfers for the <code class="prettyprint">multipar
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551111"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe1234"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@example.com"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551111"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"has_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -768,7 +768,7 @@ RFC 2388 which defines file transfers for the <code class="prettyprint">multipar
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551111"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe1234"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@example.com"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551111"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"has_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -803,6 +803,7 @@ RFC 2388 which defines file transfers for the <code class="prettyprint">multipar
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span>  <span class="se">\</span>
   -d <span class="s1">'{                                        
+        "username": "johndoe1234",
         "mobile_number": "+12155551112"
       }'</span>
 </code></pre>
@@ -812,7 +813,7 @@ RFC 2388 which defines file transfers for the <code class="prettyprint">multipar
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f3c84161994841c49d729ff97bd0ead0"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551112"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe1234"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"mobile_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12155551112"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"has_contacts"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -1742,7 +1743,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wearable"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"assigned_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
@@ -1781,7 +1782,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 <td>Platform type. Possible values: <code class="prettyprint">firmware</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">os-x</code>, <code class="prettyprint">watch-os</code>, <code class="prettyprint">tv-os</code>, <code class="prettyprint">android</code>, <code class="prettyprint">linux</code>, <code class="prettyprint">windows</code>, <code class="prettyprint">windows-phone</code>, <code class="prettyprint">unknown</code>, <code class="prettyprint">other</code></td>
 </tr>
 <tr>
-<td style="text-align: right">user<br><em>string</em></td>
+<td style="text-align: right">assigned_user<br><em>string</em></td>
 <td>Uid of the user this device is assigned to.  This may or may not be the current user.<br><em>For example, a mom (the current user) could purchase this device (e.g. a BLE tracker) for her child in which case, the uid will be that of her child.</em></td>
 </tr>
 <tr>
@@ -1868,7 +1869,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
   -d <span class="s1">'{                                        
          "name": "Teddy Tag",                   
          "type": "wearable",                   
-         "user": "9ff6178e851942cbb5a5ddc71f82588d",                   
+         "assigned_user": "9ff6178e851942cbb5a5ddc71f82588d",                   
          "ble_mac_address": "20:FF:D0:FF:D1:C0",                   
          "capabilities": ["ble"]                   
       }'</span>
@@ -1881,7 +1882,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wearable"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"assigned_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
@@ -1920,7 +1921,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 <td>Platform type. Possible values: <code class="prettyprint">firmware</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">os-x</code>, <code class="prettyprint">watch-os</code>, <code class="prettyprint">tv-os</code>, <code class="prettyprint">android</code>, <code class="prettyprint">linux</code>, <code class="prettyprint">windows</code>, <code class="prettyprint">windows-phone</code>, <code class="prettyprint">unknown</code>, <code class="prettyprint">other</code>.<br><em>Defaults to <code class="prettyprint">unknown</code> if not set</em></td>
 </tr>
 <tr>
-<td style="text-align: right">user<br><em>optional, *string</em></td>
+<td style="text-align: right">assigned_user<br><em>optional, *string</em></td>
 <td>Uid of the user this device is assigned to.</td>
 </tr>
 <tr>
@@ -2012,7 +2013,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wearable"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"assigned_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
@@ -2075,7 +2076,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wearable"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"assigned_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
@@ -2118,7 +2119,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 <td>Platform type. Possible values: <code class="prettyprint">firmware</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">os-x</code>, <code class="prettyprint">watch-os</code>, <code class="prettyprint">tv-os</code>, <code class="prettyprint">android</code>, <code class="prettyprint">linux</code>, <code class="prettyprint">windows</code>, <code class="prettyprint">windows-phone</code>, <code class="prettyprint">unknown</code>, <code class="prettyprint">other</code>.<br><em>Defaults to <code class="prettyprint">unknown</code> if not set</em></td>
 </tr>
 <tr>
-<td style="text-align: right">user<br><em>optional, *string</em></td>
+<td style="text-align: right">assigned_user<br><em>optional, *string</em></td>
 <td>UID of the user this device is assigned to.</td>
 </tr>
 <tr>
@@ -2250,7 +2251,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wearable"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"assigned_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
@@ -2768,16 +2769,20 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">first_name<br><strong>required</strong>, <em>string</em></td>
-<td>Contact&rsquo;s first name</td>
+<td style="text-align: right">user_uid<br><strong>conditional</strong>, <em>string</em></td>
+<td>UID of existing FABRIQ user<br><em>REQUIRED if no other fields are specified</em></td>
 </tr>
 <tr>
-<td style="text-align: right">last_name<br><strong>required</strong>, <em>string</em></td>
-<td>Contact&rsquo;s last name</td>
+<td style="text-align: right">first_name<br><strong>conditional</strong>, <em>string</em></td>
+<td>Contact&rsquo;s first name<br><em>REQUIRED if <code class="prettyprint">user_uid</code> is not specified</em></td>
 </tr>
 <tr>
-<td style="text-align: right">mobile_number<br><strong>required</strong>, <em>string</em></td>
-<td>Contact&rsquo;s mobile number  (<a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>)</td>
+<td style="text-align: right">last_name<br><strong>conditional</strong>, <em>string</em></td>
+<td>Contact&rsquo;s last name<br><em>REQUIRED if <code class="prettyprint">user_uid</code> is not specified</em></td>
+</tr>
+<tr>
+<td style="text-align: right">mobile_number<br><strong>conditional</strong>, <em>string</em></td>
+<td>Contact&rsquo;s mobile number  (<a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>)<br><em>REQUIRED if <code class="prettyprint">user_uid</code> is not specified</em></td>
 </tr>
 <tr>
 <td style="text-align: right">nickname<br><em>optional</em>, <em>string</em></td>
@@ -2793,13 +2798,13 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 </tr>
 <tr>
 <td style="text-align: right">circles<br><em>optional</em>, <em>array</em></td>
-<td>Array of <code class="prettyprint">circle_uid</code>&rsquo;s to which this contact should belong. If not specified, contact will be added to the user&rsquo;s default circle.</td>
+<td>Array of <code class="prettyprint">circle_uid</code>&rsquo;s to which this contact should belong. If not specified, contact will be added to the user&rsquo;s account but will not receive any alerts until added to a circle.</td>
 </tr>
 </tbody></table>
 
 <h3 id="returns">Returns</h3>
 
-<p>A contact object.</p>
+<p>A contact object.  Note the returned object contains a UID for the contact that is independent of <code class="prettyprint">user_uid</code> if it was specified.</p>
 
           <h2 id="retrieve-a-contact">Retrieve a contact</h2>
 
