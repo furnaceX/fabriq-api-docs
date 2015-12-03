@@ -444,17 +444,21 @@ Future calls to refresh the access token must use the most recently issued <code
 range indicate success, codes in the 4xx range indicate an error that resulted from the provided information
 (e.g. a required parameter was missing), and codes in the 5xx range indicate an internal system or server error.</p>
 
-          <h2 id="error-codes">Error Codes</h2>
+          <h2 id="error-codes">Status Codes</h2>
 
 <table><thead>
 <tr>
-<th>Error Codes</th>
+<th>Status Codes</th>
 <th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>200<br><em>OK</em></td>
 <td>Everything worked as expected</td>
+</tr>
+<tr>
+<td>201<br><em>Created</em></td>
+<td>The request has been fulfilled and resulted in a new resource being created</td>
 </tr>
 <tr>
 <td>400<br><em>Bad Request</em></td>
@@ -473,8 +477,21 @@ range indicate success, codes in the 4xx range indicate an error that resulted f
 <td>The requested item doesn&rsquo;t exist</td>
 </tr>
 <tr>
+<td>405<br><em>Method Not Allowed</em></td>
+<td>A request was made of a resource using a request method not supported by that resource</td>
+</tr>
+<tr>
+<td>409<br><em>Conflict</em></td>
+<td>Indicates that the request could not be processed because of conflict in the request</td>
+</tr>
+<tr>
 <td>412<br><em>Validation Error</em></td>
-<td>The request was valid but could not be completed because a condition was not met. For example, specifying to alert a circle that does not have any verified contacts would result in this error</td>
+<td>The request was valid but could not be completed because a condition was not met. 
+	For example, creating an alert with a circle that does not have any verified contacts</td>
+</tr>
+<tr>
+<td>415<br><em>Unsupported Media</em></td>
+<td>The request entity has a media type which the server or resource does not support</td>
 </tr>
 <tr>
 <td>429<br><em>Too Many Requests</em></td>
@@ -487,6 +504,8 @@ range indicate success, codes in the 4xx range indicate an error that resulted f
 </tbody></table>
 
           <h2 id="error-response">Error Response</h2>
+
+<p>Error responses are returned for any status code in the 4xx range or 5xx range.</p>
 
 <blockquote>
 <p><strong>Sample Response</strong></p>
@@ -554,9 +573,10 @@ the developer portal.  Live-mode client_id&rsquo;s will be made available once t
 <p>The user&rsquo;s geolocation is updated during an activity or whenever an alert is triggered.</p>
 
           <h2 id="the-position-object">The position object</h2>
-
+<p>Position objects are used in multiple resources (<a href="#update-position69">Activities</a>, <a href="#update-position">Alerts</a>) in the API, 
+	and are accessible through those resources. Position objects are not directly accessable.</p>
 <blockquote>
-<p><strong>Sample Response</strong></p>
+<p><strong>Sample Position Object</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.0154335191846</span><span class="p">,</span><span class="w">
@@ -622,9 +642,11 @@ of type <code class="prettyprint">multipart/form-data</code>. The uploaded file 
 RFC 2388 which defines file transfers for the <code class="prettyprint">multipart/form-data</code> protocol.</p>
 
           <h2 id="the-media-object">The media object</h2>
-
+<p>Media objects are used in multiple resources (<a href="#profiles">Profiles</a>, <a href="#add-a-logo">Circles</a>, 
+	<a href="#upload-media">Contacts</a>, <a href="#upload-media61">Alerts</a>, <a href="#upload-media70">Activities</a>, <a href="#threats">Threats</a>) in the API, 
+	and are accessible through those resources. Media objects are not directly accessable.</p>
 <blockquote>
-<p><strong>Sample Response</strong></p>
+<p><strong>Sample Media Object</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fa4c01b994974daf83e4b121a078f428"</span><span class="p">,</span><span class="w">
@@ -692,7 +714,7 @@ RFC 2388 which defines file transfers for the <code class="prettyprint">multipar
           <h2 id="the-user-object">The user object</h2>
 
 <blockquote>
-<p><strong>Sample Response</strong></p>
+<p><strong>Sample User Object</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
@@ -760,7 +782,7 @@ RFC 2388 which defines file transfers for the <code class="prettyprint">multipar
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/me'</span> <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+  -H <span class="s2">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
@@ -868,10 +890,10 @@ the user to verify those changes.</p>
 basic information to the community to mobilize a search and rescue.  The private profile is only available
 to the user&rsquo;s contacts and can be selectively shared with emergency personnel to support the rescue effort.</p>
 
-          <h2 id="public-profile">Public profile</h2>
+          <h2 id="public-profile">Public profile object</h2>
 
 <blockquote>
-<p><strong>Sample Response</strong></p>
+<p><strong>Sample Public Profile Object</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
@@ -951,7 +973,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 </tr>
 <tr>
 <td style="text-align: right">media<br><em>array</em></td>
-<td>List of public media objects associated with this profile</td>
+<td>List of public <a href="#the-media-object">media objects</a> associated with this profile</td>
 </tr>
 </tbody></table>
 
@@ -1104,9 +1126,9 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.fabriq.io/profiles/public/media  <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>  <span class="se">\</span>
+  -H <span class="s2">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
   -F <span class="nv">primary_photo</span><span class="o">=</span><span class="nb">true</span>  <span class="se">\</span>
-  -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
+  -F <span class="nv">file</span><span class="o">=</span><span class="s2">'@/path/to/photo.jpg'</span>
 
 </code></pre>
 
@@ -1164,7 +1186,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 
 <h3 id="returns">Returns</h3>
 
-<p>This method returns a <a href="#media">media</a> object with details of the file uploaded.</p>
+<p>This method returns a <a href="#the-media-object">media object</a> with details of the file uploaded.</p>
 
           <h2 id="remove-public-media">Remove public media</h2>
 
@@ -1179,7 +1201,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 </blockquote>
 <pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/profiles/public/media/be2aef2302e54b9e9ff9a4cf35c756a2'</span> <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+  -H <span class="s2">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
@@ -1204,12 +1226,12 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 
 <h3 id="returns">Returns</h3>
 
-<p>The uid of the media object that was removed.</p>
+<p>The UID of the media object that was removed.</p>
 
-          <h2 id="private-profile">Private profile</h2>
+          <h2 id="private-profile">Private profile object</h2>
 
 <blockquote>
-<p><strong>Sample Response</strong></p>
+<p><strong>Sample Private Profile Object</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jane@example.com"</span><span class="p">,</span><span class="w">
@@ -1374,7 +1396,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 </tr>
 <tr>
 <td style="text-align: right">media<br><em>array</em></td>
-<td>List of private media objects associated with this profile</td>
+<td>List of private <a href="#the-media-object">media objects</a> associated with this profile</td>
 </tr>
 </tbody></table>
 
@@ -1629,8 +1651,8 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.fabriq.io/profiles/private/media  <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>  <span class="se">\</span>
-  -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
+  -H <span class="s2">'Authorization: Bearer {ACCESS_TOKEN}'</span>  <span class="se">\</span>
+  -F <span class="nv">file</span><span class="o">=</span><span class="s2">'@/path/to/photo.jpg'</span>
 
 </code></pre>
 
@@ -1684,7 +1706,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 
 <h3 id="returns">Returns</h3>
 
-<p>This method returns a <a href="#media">media</a> object with details of the file uploaded.</p>
+<p>This method returns a <a href="#the-media-object">media object</a> with details of the file uploaded.</p>
 
           <h2 id="remove-private-media">Remove private media</h2>
 
@@ -1699,7 +1721,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 </blockquote>
 <pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/profiles/private/media/90eeaf15a65c4038b1043cbffab8f7ce'</span> <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+  -H <span class="s2">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
@@ -1724,7 +1746,7 @@ to the user&rsquo;s contacts and can be selectively shared with emergency person
 
 <h3 id="returns">Returns</h3>
 
-<p>The uid of the media object that was removed.</p>
+<p>The UID of the media object that was removed.</p>
 
           <h1 id="devices">Devices</h1>
 
@@ -1737,7 +1759,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
           <h2 id="the-device-object">The device object</h2>
 
 <blockquote>
-<p><strong>Sample Response</strong></p>
+<p><strong>Sample Device Object</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ce9d0b43d8543b2a53a3990028b4f27"</span><span class="p">,</span><span class="w">
@@ -1745,7 +1767,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"assigned_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="p">[]<span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"ble_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:FF:D0:FF:D1:C0"</span><span class="p">,</span><span class="w">
@@ -1783,15 +1805,15 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 </tr>
 <tr>
 <td style="text-align: right">assigned_user<br><em>string</em></td>
-<td>Uid of the user this device is assigned to.  This may or may not be the current user.<br><em>For example, a mom (the current user) could purchase this device (e.g. a BLE tracker) for her child in which case, the uid will be that of her child.</em></td>
+<td>UID of the user this device is assigned to.  This may or may not be the current user.<br><em>For example, a mom (the current user) could purchase this device (e.g. a BLE tracker) for her child in which case, the UID will be that of her child.</em></td>
 </tr>
 <tr>
 <td style="text-align: right">parent<br><em>string</em></td>
-<td>If this device is part of a larger system, then this field references the uid of that larger system.<br><em>For example, a home security system that has multiple sensors</em></td>
+<td>If this device is part of a larger system, then this field references the UID of that larger system.<br><em>For example, a home security system that has multiple sensors</em></td>
 </tr>
 <tr>
-<td style="text-align: right">paried<br><em>string</em></td>
-<td>If this device is currently paired with another device, then this field references the uid of the other device</td>
+<td style="text-align: right">paired<br><em>array</em></td>
+<td>If this device is currently paired with another device, then this field references the UIDs of the other devices</td>
 </tr>
 <tr>
 <td style="text-align: right">name<br><em>string</em></td>
@@ -1884,7 +1906,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"assigned_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="p">[]<span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"ble_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:FF:D0:FF:D1:C0"</span><span class="p">,</span><span class="w">
@@ -1921,16 +1943,16 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 <td>Platform type. Possible values: <code class="prettyprint">firmware</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">os-x</code>, <code class="prettyprint">watch-os</code>, <code class="prettyprint">tv-os</code>, <code class="prettyprint">android</code>, <code class="prettyprint">linux</code>, <code class="prettyprint">windows</code>, <code class="prettyprint">windows-phone</code>, <code class="prettyprint">unknown</code>, <code class="prettyprint">other</code>.<br><em>Defaults to <code class="prettyprint">unknown</code> if not set</em></td>
 </tr>
 <tr>
-<td style="text-align: right">assigned_user<br><em>optional, *string</em></td>
-<td>Uid of the user this device is assigned to.</td>
+<td style="text-align: right">assigned_user<br><em>optional, string</em></td>
+<td>UID of the user this device is assigned to.</td>
 </tr>
 <tr>
 <td style="text-align: right">parent<br><em>optional</em>, <em>string</em></td>
-<td>If this device is part of a larger system, then this field references the uid of that larger system.</td>
+<td>If this device is part of a larger system, then this field references the UID of that larger system.</td>
 </tr>
 <tr>
-<td style="text-align: right">paried<br><em>optional</em>, <em>string</em></td>
-<td>If this device is currently paired with another device, then this field references the uid of the other device</td>
+<td style="text-align: right">paired<br><em>optional</em>, <em>array</em></td>
+<td>If this device is currently paired with another device, then this field references the UIDs of the other devices</td>
 </tr>
 <tr>
 <td style="text-align: right">description<br><em>optional</em>, <em>string</em></td>
@@ -2003,7 +2025,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/devices/7ce9d0b43d8543b2a53a3990028b4f27'</span> <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+  -H <span class="s2">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
@@ -2015,7 +2037,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"assigned_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="p">[]<span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"ble_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:FF:D0:FF:D1:C0"</span><span class="p">,</span><span class="w">
@@ -2078,7 +2100,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"assigned_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="p">[]<span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"ble_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:FF:D0:FF:D1:C0"</span><span class="p">,</span><span class="w">
@@ -2124,11 +2146,11 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 </tr>
 <tr>
 <td style="text-align: right">parent<br><em>optional</em>, <em>string</em></td>
-<td>If this device is part of a larger system, then this field references the uid of that larger system.</td>
+<td>If this device is part of a larger system, then this field references the UID of that larger system.</td>
 </tr>
 <tr>
-<td style="text-align: right">paried<br><em>optional</em>, <em>string</em></td>
-<td>If this device is currently paired with another device, then this field references the uid of the other device</td>
+<td style="text-align: right">paired<br><em>optional</em>, <em>array</em></td>
+<td>If this device is currently paired with another device, then this field references the UIDs of the other devices</td>
 </tr>
 <tr>
 <td style="text-align: right">description<br><em>optional</em>, <em>string</em></td>
@@ -2201,7 +2223,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 </blockquote>
 <pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/devices/7ce9d0b43d8543b2a53a3990028b4f27'</span> <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+  -H <span class="s2">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
@@ -2226,7 +2248,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
 
 <h3 id="returns">Returns</h3>
 
-<p>The uid of the device that was removed.</p>
+<p>The UID of the device that was removed.</p>
 
           <h2 id="list-all-devices">List all devices</h2>
 
@@ -2253,7 +2275,7 @@ user&rsquo;s smartphone (e.g. a <a href="https://en.wikipedia.org/wiki/Bluetooth
     </span><span class="nt">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firmware"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"assigned_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ff6178e851942cbb5a5ddc71f82588d"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"parent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paired"</span><span class="p">:</span><span class="w"> </span><span class="p">[]<span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Tag"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"ble_mac_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:FF:D0:FF:D1:C0"</span><span class="p">,</span><span class="w">
@@ -2285,7 +2307,7 @@ can choose which circles(s) receive the notifications.</p>
           <h2 id="the-circle-object">The circle object</h2>
 
 <blockquote>
-<p><strong>Sample Response</strong></p>
+<p><strong>Sample Circle Object</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dea658b2684d11e5922038c98601185b"</span><span class="p">,</span><span class="w">
@@ -2385,7 +2407,7 @@ can choose which circles(s) receive the notifications.</p>
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/circles/dea658b2684d11e5922038c98601185b'</span> <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+  -H <span class="s2">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
@@ -2430,7 +2452,7 @@ can choose which circles(s) receive the notifications.</p>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/circles/039d2aa25d4e11e5a0dd38c98601185b/media'</span>  <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
-  -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
+  -F <span class="nv">file</span><span class="o">=</span><span class="s2">'@/path/to/photo.jpg'</span>
 </code></pre>
 
 <blockquote>
@@ -2463,7 +2485,7 @@ can choose which circles(s) receive the notifications.</p>
 
 <h3 id="returns">Returns</h3>
 
-<p>This method returns a <a href="#media">media</a> object with details of the file uploaded.</p>
+<p>This method returns a <a href="#the-media-object">media object</a> with details of the file uploaded.</p>
 
           <h2 id="update-circle">Update circle</h2>
 
@@ -2530,7 +2552,7 @@ can choose which circles(s) receive the notifications.</p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/circles/df363590684d11e5922038c98601185b'</span> <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+  -H <span class="s2">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
@@ -2566,7 +2588,7 @@ before this circle is removed.
 
 <h3 id="returns">Returns</h3>
 
-<p>The uid of the circle that was removed.</p>
+<p>The UID of the circle that was removed.</p>
 
           <h2 id="list-all-circles">List all circles</h2>
 
@@ -2618,7 +2640,7 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
           <h2 id="the-contact-object">The contact object</h2>
 
 <blockquote>
-<p><strong>Sample Response</strong></p>
+<p><strong>Sample Contact Object</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46b9f6da5da311e5936420c9d07e7899"</span><span class="p">,</span><span class="w">
@@ -2819,7 +2841,7 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 </blockquote>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/contacts/46b9f6da5da311e5936420c9d07e7899'</span> <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+  -H <span class="s2">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
@@ -2878,7 +2900,7 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/contacts/46b9f6da5da311e5936420c9d07e7899/media'</span>  <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span> <span class="se">\</span>
-  -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
+  -F <span class="nv">file</span><span class="o">=</span><span class="s2">'@/path/to/photo.jpg'</span>
 </code></pre>
 
 <blockquote>
@@ -2911,7 +2933,7 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 
 <h3 id="returns">Returns</h3>
 
-<p>This method returns a <a href="#media">media</a> object with details of the file uploaded.</p>
+<p>This method returns a <a href="#the-media-object">media object</a> with details of the file uploaded.</p>
 
           <h2 id="update-contact">Update contact</h2>
 
@@ -3018,7 +3040,7 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 </blockquote>
 <pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/contacts/38f074edb16241b7a662021425fe7f68'</span> <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+  -H <span class="s2">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
@@ -3043,7 +3065,7 @@ to the FABRIQ Network and/or being connected to the user&rsquo;s local 911 emerg
 
 <h3 id="returns">Returns</h3>
 
-<p>The uid of the contact that was removed.</p>
+<p>The UID of the contact that was removed.</p>
 
           <h2 id="list-all-contacts">List all contacts</h2>
 
@@ -3122,13 +3144,13 @@ receive a message with a link to watch over the user in real-time.</p>
 
 <h3 id="app-defined-alert">App-Defined Alert</h3>
 
-<p>You can define alerts specific to your app which can be triggered manually or
+<p>You can define <a href="#alerts20">alerts specific to your app</a> which can be triggered manually or
 automatically on behalf of the user.</p>
 
           <h2 id="the-alert-object">The alert object</h2>
 
 <blockquote>
-<p><strong>Sample Response</strong></p>
+<p><strong>Sample Alert Object</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c2e0f1b0ce94b7ea75104a2ef022529"</span><span class="p">,</span><span class="w">
@@ -3174,11 +3196,11 @@ automatically on behalf of the user.</p>
 </tr>
 <tr>
 <td style="text-align: right">device<br><em>string</em></td>
-<td>Device uid associated with this alert</td>
+<td>Device UID associated with this alert</td>
 </tr>
 <tr>
 <td style="text-align: right">activity<br><em>string</em></td>
-<td>Activity uid associated with this alert</td>
+<td>Activity UID associated with this alert</td>
 </tr>
 <tr>
 <td style="text-align: right">alert_date<br><em>timestamp</em></td>
@@ -3317,7 +3339,7 @@ automatically on behalf of the user.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Trigger an <a href="#create-an-alert">app-defined alert</a>.</p>
+<p>Trigger an <a href="#alerts20">app-defined alert</a>.</p>
 
 <p><br></p>
 
@@ -3379,7 +3401,7 @@ automatically on behalf of the user.</p>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/alerts/5c2e0f1b0ce94b7ea75104a2ef022529/media'</span>  <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
-  -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/recording.wav"</span>
+  -F <span class="nv">file</span><span class="o">=</span><span class="s2">'@/path/to/recording.wav'</span>
 </code></pre>
 
 <blockquote>
@@ -3433,7 +3455,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 
 <h3 id="returns">Returns</h3>
 
-<p>This method returns a media object with details of the file uploaded.</p>
+<p>This method returns a <a href="#the-media-object">media object</a> with details of the file uploaded.</p>
 
           <h2 id="update-position">Update position</h2>
 
@@ -3477,7 +3499,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </thead><tbody>
 <tr>
 <td style="text-align: right">positions<br><strong>required</strong>, <em>array</em></td>
-<td>An array of <a href="#position">position</a> objects. <code class="prettyprint">latitude</code>, <code class="prettyprint">longitude</code> and <code class="prettyprint">timestamp</code> fields are required.</td>
+<td>An array of <a href="#the-position-object">position objects</a>. <code class="prettyprint">latitude</code>, <code class="prettyprint">longitude</code> and <code class="prettyprint">timestamp</code> fields are required.</td>
 </tr>
 </tbody></table>
 
@@ -3651,7 +3673,7 @@ an error message.</p>
           <h2 id="the-activity-object">The activity object</h2>
 
 <blockquote>
-<p><strong>Sample Response</strong></p>
+<p><strong>Sample Activity Object</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ade0a3131ba4e1c942ae40983405391"</span><span class="p">,</span><span class="w">
@@ -3931,6 +3953,84 @@ an error message.</p>
 
 <p>An activity object.</p>
 
+          <h2 id="retrieve-an-activity">Retrieve an activity</h2>
+
+<blockquote>
+<p><strong>Definition</strong></p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/activities/{ACTIVITY_UID}
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Request</strong></p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391'</span>  <span class="se">\</span>
+  -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
+  -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Sample Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ade0a3131ba4e1c942ae40983405391"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"run"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/01/2015 06:42 AM"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"start_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.00930405724701</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2392134802841</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1279 Harrison Ct, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"end_lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.01554089136423</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-105.2499387414243</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1654 33rd St, Boulder, CO 80303, USA"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"dest_lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_floor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dest_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1435754562000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1435755238000</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"elapsed_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">676000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total_distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">1897.0087033661473</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"average_speed"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.900624928694415</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"alert_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timeout"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400000</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"start_activity"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"end_activity"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"circles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"039d2aa25d4e11e5a0dd38c98601185b"</span><span class="p">]</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+
+    </span><span class="nt">"alerts_triggered"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: right">ARGUMENTS</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">activity_uid<br><strong>required</strong>, <em>string</em></td>
+<td>The UID of the activity to be retrieved</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns</h3>
+
+<p>An activity object if a valid UID was provided.</p>
+
           <h2 id="update-position">Update position</h2>
 
 <blockquote>
@@ -3973,7 +4073,7 @@ an error message.</p>
 </thead><tbody>
 <tr>
 <td style="text-align: right">positions<br><strong>required</strong>, <em>array</em></td>
-<td>An array of <a href="#position">position</a> objects. The <code class="prettyprint">latitude</code>, <code class="prettyprint">longitude</code> and <code class="prettyprint">timestamp</code> fields are required.</td>
+<td>An array of <a href="#the-position-object">position objects</a>. The <code class="prettyprint">latitude</code>, <code class="prettyprint">longitude</code> and <code class="prettyprint">timestamp</code> fields are required.</td>
 </tr>
 </tbody></table>
 
@@ -3997,7 +4097,7 @@ an error message.</p>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -F <span class="nv">latitude</span><span class="o">=</span>40.01547488387676  <span class="se">\</span>
   -F <span class="nv">longitude</span><span class="o">=</span>-105.2499169484761  <span class="se">\</span>
-  -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
+  -F <span class="nv">file</span><span class="o">=</span><span class="s2">'@/path/to/photo.jpg'</span>
 </code></pre>
 
 <blockquote>
@@ -4050,7 +4150,7 @@ an error message.</p>
 
 <h3 id="returns">Returns</h3>
 
-<p>This method returns a <a href="#media">media</a> object with details of the file uploaded.</p>
+<p>This method returns a <a href="#the-media-object">media object</a> with details of the file uploaded.</p>
 
           <h2 id="end-an-activity">End an activity</h2>
 
@@ -4145,18 +4245,19 @@ Please note that the arguments are passed in the HTTP DELETE method as query par
 
 <p>An activity object.</p>
 
-          <h2 id="retrieve-an-activity">Retrieve an activity</h2>
+
+          <h2 id="list-active-activities">List active activities</h2>
 
 <blockquote>
 <p><strong>Definition</strong></p>
 </blockquote>
-<pre class="highlight plaintext"><code>GET https://api.fabriq.io/activities/{ACTIVITY_UID}
+<pre class="highlight plaintext"><code>GET https://api.fabriq.io/activities
 </code></pre>
 
 <blockquote>
 <p><strong>Sample Request</strong></p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/activities/4ade0a3131ba4e1c942ae40983405391'</span>  <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.fabriq.io/activities'</span>  <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
@@ -4164,7 +4265,7 @@ Please note that the arguments are passed in the HTTP DELETE method as query par
 <blockquote>
 <p><strong>Sample Response</strong></p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ade0a3131ba4e1c942ae40983405391"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"run"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07/01/2015 06:42 AM"</span><span class="p">,</span><span class="w">
@@ -4204,24 +4305,15 @@ Please note that the arguments are passed in the HTTP DELETE method as query par
     </span><span class="p">}],</span><span class="w">
 
     </span><span class="nt">"alerts_triggered"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="p">}</span><span class="w">
+</span><span class="p">}]</span><span class="w">
 </span></code></pre>
 
-<table><thead>
-<tr>
-<th style="text-align: right">ARGUMENTS</th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: right">activity_uid<br><strong>required</strong>, <em>string</em></td>
-<td>The UID of the activity to be retrieved</td>
-</tr>
-</tbody></table>
 
 <h3 id="returns">Returns</h3>
 
-<p>An activity object if a valid UID was provided.</p>
+<p>An array of activity objects or an empty array if no active activities were found for this user.</p>
+
+
 
           <h1 id="threats">Threats</h1>
 
@@ -4232,7 +4324,7 @@ an external source (e.g. a police report).</p>
           <h2 id="the-threat-object">The threat object</h2>
 
 <blockquote>
-<p><strong>Sample Response</strong></p>
+<p><strong>Sample Threat Object</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7ed205f519264529a86014901151dda5"</span><span class="p">,</span><span class="w">
@@ -4307,7 +4399,7 @@ an external source (e.g. a police report).</p>
 </tr>
 <tr>
 <td style="text-align: right">media<br><em>array</em></td>
-<td>List of media objects associated with this threat</td>
+<td>List of <a href="#the-media-object">media objects</a> associated with this threat</td>
 </tr>
 </tbody></table>
 
@@ -4416,7 +4508,7 @@ an external source (e.g. a police report).</p>
   -H <span class="s1">'Authorization: Bearer {ACCESS_TOKEN}'</span>   <span class="se">\</span>
   -F <span class="nv">latitude</span><span class="o">=</span>40.01547488387676  <span class="se">\</span>
   -F <span class="nv">longitude</span><span class="o">=</span>-105.2499169484761  <span class="se">\</span>
-  -F <span class="nv">file</span><span class="o">=</span><span class="s2">"@/path/to/photo.jpg"</span>
+  -F <span class="nv">file</span><span class="o">=</span><span class="s2">'@/path/to/photo.jpg'</span>
 </code></pre>
 
 <blockquote>
@@ -4470,7 +4562,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 
 <h3 id="returns">Returns</h3>
 
-<p>This method returns a media object with details of the file uploaded.</p>
+<p>This method returns a <a href="#the-media-object">media object</a> with details of the file uploaded.</p>
 
           <h2 id="remove-media">Remove media</h2>
 
@@ -4485,7 +4577,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 </blockquote>
 <pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://api.fabriq.io/threats/7ed205f519264529a86014901151dda5/media/fa4c01b994974daf83e4b121a078f428'</span> <span class="se">\</span>
   -H <span class="s1">'X-FABRIQ-CLIENT-ID: {CLIENT_ID}'</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer {ACCESS_TOKEN}"</span>
+  -H <span class="s2">'Authorization: Bearer {ACCESS_TOKEN}'</span>
 </code></pre>
 
 <blockquote>
@@ -4510,7 +4602,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 
 <h3 id="returns">Returns</h3>
 
-<p>The uid of the media object that was removed.</p>
+<p>The UID of the media object that was removed.</p>
 
           <h2 id="retrieve-a-threat">Retrieve a threat</h2>
 
@@ -4610,7 +4702,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 
 <h3 id="returns">Returns</h3>
 
-<p>An object with the deleted status set.</p>
+<p>The UID of the threat that was removed.</p>
 
           <h2 id="list-nearby-threats">List nearby threats</h2>
 
@@ -4705,7 +4797,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
           <h2 id="the-settings-object">The settings object</h2>
 
 <blockquote>
-<p><strong>Sample Response</strong></p>
+<p><strong>Sample Settings Object</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"panic_delay"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -4943,7 +5035,7 @@ the specifications of RFC 2388 (which defines file transfers for the <code class
 
           <h1 id="users">Users</h1>
 
-<p>App level API calls to manage user accounts.</p>
+<p>App level API calls to manage user accounts. </p>
 
           <h2 id="create-a-user">Create a user</h2>
 
@@ -5029,12 +5121,13 @@ access_token.</p>
 
           <h1 id="alerts">Alerts</h1>
 
-<p>Create app-specific alerts that can be triggered by the user.</p>
+<p>Create app-specific alerts that can be triggered by the user. API calls here affect all of the client’s users.  
+	This API call should not be used within the client app.</p>
 
           <h2 id="the-alert-object">The alert object</h2>
 
 <blockquote>
-<p><strong>Sample Response</strong></p>
+<p><strong>Sample Alert Object</strong></p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68a6e7fe5f324e048ea2f2b29271f895"</span><span class="p">,</span><span class="w">
@@ -5056,7 +5149,7 @@ access_token.</p>
 </thead><tbody>
 <tr>
 <td style="text-align: right">name<br><em>string</em></td>
-<td>Notification name</td>
+<td>Alert name</td>
 </tr>
 <tr>
 <td style="text-align: right">message<br><em>string</em></td>
@@ -5325,7 +5418,7 @@ access_token.</p>
 
 <h3 id="returns">Returns</h3>
 
-<p>The uid of the alert that was removed.</p>
+<p>The UID of the alert that was removed.</p>
 
           <h2 id="list-all-alerts">List all alerts</h2>
 
